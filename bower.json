@@ -1,0 +1,17 @@
+{
+  "name": "majorkey",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "marcinrobak1008"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/nwadibia/majorkey",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
