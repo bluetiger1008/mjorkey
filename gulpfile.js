@@ -16,9 +16,10 @@ gulp.task('scss', function(done) {
     .pipe(scss({
       
     }))
-    .pipe(gulp.dest('./css/'))
+    .pipe(gulp.dest('./src/css/'))
     .on('end', done);
 });
+
 gulp.task('watch', function() {
   gulp.watch(paths.scss, ['scss']);
 });
