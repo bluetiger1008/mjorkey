@@ -1,4 +1,4 @@
-# entusic
+# majorkey
 
 ## Getting Started
 

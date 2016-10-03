@@ -1,7 +1,5 @@
 'use strict'
 
-import angular from 'angular';
-
 export default class ArtistController {
 
 	/*@ngInject*/
@@ -27,11 +25,16 @@ export default class ArtistController {
 	}
 
 	addArtist() {
-		if(this.newArtist) {
+		if(this.artist) {
 	    	this.$http.post('/api/artists', {
-	        	name: this.newArtist
+	        	name: this.artist.name,
+	        	info: this.artist.info,
+	        	email: this.artist.email
 	     	});
-	      	this.newThing = '';
+
+	      	this.artist.name = '';
+	      	this.artist.info = '';
+	      	this.artist.email = '';
 	      	this.getArtists();
 	    }
 	}

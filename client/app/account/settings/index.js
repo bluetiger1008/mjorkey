@@ -3,6 +3,6 @@
 import angular from 'angular';
 import SettingsController from './settings.controller';
 
-export default angular.module('entusicApp.settings', [])
+export default angular.module('majorkeyApp.settings', [])
   .controller('SettingsController', SettingsController)
   .name;

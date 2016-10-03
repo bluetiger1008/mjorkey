@@ -1,20 +1,38 @@
 <div class="container">
-  <div class="row">
+  <form class="artist-form">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Add a new artist</div>
+      <div class="panel-body new-artist-form">
+        <input type="text" class="form-control" placeholder="Name" ng-model="admin.artist.name">
+        <input type="text" class="form-control" placeholder="Email" ng-model="admin.artist.email">
+        <input type="text" class="form-control" placeholder="Info" ng-model="admin.artist.info">
+        <button type="submit" class="btn btn-primary" ng-click="admin.addArtist()">Add New</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- <div class="row">
     <div class="col-lg-12">
       <h1 class="page-header">Artists:</h1>
       <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="artist in admin.artists">
         <li><a href="#" uib-tooltip="{{artist.info}}">{{artist.name}}<button type="button" class="close" ng-click="admin.deleteArtist(artist)">&times;</button></a></li>
       </ul>
     </div>
-  </div>
-
-  <form class="thing-form">
-    <label>Syncs in realtime across clients</label>
-    <p class="input-group">
-      <input type="text" class="form-control" placeholder="Add a new thing here." ng-model="admin.newArtist">
-      <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary" ng-click="admin.addArtist()">Add New</button>
-      </span>
-    </p>
-  </form>
+  </div> -->
+  <table class="table table-striped">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Info</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="artist in admin.artists">
+        <td>{{artist.name}}</td>
+        <td>{{artist.email}}</td>
+        <td>{{artist.info}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

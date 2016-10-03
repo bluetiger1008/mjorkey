@@ -1,6 +1,12 @@
 'use strict';
 
-class _User {}
+class _User {
+  _id = '';
+  name = '';
+  email = '';
+  role = '';
+  $promise = undefined;
+}
 
 export function AuthService($location, $http, $cookies, $q, appConfig, Util, User) {
   'ngInject';

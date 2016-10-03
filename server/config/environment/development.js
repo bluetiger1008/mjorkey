@@ -7,7 +7,7 @@ module.exports = {
 
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/entusic-dev'
+    uri: 'mongodb://localhost/majorkey-dev'
   },
 
   // Seed database on startup

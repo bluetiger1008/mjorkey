@@ -7,7 +7,7 @@
 
 module.exports = {
   DOMAIN: 'http://localhost:9000',
-  SESSION_SECRET: 'entusic-secret',
+  SESSION_SECRET: 'majorkey-secret',
 
   FACEBOOK_ID: 'app-id',
   FACEBOOK_SECRET: 'secret',

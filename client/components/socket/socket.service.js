@@ -80,6 +80,6 @@ function Socket(socketFactory) {
   };
 }
 
-export default angular.module('entusicApp.socket', [])
+export default angular.module('majorkeyApp.socket', [])
   .factory('socket', Socket)
   .name;

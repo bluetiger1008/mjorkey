@@ -31,7 +31,7 @@ import socket from '../components/socket/socket.service';
 
 import './app.scss';
 
-angular.module('entusicApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
+angular.module('majorkeyApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
     uiBootstrap, _Auth, account, admin, user, artist, navbar, footer, main, constants, socket, util
   ])
   .config(routeConfig)
@@ -50,7 +50,7 @@ angular.module('entusicApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-
 
 angular.element(document)
   .ready(() => {
-    angular.bootstrap(document, ['entusicApp'], {
+    angular.bootstrap(document, ['majorkeyApp'], {
       strictDi: true
     });
   });

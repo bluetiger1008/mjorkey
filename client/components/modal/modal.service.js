@@ -73,6 +73,6 @@ export function Modal($rootScope, $uibModal) {
   };
 }
 
-export default angular.module('entusicApp')
+export default angular.module('majorkeyApp.Modal', [])
   .factory('Modal', Modal)
   .name;

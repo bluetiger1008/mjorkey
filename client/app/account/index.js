@@ -10,7 +10,7 @@ import settings from './settings';
 import signup from './signup';
 import oauthButtons from '../../components/oauth-buttons';
 
-export default angular.module('entusicApp.account', [uiRouter, login, settings, signup,
+export default angular.module('majorkeyApp.account', [uiRouter, login, settings, signup,
     oauthButtons
   ])
   .config(routing)

@@ -6,7 +6,7 @@ import routes from './admin.routes';
 
 import AdminController from './admin.controller';
 
-export default angular.module('entusicApp.admin', ['entusicApp.auth', 'ui.router'])
+export default angular.module('majorkeyApp.admin', ['majorkeyApp.auth', 'ui.router'])
   .config(routes)
   .controller('AdminController', AdminController)
   .name;

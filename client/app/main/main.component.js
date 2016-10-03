@@ -64,7 +64,7 @@ export class MainController {
   }
 }
 
-export default angular.module('entusicApp.main', [uiRouter])
+export default angular.module('majorkeyApp.main', [uiRouter])
   .config(routing)
   .component('main', {
     template: require('./main.html'),

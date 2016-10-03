@@ -6,7 +6,7 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/entusic-test'
+    uri: 'mongodb://localhost/majorkey-test'
   },
   sequelize: {
     uri: 'sqlite://',
