@@ -24,6 +24,9 @@ body {
 	color: #fff;
 }
 
+tbody {
+	background: white;
+}
 // Component styles are injected through gulp
 /* inject:scss */
 @import 'admin/admin';

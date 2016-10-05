@@ -26,9 +26,15 @@ export default class CampaignController {
 	addCampaign() {
 	    if(this.campaign) {
 	      this.$http.post('/api/campaigns', {
-	        artistName: this.campaign.artistName
+	        artistName: this.campaign.artistName,
+	        city: this.campaign.city,
+	        state: this.campaign.state,
+	        description: this.campaign.description
 	      });
 	      this.campaign.artistName = '';
+	      this.campaign.city = '';
+	      this.campaign.state = '';
+	      this.campaign.description = '';
 	      // this.getCampaigns();
 	    }
 	}
