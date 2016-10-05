@@ -23,5 +23,12 @@ export default function routes($stateProvider) {
   		controller: 'ArtistController',
   		controllerAs: 'admin',
       authenticate: 'admin'
-  	});
+  	})
+    .state('campaignAdmin', {
+      url: '/admin/campaign',
+      template: require('./campaign/campaign.html'),
+      controller: 'CampaignController',
+      controllerAs: 'admin',
+      authenticate: 'admin'
+    });
 }

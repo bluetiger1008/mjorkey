@@ -17,6 +17,7 @@ function onConnect(socket) {
 
   // Insert sockets below
   require('../api/thing/thing.socket').register(socket);
+  require('../api/campaign/campaign.socket').register(socket);
 }
 
 export default function(socketio) {

@@ -1,0 +1,32 @@
+<div class="container">
+  <form class="artist-form">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Add a new Campaign</div>
+      <div class="panel-body new-artist-form">
+        <input type="text" class="form-control" placeholder="Name" ng-model="admin.campaign.artistName">
+        <button type="submit" class="btn btn-primary" ng-click="admin.addCampaign()">Add New</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Artists:</h1>
+      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="artist in admin.artists">
+        <li><a href="#" uib-tooltip="{{artist.info}}">{{artist.name}}<button type="button" class="close" ng-click="admin.deleteArtist(artist)">&times;</button></a></li>
+      </ul>
+    </div>
+  </div> -->
+  <table class="table table-striped">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Artist Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="campaign in admin.campaigns">
+        <td>{{campaign.artistName}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,11 +1,10 @@
 .trash { color:rgb(209, 91, 71); }
 
 .admin-list {
+	color: #000;
 	li {
 		a {
-			font-size: 25px;
 			text-decoration: none;
-			color: #555;
 		}
 	}	
 }
@@ -20,6 +19,7 @@
 
 		.user-info {
 			flex-grow: 1;
+			color: #444;
 		}
 		.trash {
 			display: flex;
