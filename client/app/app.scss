@@ -27,6 +27,7 @@ body {
 // Component styles are injected through gulp
 /* inject:scss */
 @import 'admin/admin';
+@import 'campaign/campaign';
 @import 'main/main';
 @import '../components/footer/footer';
 @import '../components/modal/modal';
