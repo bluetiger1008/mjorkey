@@ -3,9 +3,14 @@
 export default class CampaignController {
 
 	/*@ngInject*/
-	constructor($http, $scope, socket) {
+	constructor($http, $scope, socket, Auth) {
+		'ngInject';
+
     	this.$http = $http;
 	    this.socket = socket;
+	    this.getCurrentUser = Auth.getCurrentUserSync;
+	    this.currentUser = this.getCurrentUser();
+	    console.log(this.getCurrentUser());
 	 }
 
 	$onInit() {
@@ -24,12 +29,14 @@ export default class CampaignController {
 	}
 
 	addCampaign() {
+		console.log(this.currentUser);
 	    if(this.campaign) {
 	      this.$http.post('/api/campaigns', {
 	        artistName: this.campaign.artistName,
 	        city: this.campaign.city,
 	        state: this.campaign.state,
-	        description: this.campaign.description
+	        description: this.campaign.description,
+	        startedByUser: this.currentUser
 	      });
 	      this.campaign.artistName = '';
 	      this.campaign.city = '';
