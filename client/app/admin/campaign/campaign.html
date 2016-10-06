@@ -1,13 +1,29 @@
 <div class="container">
   <form class="artist-form">
     <div class="panel panel-primary">
-      <div class="panel-heading">Add a new Campaign</div>
-      <p>{{ this.getCurrentUser().name }}</p>
+      <div class="panel-heading">Create a new Campaign</div>
       <div class="panel-body new-artist-form">
-        <input type="text" class="form-control" placeholder="ArtistName" ng-model="admin.campaign.artistName">
-        <input type="text" class="form-control" placeholder="City" ng-model="admin.campaign.city">
-        <input type="text" class="form-control" placeholder="State" ng-model="admin.campaign.state">
-        <input type="text" class="form-control" placeholder="Description" ng-model="admin.campaign.description">
+        <div class="input-group">
+          <span>Artist Name</span>
+          <select id="artistName" ng-model="admin.campaign.artistName">
+            <option value="">---Please select---</option>
+            <option ng-repeat="artist in admin.artists" value="{{artist.name}}">
+              {{artist.name}}
+            </option>
+          </select>
+        </div>
+        <div class="input-group">
+          <span>City</span>
+          <input type="text" class="form-control" placeholder="City" ng-model="admin.campaign.city">
+        </div>
+        <div class="input-group">
+          <span>State</span>
+          <input type="text" class="form-control" placeholder="State" ng-model="admin.campaign.state">
+        </div>
+        <div class="input-group">
+          <span>Description</span>
+          <input type="text" class="form-control" placeholder="Description" ng-model="admin.campaign.description">
+        </div>  
         <button type="submit" class="btn btn-primary" ng-click="admin.addCampaign()">Add New</button>
       </div>
     </div>

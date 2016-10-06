@@ -1,5 +1,20 @@
 .trash { color:rgb(209, 91, 71); }
 
+.input-group {
+	color: black;
+	line-height: 40px;
+	span {
+		padding: 0 5px;
+		display: inline-block;
+		line-height: 40px;
+		width: 200px;
+	}
+	.form-control {
+		width: 400px;
+		float: right;
+	}
+}
+
 .admin-list {
 	color: #000;
 	li {

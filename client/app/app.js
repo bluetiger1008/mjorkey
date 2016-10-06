@@ -5,10 +5,12 @@ import angular from 'angular';
 import ngCookies from 'angular-cookies';
 import ngResource from 'angular-resource';
 import ngSanitize from 'angular-sanitize';
+
 import 'angular-socket-io';
 
 import uiRouter from 'angular-ui-router';
 import uiBootstrap from 'angular-ui-bootstrap';
+// import angularFileUpload from 'angular-file-upload';
 // import ngMessages from 'angular-messages';
 // import ngValidationMatch from 'angular-validation-match';
 
@@ -27,14 +29,16 @@ import navbar from '../components/navbar/navbar.component';
 import footer from '../components/footer/footer.component';
 import main from './main/main.component';
 import campaign from './campaign/campaign.component';
+import campaignInfo from './campaign/info/';
 import constants from './app.constants';
 import util from '../components/util/util.module';
 import socket from '../components/socket/socket.service';
+import campaignFactory from '../components/campaign/campaign.module';
 
 import './app.scss';
 
-angular.module('majorkeyApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-    uiBootstrap, _Auth, account, admin, user, artist, campaignAdmin, navbar, footer, main, campaign, constants, socket, util
+angular.module('majorkeyApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter, 'angularFileUpload', campaignFactory,
+    uiBootstrap, _Auth, account, admin, user, artist, campaignAdmin, campaignInfo, navbar, footer, main, campaign, constants, socket, util
   ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {
@@ -48,6 +52,7 @@ angular.module('majorkeyApp', [ngCookies, ngResource, ngSanitize, 'btford.socket
         }
       });
     });
+
   });
 
 angular.element(document)
