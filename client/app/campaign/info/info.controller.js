@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 export default class InfoController {
 	/*@ngInject*/
@@ -15,5 +15,6 @@ export default class InfoController {
 	        this.campaign = response.data;
 	        console.log(this.campaign);
 	      });
+
 	}
 }

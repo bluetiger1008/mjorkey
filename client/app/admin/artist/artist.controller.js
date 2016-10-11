@@ -42,8 +42,9 @@ export default class ArtistController {
 	      	this.artist.name = '';
 	      	this.artist.info = '';
 	      	this.artist.email = '';
-	      	this.getArtists();
+	      	
 	    }
+	    this.getArtists();
 	}
 
 	deleteArtist(artist) {
