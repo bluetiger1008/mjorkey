@@ -40,13 +40,7 @@ export default class CampaignController {
 	addCampaign() {
 		console.log(this.currentUser);
 	    if(this.campaign) {
-	      // this.$http.post('/api/campaigns', {
-	      //   artistName: this.campaign.artistName,
-	      //   city: this.campaign.city,
-	      //   state: this.campaign.state,
-	      //   description: this.campaign.description,
-	      //   startedByUser: this.currentUser
-	      // });
+	      
 	      var camp = {
 	      	artistName: this.campaign.artistName,
 	        city: this.campaign.city,
@@ -59,7 +53,6 @@ export default class CampaignController {
 	      this.campaign.city = '';
 	      this.campaign.state = '';
 	      this.campaign.description = '';
-	      // this.getCampaigns();
 	    }
 
 	      

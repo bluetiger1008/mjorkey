@@ -5,3 +5,288 @@ table {
 		}
 	}	
 }
+
+.info-header {
+	background: url('/assets/images/banner.jpg');
+	background-size: 100% auto;
+	text-align: center;
+	position: relative;
+	padding: 20px;
+	&:after {
+		content: "";
+		background-color: rgba(100,100,100,0.75);
+		top: 0;
+	  	left: 0;
+	  	bottom: 0;
+	  	right: 0;
+	  	display: block;
+	  	position: absolute;
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	.support {
+		padding: 10px;
+		p {
+			display: inline-block;
+			margin: 0 30px;
+		}
+		.supporters {
+			display: inline-block;
+			ul {
+				padding: 0;
+				list-style: none;
+				li {
+					display: inline-block;
+					width: 30px;
+					padding: 0;
+					img {
+						width: 100%;
+					}
+				}
+			}
+		}
+	}			
+	.container {
+		z-index: 1;
+		position: relative;
+	}
+
+	#img-artist {
+		padding: 30px;
+		width: 200px;
+		height: 200px;
+	}
+
+	p {
+		.place {
+			font-size: 1.5em;
+		}
+	}
+	.status {
+		margin-bottom: 30px;
+		.meter { 
+			display: inline-block;
+			width: 300px;
+			height: 20px;  /* Can be anything */
+			position: relative;
+			background: #fff;
+			-moz-border-radius: 25px;
+			-webkit-border-radius: 25px;
+			border-radius: 25px;
+			box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
+
+			span {
+			  display: block;
+			  height: 100%;
+			  border-top-right-radius: 8px;
+			  border-bottom-right-radius: 8px;
+			  border-top-left-radius: 20px;
+			  border-bottom-left-radius: 20px;
+			  background-color: #f3820b;
+			  position: relative;
+			  overflow: hidden;
+			}
+		}
+		.ticket-status {
+			display: inline-block;
+			margin: 0 10px;
+			span {
+				display: block;
+				font-size: 0.9em;
+				font-weight: bold;
+			}
+		}
+	}
+	
+	.make-happen {
+		width: 400px;
+		padding: 20px;
+		background: #3db6e4;
+		color: white;
+		font-size: 30px;
+		display: inline-block;
+	}
+}
+
+.info-detail {
+	padding: 20px;
+	.profile { 
+		color: #bbb;
+		h2 {
+			color: white;
+		}
+		.link {
+			display: block;
+			margin-bottom: 50px;
+			.skill {
+				font-size: 0.8em;
+				float: left;
+				margin: 0;
+				line-height: 30px;
+			}
+			a {
+				color: #3db6e4;
+				float: right;
+				text-decoration: none;
+				line-height: 30px;
+				img {
+					width: 20px;
+					margin: 0 5px;
+				}
+			}
+		}
+		.description {
+			display: inline-block;
+		}
+	}
+	.card {
+		background: #ddd;
+		padding: 15px;
+		color: #444;
+		margin: 10px 0;
+		.purchase {
+			background: #3db6e4;
+			padding: 10px 20px;
+			margin: 0 20px;
+			display: block;
+			text-align: center;
+			border-radius: 10px;
+			color: #fff;
+		}
+		.price {
+			font-size: 25px;
+			span {
+				padding: 0 10px;
+				font-size: 0.7em;
+			}
+		}
+		.ticket-count, .ticket-info {
+			color: #666;
+			margin-bottom: 20px;
+		}
+	}
+	
+}
+
+.checkout-form {
+	margin: 20px 0;
+	padding: 20px 10px;
+	background: white;
+	display: inline-block;
+	color: #444;
+	border-radius: 5px;
+	h2 {
+		font-size: 25px;
+	}
+	h3 {
+		font-size: 20px;
+	}
+	.admission {	
+		.level-option {
+			border: 2px solid #87c1ce;
+			border-radius: 5px;
+			.count {
+				span {
+					font-size: 25px;
+				}
+			}
+		}
+	}	
+	.count {
+		margin-top: 20px;
+		span {
+			padding: 0 5px;
+			&#btnplus {
+				color: #87c1ce;
+			}
+			&:hover {
+				cursor:pointer;
+			}
+		}
+	}
+	.row {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	.admission {
+		.level-option {
+			margin: 5px 0;
+		}
+	}
+	.payment-info {
+		label {
+			display: block;
+			border: 1px solid lightgrey;
+			margin-bottom: 0px;
+			padding: 10px;
+			&:hover {
+				background: rgba(70,160,160,0.1);
+			}
+			.visa-info {
+				display: inline-block;
+				p {
+					margin: 0;
+				}
+			}
+		}
+		.visa {
+			border-top-right-radius: 5px;
+			border-top-left-radius: 5px;
+			border-bottom: none;
+			img {
+				width: 50px;
+			}
+			.visa-info {
+				vertical-align: middle;
+				padding: 0 10px;
+			}
+		}
+		.new-creditcard {
+			p {
+				display: inline-block;
+				padding: 0 10px;
+				margin: 0;
+			}
+		}
+		.card-input {
+			display: inline-block;
+			Padding: 10px;
+			border: 1px solid lightgrey;
+			border-top: none;
+			border-bottom-right-radius: 5px;
+			border-bottom-left-radius: 5px;
+			.input-group {
+				line-height: 32px;
+				float: left;
+				
+				span {
+					line-height: 32px;
+					width: 20%;
+					text-align: left;
+				}
+				input {
+					width: 80%;
+				}
+			}
+			.card-info {
+				margin: 5px 0;
+			}
+			.card-date {
+				span, input {
+					width: 50%;
+				}
+				.input-year {
+					width: 100%;
+				}
+			}
+		}
+	}
+}
+.user-info {
+	img {
+		width: 100%;
+	}
+}

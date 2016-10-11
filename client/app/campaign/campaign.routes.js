@@ -12,5 +12,11 @@ export default function routes($stateProvider) {
   	template: require('./info/info.html'),
   	controller: 'InfoController',
   	controllerAS: 'vm'
+  })
+  .state('checkout', {
+    url: '/campaign/checkout/:campaignID/',
+    template: require('./checkout/checkout.html'),
+    controller: 'CheckoutController',
+    controllerAS: 'vm'
   });
 }

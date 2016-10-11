@@ -1,31 +1,33 @@
 <div class="container">
-  <form class="artist-form">
-    <div class="panel panel-primary">
-      <div class="panel-heading">Add a new artist</div>
-      <div class="panel-body new-artist-form">
-        <input type="text" class="form-control" placeholder="Name" ng-model="admin.artist.name">
-        <input type="text" class="form-control" placeholder="Email" ng-model="admin.artist.email">
-        <input type="text" class="form-control" placeholder="Info" ng-model="admin.artist.info">
-        <input type="file" nav-file-select="" uploader="uploader">
-        <button type="submit" class="btn btn-primary" ng-click="admin.addArtist()">Add New</button>
+  <div class="admin">
+    <form class="artist-form">
+      <div class="panel panel-primary">
+        <div class="panel-heading">Add a new artist</div>
+        <div class="panel-body new-artist-form">
+          <input type="text" class="form-control" placeholder="Name" ng-model="admin.artist.name">
+          <input type="text" class="form-control" placeholder="Email" ng-model="admin.artist.email">
+          <input type="text" class="form-control" placeholder="Info" ng-model="admin.artist.info">
+          <input type="file" nav-file-select="" uploader="uploader">
+          <button type="submit" class="btn btn-primary" ng-click="admin.addArtist()">Add New</button>
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
 
-  <table class="table table-striped">
-    <thead class="thead-inverse">
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Info</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="artist in admin.artists">
-        <td>{{artist.name}}</td>
-        <td>{{artist.email}}</td>
-        <td>{{artist.info}}</td>
-      </tr>
-    </tbody>
-  </table>
+    <table class="table table-striped">
+      <thead class="thead-inverse">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Info</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="artist in admin.artists">
+          <td>{{artist.name}}</td>
+          <td>{{artist.email}}</td>
+          <td>{{artist.info}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

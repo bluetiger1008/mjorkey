@@ -30,8 +30,7 @@ export class CampaignController {
       //   artistName: this.newCampaign
       // });
       this.newCampaign = '';
-      this.campaignFactory.addCampaign(this.newCampaign);
-      
+      this.campaignFactory.addCampaign(this.newCampaign); 
     }
   }
 }

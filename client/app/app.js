@@ -30,6 +30,7 @@ import footer from '../components/footer/footer.component';
 import main from './main/main.component';
 import campaign from './campaign/campaign.component';
 import campaignInfo from './campaign/info/';
+import checkout from './campaign/checkout/';
 import constants from './app.constants';
 import util from '../components/util/util.module';
 import socket from '../components/socket/socket.service';
@@ -38,7 +39,7 @@ import campaignFactory from '../components/campaign/campaign.module';
 import './app.scss';
 
 angular.module('majorkeyApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter, 'angularFileUpload', campaignFactory,
-    uiBootstrap, _Auth, account, admin, user, artist, campaignAdmin, campaignInfo, navbar, footer, main, campaign, constants, socket, util
+    uiBootstrap, _Auth, account, admin, user, artist, campaignAdmin, campaignInfo, checkout, navbar, footer, main, campaign, constants, socket, util
   ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {
