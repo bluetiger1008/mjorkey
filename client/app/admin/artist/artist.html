@@ -5,8 +5,23 @@
         <div class="panel-heading">Add a new artist</div>
         <div class="panel-body new-artist-form">
           <div class="input-group">
-            <span>Artist Name</span>
+            <span>Name</span>
             <input type="text" class="form-control" placeholder="Name" ng-model="admin.artist.name">  
+          </div>
+          <div class="photo-select">
+            <span>Photo</span>
+            <div class="photo-upload">
+              <img ngf-thumbnail="file || 'assets/images/default-user.png'">
+              <form ng-app="fileUpload" name="form">
+                <div class="btn btn-primary" ngf-select="admin.upload($file)" ng-model="file" ngf-pattern="'image/*'"
+                  ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" 
+                  ngf-resize="{width: 100, height: 100}">Select Photo</div>
+                <!-- <button type="submit" ng-click="admin.submit()">submit</button> -->
+              </form>
+              <!-- <div class="button" ng-model="file" ngf-select="admin.upload($file)">Upload on file select</div> -->
+              <!-- <input type="text" class="form-control" ng-model="admin.photo"> -->
+              <p>{{admin.photoName}}</p>
+            </div>
           </div>
           <div class="input-group">
             <span>Email</span>
@@ -21,7 +36,9 @@
             <span>Photo</span>
             <input type="file" nav-file-select="" uploader="uploader">
           </div> -->
+          
           <button type="submit" class="btn btn-primary" ng-click="admin.addArtist()">Add New</button>
+          
         </div>
       </div>
     </form>

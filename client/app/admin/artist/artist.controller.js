@@ -3,19 +3,12 @@
 export default class ArtistController {
 
 	/*@ngInject*/
-	constructor($state, $http, FileUploader) {
+	constructor($state, $http, Upload) {
 		this.$state = $state;
 		this.$http = $http;
-		// this.FileUploader = FileUploader;
-		// this.uploader = new FileUploader({
-	 //      url: 'api/users/logo',
-	 //      alias: 'newLogo',
-	 //      onAfterAddingFile: onAfterAddingFile,
-	 //      onSuccessItem: onSuccessItem,
-	 //      onErrorItem: onErrorItem
-	 //    });
+		this.Upload = Upload;
 	}
-
+	
 	$onInit() {
 		this.$http.get('/api/artists')
 	      .then(response => {
@@ -28,23 +21,26 @@ export default class ArtistController {
 	    this.$http.get('/api/artists')
 	      .then(response => {
 	        this.artists = response.data;
-	    });
+	    });	    
 	}
 
-	addArtist() {
+	addArtist() {	
 		if(this.artist) {
 	    	this.$http.post('/api/artists', {
 	        	name: this.artist.name,
+	        	photo: this.photo,
 	        	info: this.artist.info,
-	        	email: this.artist.email
+	        	email: this.artist.email,
 	     	});
 
 	      	this.artist.name = '';
 	      	this.artist.info = '';
 	      	this.artist.email = '';
-	      	
-	    }
-	    this.getArtists();
+	      	this.photoName = '';
+	      	this.photo = '';
+	      	this.artist.photoName = 'abc';
+	      	this.getArtists();
+	    }		    
 	}
 
 	deleteArtist(artist) {
@@ -52,64 +48,31 @@ export default class ArtistController {
 	    this.getArtists();
 	}
 
-	// Create file uploader instance
-    
+	submit() {
+		console.log('submit');
+      	if (this.file) {
+        	this.upload(this.file);
+      	}
+    }
 
-    // Set file uploader img filter
- //    this.uploader.filters.push({
- //      name: 'logoFilter',
- //      fn: function (item, options) {
- //        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
- //        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
- //      }
- //    });
-
- //    // Called after the user selected a new img file
- //    onAfterAddingFile(fileItem) {
- //      if ($window.FileReader) {
- //        var fileReader = new FileReader();
- //        fileReader.readAsDataURL(fileItem._file);
-
- //        fileReader.onload = function (fileReaderEvent) {
- //          $timeout(function () {
- //            this.artist.imgURL = fileReaderEvent.target.result;
- //          }, 0);
- //        };
- //      }
- //    }
-
-	// // Called after the user has successfully uploaded a new logo
- //    onSuccessItem(fileItem, response, status, headers) {
- //      // Show success message
- //      this.success = true;
-
- //      // Populate user object
- //      this.user = Authentication.user = response;
-
- //      // Clear upload buttons
- //      cancelUpload();
- //    }
-
-	// // Change user profile picture
-	// uploadImg() {
-	// 	// Clear messages
-	//     this.success = this.error = null;
-	//     // Start upload
-	//     this.uploader.uploadAll();
-	// }
-
-	// // Cancel the upload process
-	// cancelUpload() {
- //      this.uploader.clearQueue();
- //      this.imgUrl = this.artist.imgURL;
- //    }
-
- //    // Called after the user has failed to uploaded a new picture
- //    onErrorItem(fileItem, response, status, headers) {
- //      // Clear upload buttons
- //      cancelUpload();
-
- //      // Show error message
- //      this.error = response.message;
- //    }
+    upload(file) {
+    	console.log('upload');
+    	if(file){
+    		this.Upload.upload({
+	            url: 'api/artists/photo',
+	            data: {newPhoto: file}
+	        }).then(resp => {
+	            console.log('Success ' + resp.config.data.newPhoto.name + 'uploaded. Response: ' + resp.data);
+	            this.photo = 'server' + resp.data;
+	            this.photoName = resp.config.data.newPhoto.name;
+	        }, resp =>{
+	            console.log('Error status: ' + resp.status);
+	        }, evt => {
+	            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+	            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.newPhoto.name);
+	        });
+	        // console.log(this.photo);	
+    	}
+    	
+    }
 }

@@ -12,6 +12,9 @@
 
 import jsonpatch from 'fast-json-patch';
 import Artist from './artist.model';
+import multer from 'multer';
+import config from '../../config/environment';
+import path from 'path';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -114,4 +117,33 @@ export function destroy(req, res) {
     .then(handleEntityNotFound(res))
     .then(removeEntity(res))
     .catch(handleError(res));
+}
+
+//upload photo
+export function uploadPhoto(req,res) {
+  var relativePath = '';
+  var upload = multer(config.uploads.photoUpload).single('newPhoto');
+  var photoUploadFileFilter = require(path.resolve('server/config/multer')).photoUploadFileFilter;
+  var isStart = false;
+
+  upload(req, res, function (err) {
+    if(err) {
+      return res.end("Error uploading file.");
+    }
+    else {
+        
+      config.uploads.photoUpload.dest.split('/').forEach(function(subStr) {
+        if (subStr === 'uploads') {
+          isStart = true;
+        }
+        if (isStart) {
+          relativePath += '/';
+          relativePath += subStr;
+        }
+      });
+      var photoUrl = relativePath + req.file.filename;
+      console.log(photoUrl);
+      res.end(photoUrl);
+    }
+  });
 }

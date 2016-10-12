@@ -49,6 +49,15 @@ var all = {
     clientID: process.env.FACEBOOK_ID || 'id',
     clientSecret: process.env.FACEBOOK_SECRET || 'secret',
     callbackURL: `${process.env.DOMAIN || ''}/auth/facebook/callback`
+  },
+
+  uploads: {
+    photoUpload: {
+      dest: path.join(__dirname, '../../uploads/users/img/profile/'), // Profile upload destination path
+      limits: {
+        fileSize: 1 * 1024 * 1024 // Max file size in bytes (1 MB)
+      }
+    },
   }
 };
 

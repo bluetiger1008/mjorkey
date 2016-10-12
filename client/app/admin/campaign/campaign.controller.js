@@ -54,9 +54,6 @@ export default class CampaignController {
 	      this.campaign.state = '';
 	      this.campaign.description = '';
 	    }
-
-	      
-	    
 	}
 
 	deleteCampaign(campaign) {

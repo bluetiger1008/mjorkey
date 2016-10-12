@@ -5,6 +5,7 @@ import angular from 'angular';
 import ngCookies from 'angular-cookies';
 import ngResource from 'angular-resource';
 import ngSanitize from 'angular-sanitize';
+import ngFileUpload from 'ng-file-upload';
 
 import 'angular-socket-io';
 
@@ -38,7 +39,7 @@ import campaignFactory from '../components/campaign/campaign.module';
 
 import './app.scss';
 
-angular.module('majorkeyApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter, 'angularFileUpload', campaignFactory,
+angular.module('majorkeyApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', ngFileUpload, uiRouter, campaignFactory,
     uiBootstrap, _Auth, account, admin, user, artist, campaignAdmin, campaignInfo, checkout, navbar, footer, main, campaign, constants, socket, util
   ])
   .config(routeConfig)

@@ -6,6 +6,7 @@
 
 import express from 'express';
 import mongoose from 'mongoose';
+import multer from 'multer';
 mongoose.Promise = require('bluebird');
 import config from './config/environment';
 import http from 'http';
@@ -29,8 +30,10 @@ var socketio = require('socket.io')(server, {
   serveClient: config.env !== 'production',
   path: '/socket.io-client'
 });
+
 require('./config/socketio').default(socketio);
 require('./config/express').default(app);
+
 require('./routes').default(app);
 
 // Start server
