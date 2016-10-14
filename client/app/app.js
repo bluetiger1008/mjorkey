@@ -35,11 +35,12 @@ import checkout from './campaign/checkout/';
 import constants from './app.constants';
 import util from '../components/util/util.module';
 import socket from '../components/socket/socket.service';
-import campaignFactory from '../components/campaign/campaign.module';
+import campaignFactory from '../components/factory/campaign.module';
+import artistFactory from '../components/factory/artist.module';
 
 import './app.scss';
 
-angular.module('majorkeyApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', ngFileUpload, uiRouter, campaignFactory,
+angular.module('majorkeyApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', ngFileUpload, uiRouter, campaignFactory, artistFactory,
     uiBootstrap, _Auth, account, admin, user, artist, campaignAdmin, campaignInfo, checkout, navbar, footer, main, campaign, constants, socket, util
   ])
   .config(routeConfig)
