@@ -31,6 +31,10 @@ var all = {
   // Should we populate the DB with sample data?
   seedDB: false,
 
+  //Amazon S3
+  aws_access_key_id : 'AKIAJHFTEX2RNWVBU44A',//your_access_key;
+  aws_secret_access_key : 'HP6g3L1cP6i09PTMyhasUHY8FNsNMl4uJugQ4ciJ',// your_secret_key;
+
   // Secret for session, you will want to change this and make it an environment variable
   secrets: {
     session: 'majorkey-secret'

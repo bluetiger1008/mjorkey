@@ -2,9 +2,10 @@
 
 export default class CheckoutController {
 	/*@ngInject*/
-	constructor($stateParams, campaignFactory) {
+	constructor($stateParams, campaignFactory, $http) {
 		// this.artistID = $stateParams.campaignID;
 		// this.campaignFactory = campaignFactory;
+		this.$http = $http;
 	}
 
 	$onInit() {
@@ -14,5 +15,9 @@ export default class CheckoutController {
 	    //     this.campaign = response.data;
 	    //     console.log(this.campaign);
 	    //   });
+	}
+
+	submit(){
+		this.$http.post('/api/stripe');	 
 	}
 }

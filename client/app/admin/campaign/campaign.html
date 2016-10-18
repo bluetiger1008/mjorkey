@@ -6,10 +6,10 @@
         <div class="panel-body new-artist-form">
           <div class="input-group">
             <span>Artist Name</span>
-            <select id="artistName" ng-model="admin.campaign.artistName">
+            <select id="artistName" ng-model="admin.campaign.artistID">
               <option value="">---Please select---</option>
-              <option ng-repeat="artist in admin.artists" value="{{artist.name}}">
-                {{artist.name}}
+              <option ng-repeat="artist in admin.artists" value="{{artist._id}}">
+                {{artist._id}}
               </option>
             </select>
           </div>
@@ -41,7 +41,7 @@
     <table class="table">
       <thead class="thead-inverse">
         <tr>
-          <th>Artist Name</th>
+          <th>Artist ID</th>
           <th>City</th>
           <th>State</th>
           <th>Description</th>
@@ -49,7 +49,7 @@
       </thead>
       <tbody>
         <tr ng-repeat="campaign in admin.campaigns">
-          <td>{{campaign.artistName}}</td>
+          <td>{{campaign.artistID}}</td>
           <td>{{campaign.city}}</td>
           <td>{{campaign.state}}</td>
           <td>{{campaign.description}}</td>

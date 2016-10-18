@@ -6,7 +6,7 @@
 		    <thead class="thead-inverse">
 		      <tr>
 		      	<th>ID</th>
-		        <th>Artist Name</th>
+		        <th>Artist ID</th>
 		        <th>City</th>
 		        <th>State</th>
 		        <th>Description</th>
@@ -15,7 +15,7 @@
 		    <tbody>
 		      <tr ng-repeat="campaign in $ctrl.campaigns">
 		      	<td>{{campaign._id}}</td>
-		        <td><a ui-sref="campaignInfo({campaignID: campaign._id})">{{campaign.artistName}}</td>
+		        <td><a ui-sref="campaignInfo({campaignID: campaign._id})">{{campaign.artistID}}</td>
 		        <td>{{campaign.city}}</td>
 		        <td>{{campaign.state}}</td>
 		        <td>{{campaign.description}}</td>

@@ -15,6 +15,10 @@ import Artist from './artist.model';
 import multer from 'multer';
 import config from '../../config/environment';
 import path from 'path';
+import fs from 'fs';
+import AWS from 'aws-sdk';
+
+global.appRoot = path.resolve(__dirname);
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -142,8 +146,82 @@ export function uploadPhoto(req,res) {
         }
       });
       var photoUrl = relativePath + req.file.filename;
-      console.log(photoUrl);
-      res.end(photoUrl);
+      console.log(path.join(__dirname, '../..' + photoUrl));
+      
+
+      // res.end(photoUrl);
+      AWS.config.update({accessKeyId: config.aws_access_key_id, secretAccessKey: config.aws_secret_access_key});
+      console.log(appRoot);
+      fs.readFile(path.join(__dirname, '../..' + photoUrl), (err,data) => {
+          if(err) throw err;
+          var s3 = new AWS.S3();
+          var s3_param = {
+             Bucket: 'entusic-account-images',
+             Key: req.file.filename,
+             Expires: 60,
+             ContentType: req.file.mimetype,
+             ACL: 'public-read',
+             Body: data
+          };
+          s3.putObject(s3_param, function(err, data){
+             if(err){
+                console.log(err);
+             } else {
+              var return_data = {
+                 signed_request: data,
+                 url: 'https://s3-us-west-1.amazonaws.com/entusic-account-images/'+req.file.filename
+              }; 
+              console.log('return data - ////////// --------------');
+              console.log(return_data.url);
+              res.end(return_data.url);
+               // return res.render('upload', {data : return_data, title : 'Upload Image : success', message : { type: 'success', messages : [ 'Uploaded Image']}});
+             }
+          });
+      });
     }
   });
+
+  // console.log('/// ----------- Upload');
+  //  console.log(req.newPhoto);
+  //  console.log(appRoot + '/uploads');
+  //  if(!req.file) {
+  //     return res.render('upload', {title : 'Upload Image', message : { type: 'danger', messages : [ 'Failed uploading image. 1x001']}});
+  //  } else {
+  //     fs.rename(req.file.path, appRoot + '/uploads/' + req.file.originalname, function(err){
+  //        if(err){
+  //           return res.render('upload', {title : 'Upload Image', message : { type: 'danger', messages : [ 'Failed uploading image. 1x001']}});
+  //        } else {
+  //           //pipe to s3
+  //           AWS.config.update({accessKeyId: config.aws_access_key_id, secretAccessKey: config.aws_secret_access_key});
+  //           var fileBuffer = fs.readFileSync(appRoot + '/uploads/' + req.file.originalname);
+  //           console.log(fileBuffer);
+  //           var s3 = new AWS.S3();
+  //           var s3_param = {
+  //              Bucket: 'poshbellies',
+  //              Key: req.file.originalname,
+  //              Expires: 60,
+  //              ContentType: req.file.mimetype,
+  //              ACL: 'public-read',
+  //              Body: fileBuffer
+  //           };
+  //           s3.putObject(s3_param, function(err, data){
+  //              if(err){
+  //                 console.log(err);
+  //              } else {
+  //               var return_data = {
+  //                  signed_request: data,
+  //                  url: 'https://poshbellies.s3.amazonaws.com/'+req.file.originalname
+                   
+  //               }; 
+  //               console.log('return data - ////////// --------------');
+  //               console.log(return_data);
+  //                return res.render('upload', {data : return_data, title : 'Upload Image : success', message : { type: 'success', messages : [ 'Uploaded Image']}});
+                
+  //              }
+  //           });
+            
+           
+  //        }
+  //     })
+  //  }
 }

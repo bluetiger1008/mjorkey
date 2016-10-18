@@ -10,6 +10,7 @@ import multer from 'multer';
 mongoose.Promise = require('bluebird');
 import config from './config/environment';
 import http from 'http';
+import stripe from 'stripe';
 
 // Connect to MongoDB
 mongoose.connect(config.mongo.uri, config.mongo.options);

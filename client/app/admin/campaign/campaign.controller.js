@@ -42,14 +42,14 @@ export default class CampaignController {
 	    if(this.campaign) {
 	      
 	      var camp = {
-	      	artistName: this.campaign.artistName,
+	      	artistID: this.campaign.artistID,
 	        city: this.campaign.city,
 	        state: this.campaign.state,
 	        description: this.campaign.description,
 	        startedByUser: this.currentUser
 	      }
 	      this.campaignFactory.addCampaign(camp); 
-	      this.campaign.artistName = '';
+	      this.campaign.artistID = '';
 	      this.campaign.city = '';
 	      this.campaign.state = '';
 	      this.campaign.description = '';

@@ -1,7 +1,7 @@
 <div class="info-header">
 	<div class="container">
-		<img id="img-artist" src="assets/images/images.jpg">
-		<h1>Get {{ vm.campaign.artistName }}</h1>
+		<img id="img-artist" src="{{vm.artist.photo}}">
+		<h1>Get {{ vm.artist.name }}</h1>
 		<p>to perform in <span class="place">{{ vm.campaign.city }}, {{ vm.campaign.state }}</span></p>
 		<div class="status">
 			<div class="meter">
@@ -27,7 +27,7 @@
 <div class="info-detail">
 	<div class="container">
 		<div class="col-md-9 profile">
-			<h2>About {{ vm.campaign.artistName }}</h2>
+			<h2>About {{ vm.artist.name }}</h2>
 			<div class="link">
 				<p class="skill">Hip Hop/ R&B / Funk</p>
 				<a href=""><span><img src="assets/images/earth.svg">pharrellwiliams.com</a>

@@ -63,7 +63,7 @@ export default class ArtistController {
 	            data: {newPhoto: file}
 	        }).then(resp => {
 	            console.log('Success ' + resp.config.data.newPhoto.name + 'uploaded. Response: ' + resp.data);
-	            this.photo = 'server' + resp.data;
+	            this.photo = resp.data;
 	            this.photoName = resp.config.data.newPhoto.name;
 	        }, resp =>{
 	            console.log('Error status: ' + resp.status);
