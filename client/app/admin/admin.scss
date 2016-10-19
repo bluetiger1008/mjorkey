@@ -2,19 +2,45 @@
 
 .admin {
 	padding: 20px 0;
-}
-.input-group {
-	color: black;
-	line-height: 40px;
-	span {
-		padding: 0 5px;
-		display: inline-block;
-		line-height: 40px;
-		width: 200px;
-	}
-	.form-control {
-		width: 400px;
-		float: right;
+	.adding-form {
+		.input-group {
+			width: 100%;
+			color: black;
+			line-height: 40px;
+			.form-control {
+				width: 50%;
+			}
+			span {
+				padding: 0 5px;
+				display: inline-block;
+				float: left;
+				line-height: 40px;
+				width: 100px;
+			}
+		}
+		.photo-select {
+			color: black;
+			margin: 5px 0;
+			span {
+				width: 100px;
+				display: inline-block;
+				float: left;
+				line-height: 40px;
+				padding: 0 5px;
+			}
+			.photo-upload {
+				display: inline-block;
+				img {
+					width: 100px;
+					margin-right: 20px;
+				}
+			}
+		}
+		.add-input-group {
+			.btn {
+				margin: 10px 0;
+			}
+		}
 	}
 }
 
@@ -52,22 +78,24 @@
 	color: #fff;
 }
 
-.photo-select {
-	color: black;
-	margin: 5px 0;
-	span {
-		width: 200px;
-		display: inline-block;
-		float: left;
-		padding: 0 5px;
-	}
-	.photo-upload {
-		display: inline-block;
-		img {
-			width: 100px;
-		}
-		.btn {
-			margin: 0 20px;
+
+@media only screen and (max-width : 414px) {
+	.admin {
+		padding: 20px 0;
+		.adding-form {
+			.input-group {
+				.form-control {
+					width: 100%;
+				}
+				span {
+					line-height: 30px;		
+				}
+			}
+			.photo-select {
+				.photo-upload {
+					width: 100%;
+				}
+			}
 		}
 	}
 }

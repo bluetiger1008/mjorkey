@@ -5,20 +5,18 @@
 		  <table class="table">
 		    <thead class="thead-inverse">
 		      <tr>
-		      	<th>ID</th>
 		        <th>Artist ID</th>
 		        <th>City</th>
 		        <th>State</th>
-		        <th>Description</th>
+		        <th class="tb-description">Description</th>
 		      </tr>
 		    </thead>
 		    <tbody>
 		      <tr ng-repeat="campaign in $ctrl.campaigns">
-		      	<td>{{campaign._id}}</td>
 		        <td><a ui-sref="campaignInfo({campaignID: campaign._id})">{{campaign.artistID}}</td>
 		        <td>{{campaign.city}}</td>
 		        <td>{{campaign.state}}</td>
-		        <td>{{campaign.description}}</td>
+		        <td class="tb-description">{{campaign.description}}</td>
 		      </tr>
 		    </tbody>
 		  </table>

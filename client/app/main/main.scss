@@ -25,3 +25,22 @@
 .navbar-text {
   margin-left: 15px;
 }
+
+@media only screen and (max-width : 414px) {
+  .table {
+    width: 100%;
+    .tb-description {
+      display: none;
+    }
+    td{
+      a {
+        word-wrap: break-word;
+      }
+    }
+    th, td {
+      width: 33.3333%;
+      word-wrap: break-word;
+      display: inline-block;
+    }
+  }
+}

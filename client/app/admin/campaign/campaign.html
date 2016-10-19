@@ -1,9 +1,9 @@
 <div class="container">
   <div class="admin">
-    <form class="artist-form">
+    <form class="adding-form">
       <div class="panel panel-primary">
         <div class="panel-heading">Create a new Campaign</div>
-        <div class="panel-body new-artist-form">
+        <div class="panel-body add-input-group">
           <div class="input-group">
             <span>Artist Name</span>
             <select id="artistName" ng-model="admin.campaign.artistID">
@@ -44,7 +44,7 @@
           <th>Artist ID</th>
           <th>City</th>
           <th>State</th>
-          <th>Description</th>
+          <th class="tb-description">Description</th>
         </tr>
       </thead>
       <tbody>
@@ -52,7 +52,7 @@
           <td>{{campaign.artistID}}</td>
           <td>{{campaign.city}}</td>
           <td>{{campaign.state}}</td>
-          <td>{{campaign.description}}</td>
+          <td class="tb-description">{{campaign.description}}</td>
         </tr>
       </tbody>
     </table>
