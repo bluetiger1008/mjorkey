@@ -4,6 +4,7 @@ import mongoose, {Schema} from 'mongoose';
 
 var CampaignSchema = new mongoose.Schema({
     artistID: String,
+    artistName: String,
     city: String,
     state: String,
     startedByUser: {

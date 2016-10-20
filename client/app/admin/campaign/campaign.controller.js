@@ -3,7 +3,7 @@
 export default class CampaignController {
 
 	/*@ngInject*/
-	constructor($http, $scope, socket, Auth, campaignFactory) {
+	constructor($http, $scope, socket, Auth, campaignFactory, artistFactory) {
     	this.$http = $http;
 	    this.socket = socket;
 	    this.getCurrentUser = Auth.getCurrentUserSync;
@@ -11,6 +11,7 @@ export default class CampaignController {
 	    console.log(this.getCurrentUser());
 
 	    this.campaignFactory = campaignFactory;
+	    this.artistFactory = artistFactory;
 
 	    $scope.$on('$destroy', function() {
 	      socket.unsyncUpdates('campaign');
@@ -24,10 +25,12 @@ export default class CampaignController {
 	        this.campaigns = response.data;
 	        this.socket.syncUpdates('campaign', this.campaigns);
 	      });
-	    this.$http.get('/api/artists')
-	      .then(response => {
-	        this.artists = response.data;
-	    });
+	    this.artistFactory.getArtists()
+	    	.then(response => {
+	    		this.artists = response.data;
+	    	});
+	    this.selectedArtistFlag = false;
+	    this.successFlag = false;
 	}
 
 	getCampaigns() {
@@ -42,14 +45,15 @@ export default class CampaignController {
 	    if(this.campaign) {
 	      
 	      var camp = {
-	      	artistID: this.campaign.artistID,
+	      	artistID: this.selectedArtistID,
+	      	artistName: this.selectedArtistName,
 	        city: this.campaign.city,
 	        state: this.campaign.state,
 	        description: this.campaign.description,
 	        startedByUser: this.currentUser
 	      }
-	      this.campaignFactory.addCampaign(camp); 
-	      this.campaign.artistID = '';
+	      this.campaignFactory.addCampaign(camp);
+	      this.successFlag = true;
 	      this.campaign.city = '';
 	      this.campaign.state = '';
 	      this.campaign.description = '';
@@ -59,5 +63,15 @@ export default class CampaignController {
 	deleteCampaign(campaign) {
 	    this.$http.delete(`/api/campaigns/${campaign._id}`);
 	    // this.getCampaigns();
-	}	
+	}
+
+	selectArtist(artist) {
+		this.selectedArtistID = artist._id;
+		this.selectedArtistName = artist.name;
+		this.selectedArtistFlag = true;
+	}
+
+	chooseArtist(){
+		this.selectedArtistFlag = false;
+	}
 }

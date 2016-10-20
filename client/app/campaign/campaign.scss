@@ -263,28 +263,17 @@ table {
 			border-bottom-right-radius: 5px;
 			border-bottom-left-radius: 5px;
 			.input-group {
-				line-height: 32px;
 				margin-bottom: 10px;
 				float: left;
-				span {
-					line-height: 32px;
-				}
 				&.name-on-card {
 					width: 100%;
 					span {
 						width: 30%;
 					}
-					input {
-						width: 70%;
-					}
 				}
 				&.card-number {
-					display: block;
 					width: 60%;
 					span {
-						width: 50%;
-					}
-					input {
 						width: 50%;
 					}
 				}
@@ -298,7 +287,7 @@ table {
 				padding: 0 20px;
 				text-align: center;
 				img {
-					height: 32px;
+					max-height: 32px;
 				}
 			}
 			.card-date {
@@ -307,7 +296,7 @@ table {
 					margin-right: 20px;
 					&.expiration-month, &.cvc {
 						width: 30%;
-						span,input {
+						span {
 							width: 50%;
 						}
 					}
@@ -373,14 +362,14 @@ table {
 			.card-option {
 				.card-input {
 					.name-on-card {
-						span, input {
+						span{
 							width: 50%;
 						}
 					}
 					.card-number {
 						width: 100%;
 						margin-bottom: 0px;
-						span, input {
+						span{
 							width: 50%;
 						}
 					}
@@ -403,6 +392,16 @@ table {
 						padding: 10px;
 					}
 				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: $screen-md) {
+	.checkout-form {
+		.user-info {
+			img {
+				width: 30%;
 			}
 		}
 	}

@@ -1,31 +1,48 @@
 <div class="container">
-  <div class="admin">
+  <div class="admin campaign">
     <form class="adding-form">
       <div class="panel panel-primary">
         <div class="panel-heading">Create a new Campaign</div>
         <div class="panel-body add-input-group">
-          <div class="input-group">
-            <span>Artist Name</span>
-            <select id="artistName" ng-model="admin.campaign.artistID">
-              <option value="">---Please select---</option>
-              <option ng-repeat="artist in admin.artists" value="{{artist._id}}">
-                {{artist._id}}
-              </option>
-            </select>
+          <div class="select-artist" ng-hide="admin.selectedArtistFlag">
+            <h2>Select Artist</h2>
+            <table class="table artist-list">
+              <thead class="thead-inverse">
+                <tr>
+                  <th>Photo</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th class="tb-description">Info</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="artist in admin.artists" ng-click="admin.selectArtist(artist)">
+                  <td><img src="{{artist.photo}}"></td>
+                  <td>{{artist.name}}</td>
+                  <td>{{artist.email}}</td>
+                  <td class="tb-description">{{artist.info}}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <div class="input-group">
-            <span>City</span>
-            <input type="text" class="form-control" placeholder="City" ng-model="admin.campaign.city">
+          <div class="form" ng-show="admin.selectedArtistFlag">
+            <h2>Input Campaign Info</h2>
+            <div class="input-group">
+              <span>City</span>
+              <input type="text" class="form-control" placeholder="City" ng-model="admin.campaign.city">
+            </div>
+            <div class="input-group">
+              <span>State</span>
+              <input type="text" class="form-control" placeholder="State" ng-model="admin.campaign.state">
+            </div>
+            <div class="input-group">
+              <span>Description</span>
+              <textarea class="form-control" rows="5" id="comment" placeholder="Description" ng-model="admin.campaign.description"></textarea>
+            </div>  
+            <button class="btn btn-info" ng-click="admin.chooseArtist()">Choose another artist</button>
+            <button type="submit" class="btn btn-primary" ng-click="admin.addCampaign()">Submit</button>
+            <p class="successed" ng-show="admin.successFlag">Added successfully</p>
           </div>
-          <div class="input-group">
-            <span>State</span>
-            <input type="text" class="form-control" placeholder="State" ng-model="admin.campaign.state">
-          </div>
-          <div class="input-group">
-            <span>Description</span>
-            <textarea class="form-control" rows="5" id="comment" placeholder="Description" ng-model="admin.campaign.description"></textarea>
-          </div>  
-          <button type="submit" class="btn btn-primary" ng-click="admin.addCampaign()">Add New</button>
         </div>
       </div>
     </form>
@@ -38,23 +55,32 @@
         </ul>
       </div>
     </div> -->
-    <table class="table">
-      <thead class="thead-inverse">
-        <tr>
-          <th>Artist ID</th>
-          <th>City</th>
-          <th>State</th>
-          <th class="tb-description">Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="campaign in admin.campaigns">
-          <td>{{campaign.artistID}}</td>
-          <td>{{campaign.city}}</td>
-          <td>{{campaign.state}}</td>
-          <td class="tb-description">{{campaign.description}}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="panel panel-primary">
+      <div class="panel-heading">Campaign list</div>
+      <div class="panel-body">
+        <table class="table campaign-list">
+          <thead class="thead-inverse">
+            <tr>
+              <th>Artist Name</th>
+              <th>City</th>
+              <th>State</th>
+              <th class="tb-description">Description</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="campaign in admin.campaigns">
+              <td>{{campaign.artistName}}</td>
+              <td>{{campaign.city}}</td>
+              <td>{{campaign.state}}</td>
+              <td class="tb-description">{{campaign.description}}</td>
+              <td>
+                <a ng-click="admin.deleteCampaign(campaign)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>

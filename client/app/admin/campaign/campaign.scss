@@ -1,0 +1,63 @@
+.admin {
+	&.campaign {
+		color: black;
+		.select-artist {
+			transition: all 0.5s ease;
+			-webkit-transition: all 0.5s ease;
+			opacity: 1;
+
+			.artist-list {
+				tbody {
+					tr {
+						td {
+							line-height: 50px;
+							img {
+								width: 50px;
+							}
+						}
+						&:hover {
+							cursor: pointer;
+						}
+						&:active {
+							background: rgba(51, 122, 183, 0.79);
+							td {
+								color: white;
+							}
+						}
+					}
+					
+				}
+			}	
+		}
+		.form {
+			.successed {
+				color: red;
+				transition: all 0.5s ease;
+				-webkit-transition: all 0.5s ease;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width : 414px) {
+	.admin {
+		&.campaign {
+			.select-artist {
+				.artist-list {
+					tbody {
+						tr {
+							td {
+								line-height: 1;
+							}
+						}
+					}
+				}
+			}
+			.campaign-list {
+				th, td {
+					width: 25%;
+				}
+			}
+		}
+	}
+}
