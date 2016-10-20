@@ -24,3 +24,7 @@ Run `gulp build` for building and `gulp serve` for preview.
 ## Testing
 
 Running `npm test` will run the unit tests with karma.
+
+## Heroku upload
+
+gulp buildcontrol:heroku
