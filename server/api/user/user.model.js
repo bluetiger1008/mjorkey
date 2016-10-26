@@ -36,7 +36,8 @@ var UserSchema = new Schema({
   provider: String,
   salt: String,
   facebook: {},
-  github: {}
+  github: {},
+  stripeId: String
 });
 
 /**

@@ -2,10 +2,12 @@
 
 export default class InfoController {
 	/*@ngInject*/
-	constructor($stateParams, campaignFactory, artistFactory) {
+	constructor($stateParams, campaignFactory, artistFactory, Auth) {
 		this.campaignID = $stateParams.campaignID;
 		this.campaignFactory = campaignFactory;
 		this.artistFactory = artistFactory;
+		this.getCurrentUser = Auth.getCurrentUserSync;
+	    this.currentUser = this.getCurrentUser();
 	}
 
 	$onInit() {
@@ -21,7 +23,9 @@ export default class InfoController {
 	    		console.log(this.artist);
 	    	})
 	      });
+	}
 
-
+	purchaseTicket() {
+		console.log(this.currentUser);
 	}
 }

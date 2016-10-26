@@ -34,8 +34,11 @@ tbody {
 // Component styles are injected through gulp
 /* inject:scss */
 @import 'admin/admin';
+@import 'admin/campaign/campaign';
 @import 'campaign/campaign';
+@import 'campaign/checkout/subscribeModal/modal';
 @import 'main/main';
+@import 'modals/subscribeModal/modal';
 @import '../components/footer/footer';
 @import '../components/modal/modal';
 @import '../components/navbar/navbar';

@@ -13,7 +13,7 @@ export default function(app) {
   app.use('/api/users', require('./api/user'));
   app.use('/api/artists', require('./api/artist'));
   app.use('/api/campaigns', require('./api/campaign'));
-  app.use('/api/stripe', require('./api/stripe'));
+  app.use('/api/charge', require('./api/charge'));
   
   app.use('/auth', require('./auth').default);
 

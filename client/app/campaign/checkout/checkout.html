@@ -18,9 +18,9 @@
 							<p>Make it happen! Get dibs on bringing Chance the Rapper to San Francisco before the general product</p>
 						</div>
 						<div class="col-md-2 count">
-							<span id="btnminus">-</span>
-							<span >0</span>
-							<span id="btnplus">+</span>
+							<span id="btnminus" ng-click="vm.generalAdmissionMinus()">-</span>
+							<span>{{vm.generalAdmissionCount}}</span>
+							<span id="btnplus" ng-click="vm.generalAdmissionPlus()">+</span>
 						</div>
 					</div>
 					<div class="level-option col-md-12">
@@ -32,9 +32,9 @@
 							<p>This level gets you a private meet & greet with Chance the Rapper.</p>
 						</div>
 						<div class="col-md-2 count">
-							<span id="btnminus">-</span>
-							<span >0</span>
-							<span id="btnplus">+</span>
+							<span id="btnminus" ng-click="vm.vipAdmissionMinus()">-</span>
+							<span>{{vm.vipAdmissionCount}}</span>
+							<span id="btnplus" ng-click="vm.vipAdmissionPlus()">+</span>
 						</div>
 					</div>
 					<h3>Total: $50.00</h3>
@@ -44,7 +44,7 @@
 					<p>Your payment method will not be changed at time. If the campaign is successfully funded, your payment method will be charged $50.00 when the campaign ends.</p>
 					<div class="card-option">
 						<label class="visa">
-					    	<input type="radio" name="optradio">
+					    	<input type="radio" checked="checked" name="optradio" ng-click="vm.cardExistOption()">
 					    	<img src="assets/images/visacard.png">
 				    		<div class="visa-info">
 				    			<p><strong>Ending in 4242</strong><br>
@@ -52,39 +52,43 @@
 				    		</div>
 					    </label>
 					    <label class="new-creditcard">
-					    	<input type="radio" name="optradio">
+					    	<input type="radio" name="optradio" ng-click="vm.cardAddOption()">
 					    	<p>Add a new card</p>
 					    </label>
-					    <div class="card-input">
-					    	<div class="input-group name-on-card">
-							  <span class="input-group-addon" id="basic-addon1">Name on card</span>
-							  <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
-							</div>
-					    	<div class="input-group card-number">
-							  <span class="input-group-addon" id="basic-addon1">Card Number</span>
-							  <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
-							</div>
-							<div class="card-images">
-								<img src="assets/images/creditcards.png">
-							</div>
-							<div class="card-date">
-								<div class="input-group expiration-month">
-								  <span class="input-group-addon" id="basic-addon1">Expiration</span>
-								  <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
-								</div>
-								<div class="input-group expiration-year">
-									<input type="text" class="form-control" placeholder="YYYY">
-								</div>
-								<div class="input-group cvc">
-					    			<span class="input-group-addon">CVC</span>
-					    			<input type="text" class="form-control">
-					    		</div>
-							</div>
+              <div class="card-form" ng-show="vm.cardAdd">
+                <div class="card-input">
+                  <div class="input-group name-on-card">
+                    <span class="input-group-addon" id="basic-addon1">Name on card</span>
+                    <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                  </div>
+                  <div class="input-group card-number">
+                    <span class="input-group-addon" id="basic-addon1">Card Number</span>
+                    <input type="text" class="form-control" placeholder="Username" ng-model="vm.cardNumber" aria-describedby="basic-addon1">
+                  </div>
+                  <div class="card-images">
+                    <img src="assets/images/creditcards.png">
+                  </div>
+                  <div class="card-date">
+                    <div class="input-group expiration-month">
+                      <span class="input-group-addon" id="basic-addon1">Expiration</span>
+                      <input type="text" ng-model="vm.cardExpMonth" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group expiration-year">
+                      <input type="text" ng-model="vm.cardExpYear" class="form-control" placeholder="YYYY">
+                    </div>
+                    <div class="input-group cvc">
+                      <span class="input-group-addon">CVC</span>
+                      <input type="text" ng-model="vm.cardCvc" class="form-control">
+                    </div>
+                  </div>
+              </div>
 				    	</div>
 					</div>
 				</div>
-				<button type="button" class="btn btn-default">Cancel</button>
-				<button type="button" class="btn btn-primary" ng-click="vm.submit()">Submit</button>
+        <div class="actions">
+          <button type="button" class="btn btn-default">Cancel</button>
+          <button type="button" class="btn btn-primary" ng-click="vm.submit()">Submit</button>
+        </div>
 			</div>
 		</div>
 	</div>
