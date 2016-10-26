@@ -3,7 +3,7 @@
 export default class CampaignController {
 
 	/*@ngInject*/
-	constructor($http, $scope, socket, Auth, campaignFactory, artistFactory) {
+	constructor($http, $scope, socket, Auth, campaignFactory, artistFactory, $uibModal, mainService) {
     	this.$http = $http;
 	    this.socket = socket;
 	    this.getCurrentUser = Auth.getCurrentUserSync;
@@ -12,6 +12,14 @@ export default class CampaignController {
 
 	    this.campaignFactory = campaignFactory;
 	    this.artistFactory = artistFactory;
+      this.$uibModal = $uibModal;
+      this.mainService = mainService;
+
+      this.campaignCityRequired = false;
+      this.campaignStateRequired = false;
+      this.campaignTicketsRequired = false;
+
+      this.campaign = [];
 
 	    $scope.$on('$destroy', function() {
 	      socket.unsyncUpdates('campaign');
@@ -33,6 +41,24 @@ export default class CampaignController {
 	    this.successFlag = false;
 	}
 
+  syncFormValid() {
+    if(this.campaign.city == '' || this.campaign.city == null)
+      this.campaignCityRequired = true;
+    else {
+      this.campaignCityRequired = false;
+    }
+    if(this.campaign.state == '' || this.campaign.state == null)
+      this.campaignStateRequired = true;
+    else {
+      this.campaignStateRequired = false;
+    }
+    if(this.campaign.tickets == '' || this.campaign.tickets == null)
+      this.campaignTicketsRequired = true;
+    else {
+      this.campaignTicketsRequired = false;
+    }
+  }
+
 	getCampaigns() {
 	    this.$http.get('/api/campaigns')
 	      .then(response => {
@@ -41,15 +67,17 @@ export default class CampaignController {
 	}
 
 	addCampaign() {
+    this.syncFormValid();
 		console.log(this.currentUser);
-	    if(this.campaign) {
-	      
+	    if(!this.campaignCityRequired && !this.campaignStateRequired && !this.campaignTicketsRequired) {
+
 	      var camp = {
 	      	artistID: this.selectedArtistID,
 	      	artistName: this.selectedArtistName,
 	        city: this.campaign.city,
 	        state: this.campaign.state,
 	        description: this.campaign.description,
+          tickets: this.campaign.tickets,
 	        startedByUser: this.currentUser
 	      }
 	      this.campaignFactory.addCampaign(camp);
@@ -57,8 +85,32 @@ export default class CampaignController {
 	      this.campaign.city = '';
 	      this.campaign.state = '';
 	      this.campaign.description = '';
+        this.campaign.tickets = '';
+        this.result = 'success';
+        this.notificationModal(this.result);
 	    }
 	}
+
+  notificationModal(notification) {
+    var modal = this.$uibModal.open({
+      animation: true,
+      template: require('../../modals/NotificationModal/notificationModal.html'),
+      controller: function notificationController() {
+        var self=this;
+        self.closeModal = function(){
+          modal.close();
+        }
+        self.modalfor = 'Campaign';
+        if(notification == 'success')
+          self.success = true;
+        else
+          self.success = false;
+      },
+      controllerAs: 'vm',
+      size: 'medium-st-custom'
+    });
+    this.mainService.set(modal);
+  }
 
 	deleteCampaign(campaign) {
 	    this.$http.delete(`/api/campaigns/${campaign._id}`);
@@ -73,5 +125,12 @@ export default class CampaignController {
 
 	chooseArtist(){
 		this.selectedArtistFlag = false;
+    this.campaignCityRequired = false;
+    this.campaignStateRequired = false;
+    this.campaignTicketsRequired = false;
+    this.campaign.city = '';
+    this.campaign.state = '';
+    this.campaign.description = '';
+    this.campaign.tickets = '';
 	}
 }

@@ -8,10 +8,29 @@
 		.input-group {
 			width: 100%;
 			color: black;
+      margin: 5px 0;
 			line-height: 40px;
-			.form-control {
-				width: 50%;
-			}
+      .input-box {
+        display: inline-block;
+        width: 50%;
+        .form-control {
+          height: 40px;
+          float: none;
+          &.info-box{
+            height: auto;
+          }
+          &.price-box, &.ticket-box {
+            width: 100px;
+          }
+        }
+        .input-error {
+          color: red;
+          line-height: 1;
+          font-size: 0.8em;
+          margin: 5px 0;
+        }
+      }
+
 			span {
 				padding: 0 5px;
 				display: inline-block;
@@ -52,7 +71,7 @@
 		a {
 			text-decoration: none;
 		}
-	}	
+	}
 }
 
 .user-list {
@@ -90,7 +109,7 @@
 					width: 100%;
 				}
 				span {
-					line-height: 30px;		
+					line-height: 30px;
 				}
 			}
 			.photo-select {
@@ -99,5 +118,16 @@
 				}
 			}
 		}
+    .tb-artist {
+      th, td {
+        width: 25% !important;
+      }
+    }
+    .tb-campaign {
+      th, td {
+        width: 20% !important;
+        font-size: 0.8em;
+      }
+    }
 	}
 }

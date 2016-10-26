@@ -9,7 +9,8 @@ var ArtistSchema = new mongoose.Schema({
 	email: {
 		type: String,
 		lowercase: true,
-	}
+	},
+  price: Number
 });
 
 export default mongoose.model('Artist', ArtistSchema);

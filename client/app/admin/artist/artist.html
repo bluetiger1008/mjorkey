@@ -6,7 +6,10 @@
         <div class="panel-body add-input-group">
           <div class="input-group">
             <span>Name</span>
-            <input type="text" class="form-control" placeholder="Name" ng-model="admin.artist.name" required>  
+            <div class="input-box">
+              <input type="text" class="form-control" placeholder="Name" ng-model="admin.artist.name" required>
+              <p class="input-error" ng-show="admin.artistNameRequired">A name is required</p>
+            </div>
           </div>
           <div class="photo-select">
             <span>Photo</span>
@@ -14,7 +17,7 @@
               <img ngf-thumbnail="file || 'assets/images/default-user.png'">
               <form ng-app="fileUpload" name="form">
                 <div class="btn btn-primary" ngf-select="admin.upload($file)" ng-model="file" ngf-pattern="'image/*'"
-                  ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" 
+                  ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
                   ngf-resize="{width: 100, height: 100}">Select Photo</div>
                 <!-- <button type="submit" ng-click="admin.submit()">submit</button> -->
               </form>
@@ -25,37 +28,54 @@
           </div>
           <div class="input-group">
             <span>Email</span>
-            <input type="text" class="form-control" placeholder="Email" ng-model="admin.artist.email">
+            <div class="input-box">
+              <input type="email" class="form-control" placeholder="Email" ng-model="admin.artist.email">
+              <p class="input-error" ng-show="admin.artistEmailRequired">Email is required</p>
+            </div>
           </div>
           <div class="input-group">
             <span>Info</span>
             <!-- <input type="text" class="form-control" placeholder="Info" ng-model="admin.artist.info"> -->
-            <textarea class="form-control" rows="5" id="comment" ng-model="admin.artist.info"></textarea>
+            <div class="input-box">
+              <textarea class="form-control info-box" rows="5" id="comment" ng-model="admin.artist.info"></textarea>
+            </div>
           </div>
           <!-- <div class="input-group">
             <span>Photo</span>
             <input type="file" nav-file-select="" uploader="uploader">
           </div> -->
-          
+          <div class="input-group">
+            <span>Price(USD)</span>
+            <div class="input-box">
+              <input type="text" class="form-control price-box" placeholder="price" ng-model="admin.artist.price">
+              <p class="input-error" ng-show="admin.artistPriceRequired">Price is required</p>
+            </div>
+          </div>
           <button type="submit" class="btn btn-primary" ng-click="admin.addArtist()">Add New</button>
-          
+
         </div>
       </div>
     </form>
 
-    <table class="table table-striped">
+    <table class="table table-striped tb-artist">
       <thead class="thead-inverse">
         <tr>
           <th>Name</th>
           <th>Email</th>
-          <th>Info</th>
+          <th class="tb-description">Info</th>
+          <th>Price</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="artist in admin.artists">
           <td>{{artist.name}}</td>
           <td>{{artist.email}}</td>
-          <td>{{artist.info}}</td>
+          <td class="tb-description">{{artist.info}}</td>
+          <td>{{artist.price}}</td>
+          <td>
+            <a ng-click="admin.deleteArtist(artist)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
+          </td>
         </tr>
       </tbody>
     </table>

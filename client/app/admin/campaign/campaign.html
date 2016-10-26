@@ -29,16 +29,32 @@
             <h2>Input Campaign Info</h2>
             <div class="input-group">
               <span>City</span>
-              <input type="text" class="form-control" placeholder="City" ng-model="admin.campaign.city">
+              <div class="input-box">
+                <input type="text" class="form-control" placeholder="City" ng-model="admin.campaign.city">
+                <p class="input-error" ng-show="admin.campaignCityRequired">City field is required</p>
+              </div>
             </div>
             <div class="input-group">
               <span>State</span>
-              <input type="text" class="form-control" placeholder="State" ng-model="admin.campaign.state">
+              <div class="input-box">
+                <input type="text" class="form-control" placeholder="State" ng-model="admin.campaign.state">
+                <p class="input-error" ng-show="admin.campaignStateRequired">State field is required</p>
+              </div>
             </div>
             <div class="input-group">
               <span>Description</span>
-              <textarea class="form-control" rows="5" id="comment" placeholder="Description" ng-model="admin.campaign.description"></textarea>
-            </div>  
+              <div class="input-box">
+                <textarea class="form-control info-box" rows="5" id="comment" placeholder="Description" ng-model="admin.campaign.description"></textarea>
+              </div>
+            </div>
+            <div class="input-group">
+              <span>Tickets</span>
+              <div class="input-box">
+                <input type="text" class="form-control ticket-box" placeholder="100" ng-model="admin.campaign.tickets">
+                <p class="input-error" ng-show="admin.campaignTicketsRequired">Tickets field is required</p>
+              </div>
+            </div>
+
             <button class="btn btn-info" ng-click="admin.chooseArtist()">Choose another artist</button>
             <button type="submit" class="btn btn-primary" ng-click="admin.addCampaign()">Submit</button>
             <p class="successed" ng-show="admin.successFlag">Added successfully</p>
@@ -58,13 +74,14 @@
     <div class="panel panel-primary">
       <div class="panel-heading">Campaign list</div>
       <div class="panel-body">
-        <table class="table campaign-list">
+        <table class="table tb-campaign">
           <thead class="thead-inverse">
             <tr>
               <th>Artist Name</th>
               <th>City</th>
               <th>State</th>
               <th class="tb-description">Description</th>
+              <th>Tickets</th>
               <th></th>
             </tr>
           </thead>
@@ -74,6 +91,7 @@
               <td>{{campaign.city}}</td>
               <td>{{campaign.state}}</td>
               <td class="tb-description">{{campaign.description}}</td>
+              <td>{{campaign.tickets}}</td>
               <td>
                 <a ng-click="admin.deleteCampaign(campaign)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
               </td>
