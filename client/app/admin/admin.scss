@@ -19,7 +19,7 @@
           &.info-box{
             height: auto;
           }
-          &.price-box, &.ticket-box {
+          &.price-box{
             width: 100px;
           }
         }
@@ -125,7 +125,7 @@
     }
     .tb-campaign {
       th, td {
-        width: 20% !important;
+        width: 25% !important;
         font-size: 0.8em;
       }
     }

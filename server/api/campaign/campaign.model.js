@@ -12,7 +12,8 @@ var CampaignSchema = new mongoose.Schema({
       ref: 'User'
     },
     description: String,
-    tickets: Number,
+    generalTickets: Number,
+    vipTickets: Number,
     goal: Number,
     progress: Number,
     users: [{ type: Schema.Types.ObjectId, ref: 'User'}],

@@ -6,13 +6,14 @@
         <div class="panel-body add-input-group">
           <div class="select-artist" ng-hide="admin.selectedArtistFlag">
             <h2>Select Artist</h2>
-            <table class="table artist-list">
+            <table class="table tb-artist">
               <thead class="thead-inverse">
                 <tr>
                   <th>Photo</th>
                   <th>Name</th>
                   <th>Email</th>
-                  <th class="tb-description">Info</th>
+                  <th class="td-mobile-hide">Info</th>
+                  <th>Price</th>
                 </tr>
               </thead>
               <tbody>
@@ -20,7 +21,8 @@
                   <td><img src="{{artist.photo}}"></td>
                   <td>{{artist.name}}</td>
                   <td>{{artist.email}}</td>
-                  <td class="tb-description">{{artist.info}}</td>
+                  <td class="td-mobile-hide">{{artist.info}}</td>
+                  <td>{{artist.price}}</td>
                 </tr>
               </tbody>
             </table>
@@ -50,7 +52,8 @@
             <div class="input-group">
               <span>Tickets</span>
               <div class="input-box">
-                <input type="text" class="form-control ticket-box" placeholder="100" ng-model="admin.campaign.tickets">
+                <input type="text" class="form-control ticket-box" placeholder="For General Admission" ng-model="admin.campaign.general_tickets">
+                <input type="text" class="form-control ticket-box" placeholder="For VIP Admission" ng-model="admin.campaign.vip_tickets">
                 <p class="input-error" ng-show="admin.campaignTicketsRequired">Tickets field is required</p>
               </div>
             </div>
@@ -80,8 +83,9 @@
               <th>Artist Name</th>
               <th>City</th>
               <th>State</th>
-              <th class="tb-description">Description</th>
-              <th>Tickets</th>
+              <th class="td-mobile-hide">Description</th>
+              <th class="td-mobile-hide">VIP Tickets</th>
+              <th class="td-mobile-hide">General Tickets</th>
               <th></th>
             </tr>
           </thead>
@@ -90,8 +94,9 @@
               <td>{{campaign.artistName}}</td>
               <td>{{campaign.city}}</td>
               <td>{{campaign.state}}</td>
-              <td class="tb-description">{{campaign.description}}</td>
-              <td>{{campaign.tickets}}</td>
+              <td class="td-mobile-hide">{{campaign.description}}</td>
+              <td class="td-mobile-hide">{{campaign.vipTickets}}</td>
+              <td class="td-mobile-hide">{{campaign.generalTickets}}</td>
               <td>
                 <a ng-click="admin.deleteCampaign(campaign)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
               </td>

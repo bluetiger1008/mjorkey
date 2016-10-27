@@ -40,13 +40,13 @@
 				<p class="price">$100 <span>VIP Guestlist</span></p>
 				<p class="ticket-count">10 tickets left</p>
 				<p class="ticket-info">Get exclusive perks such as artist meet & greet, front-row priority seating, and merchandising</p>
-				<a ng-click="vm.purchaseTicket()" ui-sref="checkout({campaignID: vm.artistID})" class="purchase">Purchase</a>
+				<a ng-click="vm.purchaseTicket()" ui-sref="checkout({campaignID: vm.campaignID})" class="purchase">Purchase</a>
 			</div>
 			<div class="card">
 				<p class="price">$50 <span>General Admission</span></p>
 				<p class="ticket-count">150 Tickets sold</p>
 				<p class="ticket-info">General admission tickets. Get dibs on bringing the artist to your city before the general public!</p>
-				<a ng-click="vm.purchaseTicket()" ui-sref="checkout({campaignID: vm.artistID})" class="purchase">Purchase</a>
+				<a ng-click="vm.purchaseTicket()" ui-sref="checkout({campaignID: vm.campaignID})" class="purchase">Purchase</a>
 			</div>
 		</div>
 	</div>

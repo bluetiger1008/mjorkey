@@ -67,7 +67,9 @@ export default class ArtistController {
 	      	this.photoName = '';
 	      	this.photo = '';
 	      	this.artist.photoName = 'abc';
+
 	      	this.getArtists();
+          this.file = null;
         this.result='success';
         this.notificationModal(this.result);
 	    }
@@ -123,6 +125,7 @@ export default class ArtistController {
 	            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.newPhoto.name);
 	        });
 	        // console.log(this.photo);
+
     	}
 
     }

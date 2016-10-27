@@ -6,15 +6,18 @@ export default class CheckoutController {
 		// this.artistID = $stateParams.campaignID;
 		// this.campaignFactory = campaignFactory;
 		this.$http = $http;
+    this.campaignID = $stateParams.campaignID;
 		this.getCurrentUser = Auth.getCurrentUserSync;
     this.currentUser = this.getCurrentUser();
     this.$uibModal = $uibModal;
     this.mainService = mainService;
+
 	}
 
 	$onInit() {
     this.vipAdmissionCount = 0;
     this.generalAdmissionCount = 0;
+    this.totalPrice = 0;
 	}
 
 	submit(){
@@ -81,23 +84,34 @@ export default class CheckoutController {
   }
 
   generalAdmissionPlus() {
-    if(this.generalAdmissionCount <6)
+    if(this.generalAdmissionCount <6){
       this.generalAdmissionCount = this.generalAdmissionCount + 1;
+      this.totalPrice += 20;
+    }
+
   }
 
   generalAdmissionMinus() {
-    if(this.vipAdmissionCount > 0)
+    if(this.vipAdmissionCount > 0){
       this.generalAdmissionCount = this.generalAdmissionCount - 1;
+      this.totalPrice -= 20;
+    }
   }
 
   vipAdmissionPlus() {
-    if(this.vipAdmissionCount <6)
+    if(this.vipAdmissionCount <6){
       this.vipAdmissionCount = this.vipAdmissionCount + 1;
+      this.totalPrice += 50;
+    }
+
   }
 
   vipAdmissionMinus() {
-    if(this.vipAdmissionCount >0)
+    if(this.vipAdmissionCount >0){
       this.vipAdmissionCount = this.vipAdmissionCount -1;
+      this.totalPrice -= 50;
+    }
+
   }
 
 }
