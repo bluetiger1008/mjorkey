@@ -11,25 +11,47 @@ export default class CheckoutController {
     this.currentUser = this.getCurrentUser();
     this.$uibModal = $uibModal;
     this.mainService = mainService;
-
+    this.campaignFactory = campaignFactory;
 	}
 
 	$onInit() {
     this.vipAdmissionCount = 0;
     this.generalAdmissionCount = 0;
     this.totalPrice = 0;
+    this.customerCardFlag = false;
+    console.log(this.currentUser._id);
+    this.campaignFactory.findCampaign(this.campaignID)
+      .then(response => {
+        this.campaign = response.data;
+    });
+
+    if(this.currentUser.stripeId != null){
+      this.customerCardFlag = true;
+
+      this.$http.get('/api/charge/'+ this.currentUser.stripeId)
+        .then(response => {
+          console.log('stripe', response.data.sources.data);
+          this.last_four = response.data.sources.data[0].last4;
+          this.exp_month = response.data.sources.data[0].exp_month;
+          this.exp_year = response.data.sources.data[0].exp_year;
+      });
+    }
+    else
+      this.customerCardFlag = false;
+    console.log(this.customerCardFlag);
 	}
 
 	submit(){
 		var token;
 		var $httpAjax = this.$http;
 		var currentUser = this.currentUser;
+    var totalPrice = this.totalPrice;
 
 		console.log(this.currentUser);
     if(this.currentUser._id == ''){
       this.subscribeFirstModal();
     } else if(this.cardNumber == null || this.cardExpMonth == null || this.cardExpYear == null || this.cardCvc == null) {
-      this.cardInputErrorModal();
+      this.subscribeFirstModal();
     }
     else {
       Stripe.setPublishableKey('pk_test_YfBE0DEENw42WjJF0pq0KEkw');
@@ -48,7 +70,8 @@ export default class CheckoutController {
           $httpAjax.post('/api/charge', {
             token: token,
             userID: currentUser._id,
-            userEmail: currentUser.email
+            userEmail: currentUser.email,
+            totalPrice: totalPrice * 100
           });
         }
       });
@@ -75,6 +98,11 @@ export default class CheckoutController {
 
   }
 
+  getCardInfo() {
+
+
+  }
+
   cardExistOption() {
     this.cardAdd= false;
   }
@@ -84,11 +112,10 @@ export default class CheckoutController {
   }
 
   generalAdmissionPlus() {
-    if(this.generalAdmissionCount <6){
+    if(this.generalAdmissionCount <this.campaign.goals){
       this.generalAdmissionCount = this.generalAdmissionCount + 1;
       this.totalPrice += 20;
     }
-
   }
 
   generalAdmissionMinus() {
@@ -99,7 +126,7 @@ export default class CheckoutController {
   }
 
   vipAdmissionPlus() {
-    if(this.vipAdmissionCount <6){
+    if(this.vipAdmissionCount <this.campaign.goals){
       this.vipAdmissionCount = this.vipAdmissionCount + 1;
       this.totalPrice += 50;
     }

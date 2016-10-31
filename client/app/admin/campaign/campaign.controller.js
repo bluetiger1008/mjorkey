@@ -52,7 +52,7 @@ export default class CampaignController {
     else {
       this.campaignStateRequired = false;
     }
-    if(this.campaign.general_tickets == '' || this.campaign.general_tickets == null)
+    if(this.campaign.goals == '' || this.campaign.goals == null)
       this.campaignTicketsRequired = true;
     else {
       this.campaignTicketsRequired = false;
@@ -77,8 +77,7 @@ export default class CampaignController {
 	        city: this.campaign.city,
 	        state: this.campaign.state,
 	        description: this.campaign.description,
-          generalTickets: this.campaign.general_tickets,
-          vipTickets: this.campaign.vip_tickets,
+          goals: this.campaign.goals,
 	        startedByUser: this.currentUser
 	      }
 	      this.campaignFactory.addCampaign(camp);
@@ -86,8 +85,7 @@ export default class CampaignController {
 	      this.campaign.city = '';
 	      this.campaign.state = '';
 	      this.campaign.description = '';
-        this.campaign.general_tickets = '';
-        this.campaign.vip_tickets = '';
+        this.campaign.goals = '';
         this.result = 'success';
         this.notificationModal(this.result);
 	    }
@@ -133,7 +131,6 @@ export default class CampaignController {
     this.campaign.city = '';
     this.campaign.state = '';
     this.campaign.description = '';
-    this.campaign.vip_tickets = '';
-    this.campaign.general_tickets = '';
+    this.campaign.goals = '';
 	}
 }

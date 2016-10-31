@@ -5,13 +5,16 @@ import angular from 'angular';
 export default class SignupController {
 
   /*@ngInject*/
-  constructor(Auth, $state) {
+  constructor(Auth, $state, stripeFactory) {
     this.Auth = Auth;
     this.$state = $state;
+    this.stripeFactory = stripeFactory;
+
   }
 
   register(form) {
     this.submitted = true;
+    var stripeFactory = this.stripeFactory;
 
     if(form.$valid) {
       return this.Auth.createUser({
@@ -21,6 +24,11 @@ export default class SignupController {
       })
         .then(() => {
           // Account created, redirect to home
+          console.log(this.Auth.getCurrentUserSync);
+          //stripeFactory.createCustomer({
+          //  userEmail: this.user.email
+          //});
+
           this.$state.go('main');
         })
         .catch(err => {

@@ -37,11 +37,12 @@ import util from '../components/util/util.module';
 import socket from '../components/socket/socket.service';
 import campaignFactory from '../components/factory/campaign.module';
 import artistFactory from '../components/factory/artist.module';
+import stripeFactory from '../components/factory/stripe.module';
 import mainService from '../components/services/main_service.js';
 
 import './app.scss';
 
-angular.module('majorkeyApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', ngFileUpload, uiRouter, campaignFactory, artistFactory,
+angular.module('majorkeyApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', ngFileUpload, uiRouter, campaignFactory, artistFactory, stripeFactory,
     mainService, uiBootstrap, _Auth, account, admin, user, artist, campaignAdmin, campaignInfo, checkout, navbar, footer, main, campaign, constants, socket, util
   ])
   .config(routeConfig)

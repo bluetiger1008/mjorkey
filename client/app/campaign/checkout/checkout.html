@@ -8,7 +8,7 @@
 			</div>
 			<div class="col-md-10">
 				<div class="admission">
-					<h2>Select your pledge levels <span>Limit 6</span></h2>
+					<h2>Select your pledge levels <span>Limit {{vm.campaign.goals}}</span></h2>
 					<div class="level-option col-md-12">
 						<div class="col-md-2">
 							<h2>$20.00</h2>
@@ -44,15 +44,15 @@
 					<p>Your payment method will not be changed at time. If the campaign is successfully funded, your payment method will be charged $50.00 when the campaign ends.</p>
 					<div class="card-option">
 						<label class="visa">
-					    	<input type="radio" checked="checked" name="optradio" ng-click="vm.cardExistOption()">
+					    	<input type="radio" ng-checked="vm.customerCardFlag" name="optradio" ng-click="vm.cardExistOption()">
 					    	<img src="assets/images/visacard.png">
 				    		<div class="visa-info">
-				    			<p><strong>Ending in 4242</strong><br>
-				    			Expires in 12/2016</p>
+				    			<p><strong>Ending in {{vm.last_four}}</strong><br>
+				    			Expires in {{vm.exp_month}}/{{vm.exp_year}}</p>
 				    		</div>
 					    </label>
 					    <label class="new-creditcard">
-					    	<input type="radio" name="optradio" ng-click="vm.cardAddOption()">
+					    	<input type="radio" ng-checked="!vm.customerCardFlag" name="optradio" ng-click="vm.cardAddOption()">
 					    	<p>Add a new card</p>
 					    </label>
               <div class="card-form" ng-show="vm.cardAdd">
