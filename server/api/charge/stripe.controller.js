@@ -54,27 +54,11 @@ export function getCardInfo(req, res) {
   });
 }
 
-export function createCustomer(req, res) {
-  var userEmail = req.body.userEmail;
-  var userID = req.body.userId;
-
-  stripe.customers.create({
-    email: userEmail,
-  }, function(err, customer) {
-    console.log(customer);
-
-    User.findByIdAndUpdate(userID, {stripeId: customer.id}, function(err, user) {
-      if(err) throw err;
-      console.log(user);
-    });
-  });
-
-}
-
 export function createCard(req,res) {
   var stripeToken = req.body.token;
   var customerId = req.body.customerId;
 
+  console.log(stripeToken, customerId);
   stripe.customers.createSource(
     customerId,
     {source: stripeToken},

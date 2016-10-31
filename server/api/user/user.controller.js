@@ -4,6 +4,8 @@ import User from './user.model';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
 
+var stripe = require('stripe')('sk_test_JfliVks9eGKRKSJ56nefh31z');
+
 function validationError(res, statusCode) {
   statusCode = statusCode || 422;
   return function(err) {
@@ -42,8 +44,22 @@ export function create(req, res) {
       var token = jwt.sign({ _id: user._id }, config.secrets.session, {
         expiresIn: 60 * 60 * 5
       });
+
+      console.log(req.body.email);
+      stripe.customers.create({
+        email: req.body.email,
+      }, function(err, customer) {
+        console.log(customer);
+
+        User.findByIdAndUpdate(user._id, {stripeId: customer.id}, function(err, user) {
+          if(err) throw err;
+          console.log(user);
+        });
+      });
+
       res.json({ token });
     })
+
     .catch(validationError(res));
 }
 

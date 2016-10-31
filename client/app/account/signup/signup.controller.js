@@ -23,12 +23,6 @@ export default class SignupController {
         password: this.user.password
       })
         .then(() => {
-          // Account created, redirect to home
-          console.log(this.Auth.getCurrentUserSync);
-          //stripeFactory.createCustomer({
-          //  userEmail: this.user.email
-          //});
-
           this.$state.go('main');
         })
         .catch(err => {

@@ -2,7 +2,7 @@
 
 export default class CheckoutController {
 	/*@ngInject*/
-	constructor($stateParams, campaignFactory, $http, Auth, $uibModal, mainService) {
+	constructor($stateParams, campaignFactory, stripeFactory , $http, Auth, $uibModal, mainService) {
 		// this.artistID = $stateParams.campaignID;
 		// this.campaignFactory = campaignFactory;
 		this.$http = $http;
@@ -12,6 +12,7 @@ export default class CheckoutController {
     this.$uibModal = $uibModal;
     this.mainService = mainService;
     this.campaignFactory = campaignFactory;
+    this.stripeFactory = stripeFactory;
 	}
 
 	$onInit() {
@@ -46,7 +47,8 @@ export default class CheckoutController {
 		var $httpAjax = this.$http;
 		var currentUser = this.currentUser;
     var totalPrice = this.totalPrice;
-
+    var stripeFactory = this.stripeFactory;
+    var customerId = this.currentUser.stripeId;
 		console.log(this.currentUser);
     if(this.currentUser._id == ''){
       this.subscribeFirstModal();
@@ -67,11 +69,16 @@ export default class CheckoutController {
         } else {
           token = response.id;
           console.log('token', token);
-          $httpAjax.post('/api/charge', {
+          stripeFactory.createCard({
             token: token,
-            userID: currentUser._id,
-            userEmail: currentUser.email,
-            totalPrice: totalPrice * 100
+            customerId: customerId
+          }).then(response => {
+            console.log(response.data.id);
+            stripeFactory.createCharge({
+              customerId: customerId,
+              totalPrice: totalPrice,
+              cardId: response.data.id
+            })
           });
         }
       });
