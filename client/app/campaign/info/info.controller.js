@@ -2,12 +2,15 @@
 
 export default class InfoController {
 	/*@ngInject*/
-	constructor($stateParams, campaignFactory, artistFactory, Auth) {
+	constructor($stateParams, $state, campaignFactory, artistFactory, Auth, $uibModal, mainService) {
 		this.campaignID = $stateParams.campaignID;
 		this.campaignFactory = campaignFactory;
 		this.artistFactory = artistFactory;
 		this.getCurrentUser = Auth.getCurrentUserSync;
 	    this.currentUser = this.getCurrentUser();
+	    this.$state = $state;
+	    this.$uibModal = $uibModal;
+	    this.mainService = mainService;
 	}
 
 	$onInit() {
@@ -27,5 +30,25 @@ export default class InfoController {
 
 	purchaseTicket() {
 		console.log(this.currentUser);
+		if(this.currentUser._id == '')
+			this.subscribeFirstModal();
+		else 
+			this.$state.go('checkout', {campaignID: this.campaignID});
+	}
+	
+	subscribeFirstModal() {
+	    var modal = this.$uibModal.open({
+	      animation: true,
+	      template: require('../../modals/subscribeModal/subscribeModal.html'),
+	      controller: function subscribeFirstController() {
+	        var self=this;
+	        self.closeModal = function(){
+	          modal.close();
+	        }
+	      },
+	      controllerAs: 'vm',
+	      size: 'medium-st-custom'
+	    });
+	    this.mainService.set(modal);
 	}
 }
