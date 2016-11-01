@@ -16,6 +16,7 @@ export default class CheckoutController {
 	}
 
 	$onInit() {
+    this.errorMessage = '';
     this.vipAdmissionCount = 0;
     this.generalAdmissionCount = 0;
     this.totalPrice = 0;
@@ -49,15 +50,14 @@ export default class CheckoutController {
     var totalPrice = this.totalPrice;
     var stripeFactory = this.stripeFactory;
     var customerId = this.currentUser.stripeId;
-		console.log(this.currentUser);
-    if(this.currentUser._id == ''){
-      this.subscribeFirstModal();
-    } else if(this.cardNumber == null || this.cardExpMonth == null || this.cardExpYear == null || this.cardCvc == null) {
-      this.subscribeFirstModal();
-    }
-    else {
+    var uibModal = this.$uibModal;
+    var mainService = this.mainService;
+
+    if(this.totalPrice > 0) {
       Stripe.setPublishableKey('pk_test_YfBE0DEENw42WjJF0pq0KEkw');
+
       console.log(this.cardNumber, this.cardCvc, this.cardExpMonth, this.cardExpYear);
+
       Stripe.card.createToken({
         number: this.cardNumber,
         cvc: this.cardCvc,
@@ -66,6 +66,21 @@ export default class CheckoutController {
       }, function (status, response) {
         if (response.error) {
           console.log(response.error.message);
+          var errorMessage = response.error.message;
+          var modal = uibModal.open({
+            animation: true,
+            template: require('../../modals/errorModal/errorModal.html'),
+            controller: function submitErrorController() {
+              var self=this;
+              self.closeModal = function(){
+                modal.close();
+              }
+              self.error = errorMessage;
+            },
+            controllerAs: 'vm',
+            size: 'medium-st-custom'
+          });
+          mainService.set(modal);
         } else {
           token = response.id;
           console.log('token', token);
@@ -81,28 +96,27 @@ export default class CheckoutController {
             })
           });
         }
-      });
+      });  
+    } else {
+      this.totalPriceErrorModal();
     }
 	}
 
-  subscribeFirstModal() {
+  totalPriceErrorModal() {
     var modal = this.$uibModal.open({
       animation: true,
-      template: require('../../modals/subscribeModal/subscribeModal.html'),
-      controller: function subscribeFirstController() {
+      template: require('../../modals/errorModal/errorModal.html'),
+      controller: function submitErrorController() {
         var self=this;
         self.closeModal = function(){
           modal.close();
         }
+        self.error = 'TotalPrice is $0, Please confirm your ticket purchasing status';
       },
       controllerAs: 'vm',
       size: 'medium-st-custom'
     });
     this.mainService.set(modal);
-  }
-
-  cardInputErrorModal() {
-
   }
 
   getCardInfo() {
