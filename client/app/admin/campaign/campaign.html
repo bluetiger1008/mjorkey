@@ -1,6 +1,7 @@
 <div class="container">
   <div class="admin campaign">
-    <button class="btn btn-info createBtn" ng-click="admin.createNewCampaign()" ng-show="!admin.createCampaignClicked">Create new campaign</button>
+    <button class="btn btn-info createBtn" ng-click="admin.createNewCampaign()" ng-disabled="admin.createCampaignClicked">Create new campaign</button>
+    <button class="btn btn-info viewBtn" ng-click="admin.viewCampaignList()" ng-disabled="admin.viewCampaignClicked">View campaign list</button>
     <form class="adding-form" ng-show="admin.createCampaignClicked">
       <div class="panel panel-primary">
         <div class="panel-heading">Create a new Campaign</div>
@@ -51,6 +52,8 @@
                 <textarea class="form-control info-box" rows="5" id="comment" placeholder="Description" ng-model="admin.campaign.description"></textarea>
               </div>
             </div>
+            
+            <h3 style="border-bottom: 1px solid grey">Price</h3>
             <div class="input-group">
               <span>Goals</span>
               <div class="input-box">
@@ -58,7 +61,20 @@
                 <p class="input-error" ng-show="admin.campaignTicketsRequired">Tickets field is required</p>
               </div>
             </div>
-
+            <div class="input-group">
+              <span>VIP guestlist</span>
+              <div class="input-box">
+                <input type="text" class="form-control ticket-box" placeholder="100" ng-model="admin.campaign.vip_price">
+                <!-- <p class="input-error" ng-show="admin.campaignTicketsRequired">Tickets field is required</p> -->
+              </div>
+            </div>
+            <div class="input-group">
+              <span>General admission</span>
+              <div class="input-box">
+                <input type="text" class="form-control ticket-box" placeholder="100" ng-model="admin.campaign.general_price">
+                <!-- <p class="input-error" ng-show="admin.campaignTicketsRequired">Tickets field is required</p> -->
+              </div>
+            </div>
             <button class="btn btn-info" ng-click="admin.chooseArtist()">Choose another artist</button>
             <button type="submit" class="btn btn-primary" ng-click="admin.addCampaign()">Submit</button>
             <p class="successed" ng-show="admin.successFlag">Added successfully</p>
@@ -69,7 +85,7 @@
       </div>
     </form>
 
-    <div class="panel panel-primary">
+    <div class="panel panel-primary" ng-show="admin.viewCampaignClicked">
       <div class="panel-heading">Campaign list</div>
       <div class="panel-body">
         <table class="table tb-campaign">
@@ -96,6 +112,7 @@
             </tr>
           </tbody>
         </table>
+        <button class="btn btn-danger" ng-click="admin.cancelCampaignList()">Cancel</button>
       </div>
     </div>
   </div>

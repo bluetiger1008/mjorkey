@@ -40,6 +40,7 @@ export default class CampaignController {
 	    this.selectedArtistFlag = false;
 	    this.successFlag = false;
 	    this.createCampaignClicked = false;
+	    this.viewCampaignClicked = false;
 	}
 
   syncFormValid() {
@@ -68,27 +69,31 @@ export default class CampaignController {
 	}
 
 	addCampaign() {
-    this.syncFormValid();
+    	this.syncFormValid();
 		console.log(this.currentUser);
 	    if(!this.campaignCityRequired && !this.campaignStateRequired && !this.campaignTicketsRequired) {
 
-	      var camp = {
-	      	artistID: this.selectedArtistID,
-	      	artistName: this.selectedArtistName,
-	        city: this.campaign.city,
-	        state: this.campaign.state,
-	        description: this.campaign.description,
-          goals: this.campaign.goals,
-	        startedByUser: this.currentUser
-	      }
-	      this.campaignFactory.addCampaign(camp);
-	      this.successFlag = true;
-	      this.campaign.city = '';
-	      this.campaign.state = '';
-	      this.campaign.description = '';
-        this.campaign.goals = '';
-        this.result = 'success';
-        this.notificationModal(this.result);
+	      	var camp = {
+		      	artistID: this.selectedArtistID,
+		      	artistName: this.selectedArtistName,
+		        city: this.campaign.city,
+		        state: this.campaign.state,
+		        description: this.campaign.description,
+          		goals: this.campaign.goals,
+          		vip_price: this.campaign.vip_price,
+          		general_price: this.campaign.general_price,
+	      		startedByUser: this.currentUser
+	      	}	
+	      	this.campaignFactory.addCampaign(camp);
+	      	this.successFlag = true;
+	      	this.campaign.city = '';
+	      	this.campaign.state = '';
+	      	this.campaign.description = '';
+        	this.campaign.goals = '';
+        	this.campaign.vip_price = '';
+        	this.campaign.general_price = '';
+        	this.result = 'success';
+        	this.notificationModal(this.result);
 	    }
 	}
 
@@ -126,13 +131,13 @@ export default class CampaignController {
 
 	chooseArtist(){
 		this.selectedArtistFlag = false;
-    this.campaignCityRequired = false;
-    this.campaignStateRequired = false;
-    this.campaignTicketsRequired = false;
-    this.campaign.city = '';
-    this.campaign.state = '';
-    this.campaign.description = '';
-    this.campaign.goals = '';
+	    this.campaignCityRequired = false;
+	    this.campaignStateRequired = false;
+	    this.campaignTicketsRequired = false;
+	    this.campaign.city = '';
+	    this.campaign.state = '';
+	    this.campaign.description = '';
+	    this.campaign.goals = '';
 	}
 
 	createNewCampaign() {
@@ -141,5 +146,13 @@ export default class CampaignController {
 
 	cancelCampaignCreate() {
 		this.createCampaignClicked = false;	
+	}
+
+	viewCampaignList() {
+		this.viewCampaignClicked = true;
+	}
+
+	cancelCampaignList() {
+		this.viewCampaignClicked = false;	
 	}
 }

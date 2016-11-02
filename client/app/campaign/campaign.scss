@@ -171,10 +171,6 @@ table {
 
 }
 
-.checkout {
-	background: url('/assets/images/black.jpg');
-	background-size: 100% 100%;
-}
 .checkout-form {
 	margin: 20px 0;
 	padding: 20px 10px;
@@ -221,6 +217,13 @@ table {
 		}
 	}
 	.payment-info {
+		.card-option {
+			ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+		}
 		label {
 			display: block;
 			border: 1px solid lightgrey;
@@ -237,8 +240,6 @@ table {
 			}
 		}
 		.visa {
-			border-top-right-radius: 5px;
-			border-top-left-radius: 5px;
 			border-bottom: none;
 			img {
 				width: 50px;

@@ -41,9 +41,10 @@ export default class CheckoutController {
       this.$http.get('/api/charge/'+ this.currentUser.stripeId)
         .then(response => {
           console.log('stripe', response.data.sources.data);
-          this.last_four = response.data.sources.data[0].last4;
-          this.exp_month = response.data.sources.data[0].exp_month;
-          this.exp_year = response.data.sources.data[0].exp_year;
+          this.creditCards = response.data.sources.data;
+          // this.last_four = response.data.sources.data[0].last4;
+          // this.exp_month = response.data.sources.data[0].exp_month;
+          // this.exp_year = response.data.sources.data[0].exp_year;
       });
     }
     else
