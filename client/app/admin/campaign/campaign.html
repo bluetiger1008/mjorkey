@@ -1,9 +1,11 @@
 <div class="container">
   <div class="admin campaign">
-    <form class="adding-form">
+    <button class="btn btn-info createBtn" ng-click="admin.createNewCampaign()" ng-show="!admin.createCampaignClicked">Create new campaign</button>
+    <form class="adding-form" ng-show="admin.createCampaignClicked">
       <div class="panel panel-primary">
         <div class="panel-heading">Create a new Campaign</div>
         <div class="panel-body add-input-group">
+          
           <div class="select-artist" ng-hide="admin.selectedArtistFlag">
             <h2>Select Artist</h2>
             <table class="table tb-artist">
@@ -61,18 +63,12 @@
             <button type="submit" class="btn btn-primary" ng-click="admin.addCampaign()">Submit</button>
             <p class="successed" ng-show="admin.successFlag">Added successfully</p>
           </div>
+          <button class="btn btn-danger" ng-click="admin.cancelCampaignCreate()">Cancel</button>
         </div>
+
       </div>
     </form>
 
-    <!-- <div class="row">
-      <div class="col-lg-12">
-        <h1 class="page-header">Artists:</h1>
-        <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="artist in admin.artists">
-          <li><a href="#" uib-tooltip="{{artist.info}}">{{artist.name}}<button type="button" class="close" ng-click="admin.deleteArtist(artist)">&times;</button></a></li>
-        </ul>
-      </div>
-    </div> -->
     <div class="panel panel-primary">
       <div class="panel-heading">Campaign list</div>
       <div class="panel-body">
@@ -88,7 +84,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="campaign in admin.campaigns">
+            <tr ng-repeat="campaign in admin.campaigns" ui-sref="campaignAdminInfo({campaignID: campaign._id})">
               <td>{{campaign.artistName}}</td>
               <td>{{campaign.city}}</td>
               <td>{{campaign.state}}</td>

@@ -30,5 +30,12 @@ export default function routes($stateProvider) {
       controller: 'CampaignController',
       controllerAs: 'admin',
       authenticate: 'admin'
+    })
+    .state('campaignAdminInfo', {
+      url: '/admin/campaign/:campaignID/',
+      template: require('./campaign/info/info.html'),
+      controller: 'CampaignAdminInfoController',
+      controllerAs: 'admin',
+      authenticate: 'admin'
     });
 }

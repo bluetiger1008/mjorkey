@@ -1,5 +1,8 @@
 .admin {
 	&.campaign {
+		.createBtn {
+			margin: 10px 0;
+		}
 		color: black;
 		.select-artist {
 			transition: all 0.5s ease;

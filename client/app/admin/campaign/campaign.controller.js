@@ -39,6 +39,7 @@ export default class CampaignController {
 	    	});
 	    this.selectedArtistFlag = false;
 	    this.successFlag = false;
+	    this.createCampaignClicked = false;
 	}
 
   syncFormValid() {
@@ -132,5 +133,13 @@ export default class CampaignController {
     this.campaign.state = '';
     this.campaign.description = '';
     this.campaign.goals = '';
+	}
+
+	createNewCampaign() {
+		this.createCampaignClicked = true;
+	}
+
+	cancelCampaignCreate() {
+		this.createCampaignClicked = false;	
 	}
 }
