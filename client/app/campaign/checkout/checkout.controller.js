@@ -2,7 +2,7 @@
 
 export default class CheckoutController {
 	/*@ngInject*/
-	constructor($stateParams, campaignFactory, stripeFactory , $http, Auth, $uibModal, mainService) {
+	constructor($stateParams, artistFactory, campaignFactory, stripeFactory , $http, Auth, $uibModal, mainService) {
 		// this.artistID = $stateParams.campaignID;
 		// this.campaignFactory = campaignFactory;
 		this.$http = $http;
@@ -13,6 +13,7 @@ export default class CheckoutController {
     this.mainService = mainService;
     this.campaignFactory = campaignFactory;
     this.stripeFactory = stripeFactory;
+    this.artistFactory = artistFactory;
 	}
 
 	$onInit() {
@@ -25,7 +26,14 @@ export default class CheckoutController {
     this.campaignFactory.findCampaign(this.campaignID)
       .then(response => {
         this.campaign = response.data;
-    });
+        this.artistFactory.findArtist(this.campaign.artistID)
+        .then(response => {
+          this.artist = response.data;
+          console.log(this.artist);
+        })
+      });
+
+    this.submitLoading = false;
 
     if(this.currentUser.stripeId != null){
       this.customerCardFlag = true;
@@ -45,13 +53,9 @@ export default class CheckoutController {
 
 	submit(){
 		var token;
-		var $httpAjax = this.$http;
-		var currentUser = this.currentUser;
-    var totalPrice = this.totalPrice;
-    var stripeFactory = this.stripeFactory;
-    var customerId = this.currentUser.stripeId;
-    var uibModal = this.$uibModal;
-    var mainService = this.mainService;
+    
+    this.submitLoading = true;
+    var self = this;
 
     if(this.totalPrice > 0) {
       Stripe.setPublishableKey('pk_test_YfBE0DEENw42WjJF0pq0KEkw');
@@ -67,42 +71,38 @@ export default class CheckoutController {
         if (response.error) {
           console.log(response.error.message);
           var errorMessage = response.error.message;
-          var modal = uibModal.open({
-            animation: true,
-            template: require('../../modals/errorModal/errorModal.html'),
-            controller: function submitErrorController() {
-              var self=this;
-              self.closeModal = function(){
-                modal.close();
-              }
-              self.error = errorMessage;
-            },
-            controllerAs: 'vm',
-            size: 'medium-st-custom'
-          });
-          mainService.set(modal);
+          self.submitErrorModal(errorMessage);
+          self.submitLoading = false;
         } else {
           token = response.id;
           console.log('token', token);
-          stripeFactory.createCard({
+          self.stripeFactory.createCard({
             token: token,
-            customerId: customerId
+            customerId: self.customerId
           }).then(response => {
             console.log(response.data.id);
-            stripeFactory.createCharge({
-              customerId: customerId,
-              totalPrice: totalPrice,
+            self.stripeFactory.createCharge({
+              customerId: self.customerId,
+              totalPrice: self.totalPrice,
               cardId: response.data.id
+            }).then(response => {
+              console.log('successfully');
+              self.submitErrorModal('successfully purchased');
+              self.submitLoading = false;
+              self.vipAdmissionCount = 0;
+              self.generalAdmissionCount = 0;
+              self.totalPrice = 0;
             })
           });
         }
       });  
     } else {
-      this.totalPriceErrorModal();
+      self.submitErrorModal('Total price is $0, please confirm you bought ticket');
     }
 	}
 
-  totalPriceErrorModal() {
+  submitErrorModal(message) {
+    var msg = message;
     var modal = this.$uibModal.open({
       animation: true,
       template: require('../../modals/errorModal/errorModal.html'),
@@ -111,12 +111,13 @@ export default class CheckoutController {
         self.closeModal = function(){
           modal.close();
         }
-        self.error = 'TotalPrice is $0, Please confirm your ticket purchasing status';
+        self.error = msg;
       },
       controllerAs: 'vm',
       size: 'medium-st-custom'
     });
     this.mainService.set(modal);
+    this.submitLoading = false;
   }
 
   getCardInfo() {

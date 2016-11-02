@@ -76,13 +76,14 @@ export function createCharge(req, res) {
   var cardId = req.body.cardId;
 
   stripe.charges.create({
-    amount: totalPrice,
+    amount: totalPrice * 100,
     currency: "usd",
     customer: customerId,
     source: cardId,
     description: "charge for test"
   }, function(err, charge) {
     if(err) throw err;
-    console.log('success');
+    console.log('charge', charge);
+    res.json(charge);
   });
 }
