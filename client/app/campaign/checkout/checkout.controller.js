@@ -85,6 +85,7 @@ export default class CheckoutController {
               }).then(response => {
                 console.log('successfully');
                 self.submitErrorModal('successfully purchased');
+                self.calculateProgress();
                 self.submitLoading = false;
                 self.vipAdmissionCount = 0;
                 self.generalAdmissionCount = 0;
@@ -103,6 +104,7 @@ export default class CheckoutController {
         }).then(response => {
           console.log('successfully');
           self.submitErrorModal('successfully purchased');
+          self.calculateProgress();
           self.submitLoading = false;
           self.vipAdmissionCount = 0;
           self.generalAdmissionCount = 0;
@@ -113,6 +115,18 @@ export default class CheckoutController {
       self.submitErrorModal('Total price is $0, please confirm you bought ticket');
     }
 	}
+
+  calculateProgress() {
+    this.campaign.current_goal = this.campaign.current_goal + this.totalPrice;
+    this.progress = this.campaign.current_goal/this.campaign.goals * 100;
+    
+    console.log('percent', this.progress);
+
+    this.campaignFactory.updateCampaign(this.campaign._id, {
+      current_goal: this.campaign.current_goal,
+      progress: this.progress
+    });
+  }
 
   submitErrorModal(message) {
     var msg = message;

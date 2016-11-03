@@ -13,9 +13,16 @@ var CampaignSchema = new mongoose.Schema({
     },
     description: String,
     goals: Number,
+    current_goal: {
+        type: Number,
+        default: 0
+    },
     vip_price: Number,
     general_price: Number,
-    progress: Number,
+    progress: {
+        type: Number,
+        default: 0
+    },
     users: [{ type: Schema.Types.ObjectId, ref: 'User'}],
     venue: String,
     date: Date,

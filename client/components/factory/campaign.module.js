@@ -19,8 +19,8 @@ export default angular.module('majorkeyApp.campaignFactory',[])
 			return $http.delete(urlBase + '/' + id);
 		};
 
-		campaignFactory.updateCampaign = function (camp) {
-			return $http.put(urlBase + '/' + camp.ID, camp);
+		campaignFactory.updateCampaign = function (id, camp) {
+			return $http.put(urlBase + '/' + id, camp);
 		};
 
 		campaignFactory.findCampaign = function (id) {
