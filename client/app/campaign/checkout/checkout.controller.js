@@ -3,8 +3,6 @@
 export default class CheckoutController {
 	/*@ngInject*/
 	constructor($stateParams, artistFactory, campaignFactory, stripeFactory , $http, Auth, $uibModal, mainService) {
-		// this.artistID = $stateParams.campaignID;
-		// this.campaignFactory = campaignFactory;
 		this.$http = $http;
     this.campaignID = $stateParams.campaignID;
 		this.getCurrentUser = Auth.getCurrentUserSync;
@@ -17,39 +15,36 @@ export default class CheckoutController {
 	}
 
 	$onInit() {
-    this.errorMessage = '';
     this.vipAdmissionCount = 0;
     this.generalAdmissionCount = 0;
     this.totalPrice = 0;
-    this.customerCardFlag = false;
-    console.log(this.currentUser._id);
+    this.customerIdExisting = false;
+    this.submitLoading = false;
+
     this.campaignFactory.findCampaign(this.campaignID)
       .then(response => {
         this.campaign = response.data;
+        
         this.artistFactory.findArtist(this.campaign.artistID)
         .then(response => {
           this.artist = response.data;
           console.log(this.artist);
         })
       });
-
-    this.submitLoading = false;
-
+    
+    // Check customerID exisiting and get Cards if exist
     if(this.currentUser.stripeId != null){
-      this.customerCardFlag = true;
+      this.customerIdExisting = true;
+      this.customerId = this.currentUser.stripeId;
 
       this.$http.get('/api/charge/'+ this.currentUser.stripeId)
         .then(response => {
           console.log('stripe', response.data.sources.data);
-          this.creditCards = response.data.sources.data;
-          // this.last_four = response.data.sources.data[0].last4;
-          // this.exp_month = response.data.sources.data[0].exp_month;
-          // this.exp_year = response.data.sources.data[0].exp_year;
+          this.creditCards = response.data.sources.data;      
       });
     }
     else
-      this.customerCardFlag = false;
-    console.log(this.customerCardFlag);
+      this.customerIdExisting = false;
 	}
 
 	submit(){
@@ -61,42 +56,59 @@ export default class CheckoutController {
     if(this.totalPrice > 0) {
       Stripe.setPublishableKey('pk_test_YfBE0DEENw42WjJF0pq0KEkw');
 
-      console.log(this.cardNumber, this.cardCvc, this.cardExpMonth, this.cardExpYear);
-
-      Stripe.card.createToken({
-        number: this.cardNumber,
-        cvc: this.cardCvc,
-        exp_month: this.cardExpMonth,
-        exp_year: this.cardExpYear
-      }, function (status, response) {
-        if (response.error) {
-          console.log(response.error.message);
-          var errorMessage = response.error.message;
-          self.submitErrorModal(errorMessage);
-          self.submitLoading = false;
-        } else {
-          token = response.id;
-          console.log('token', token);
-          self.stripeFactory.createCard({
-            token: token,
-            customerId: self.customerId
-          }).then(response => {
-            console.log(response.data.id);
-            self.stripeFactory.createCharge({
-              customerId: self.customerId,
-              totalPrice: self.totalPrice,
-              cardId: response.data.id
+      //Adding New card when adding new card option selected
+      if(this.addingNewCard == true) {
+        Stripe.card.createToken({
+          number: this.cardNumber,
+          cvc: this.cardCvc,
+          exp_month: this.cardExpMonth,
+          exp_year: this.cardExpYear
+        }, function (status, response) {
+          //Show error message if token has error
+          if (response.error) {
+            var errorMessage = response.error.message;
+            self.submitErrorModal(errorMessage);
+            self.submitLoading = false;
+          } else {
+            token = response.id;
+            console.log('stripe token is', token);
+            
+            self.stripeFactory.createCard({
+              token: token,
+              customerId: self.customerId
             }).then(response => {
-              console.log('successfully');
-              self.submitErrorModal('successfully purchased');
-              self.submitLoading = false;
-              self.vipAdmissionCount = 0;
-              self.generalAdmissionCount = 0;
-              self.totalPrice = 0;
-            })
-          });
-        }
-      });  
+              console.log(response.data.id);
+              self.stripeFactory.createCharge({
+                customerId: self.customerId,
+                totalPrice: self.totalPrice,
+                cardId: response.data.id
+              }).then(response => {
+                console.log('successfully');
+                self.submitErrorModal('successfully purchased');
+                self.submitLoading = false;
+                self.vipAdmissionCount = 0;
+                self.generalAdmissionCount = 0;
+                self.totalPrice = 0;
+              })
+            });
+          }
+        });  
+      }
+      // Create charge when card option selected
+      else {
+        this.stripeFactory.createCharge({
+          customerId: this.customerId,
+          totalPrice: this.totalPrice,
+          cardId: this.cardId
+        }).then(response => {
+          console.log('successfully');
+          self.submitErrorModal('successfully purchased');
+          self.submitLoading = false;
+          self.vipAdmissionCount = 0;
+          self.generalAdmissionCount = 0;
+          self.totalPrice = 0;
+        })
+      }
     } else {
       self.submitErrorModal('Total price is $0, please confirm you bought ticket');
     }
@@ -121,17 +133,15 @@ export default class CheckoutController {
     this.submitLoading = false;
   }
 
-  getCardInfo() {
-
-
+  //set cardId when existing card selected
+  setCardId(card) {
+    this.addingNewCard= false;
+    this.cardId = card.id;
   }
 
-  cardExistOption() {
-    this.cardAdd= false;
-  }
-
-  cardAddOption() {
-    this.cardAdd = true;
+  //called when adding new card selected
+  selectAddingNewOption() {
+    this.addingNewCard = true;
   }
 
   generalAdmissionPlus() {
@@ -153,7 +163,6 @@ export default class CheckoutController {
       this.vipAdmissionCount = this.vipAdmissionCount + 1;
       this.totalPrice += 50;
     }
-
   }
 
   vipAdmissionMinus() {
@@ -161,7 +170,6 @@ export default class CheckoutController {
       this.vipAdmissionCount = this.vipAdmissionCount -1;
       this.totalPrice -= 50;
     }
-
   }
 
 }

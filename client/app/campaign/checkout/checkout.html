@@ -46,7 +46,7 @@
 						<ul>
 							<li ng-repeat="card in vm.creditCards">
 								<label class="visa">
-							    	<input type="radio" ng-checked="vm.customerCardFlag" name="optradio" ng-click="vm.cardExistOption()">
+							    	<input type="radio" ng-checked="vm.customerIdExisting" name="optradio" ng-click="vm.setCardId(card)">
 							    	<img src="assets/images/visacard.png">
 						    		<div class="visa-info">
 						    			<p><strong>Ending in {{card.last4}}</strong><br>
@@ -57,10 +57,10 @@
 						</ul>
 						
 					    <label class="new-creditcard">
-					    	<input type="radio" ng-checked="!vm.customerCardFlag" name="optradio" ng-click="vm.cardAddOption()">
+					    	<input type="radio" ng-checked="!vm.customerIdExisting" name="optradio" ng-click="vm.selectAddingNewOption()">
 					    	<p>Add a new card</p>
 					    </label>
-		              	<div class="card-form" ng-show="vm.cardAdd">
+		              	<div class="card-form" ng-show="vm.addingNewCard">
 			                <div class="card-input">
 			                  <div class="input-group name-on-card">
 			                    <span class="input-group-addon" id="basic-addon1">Name on card</span>
