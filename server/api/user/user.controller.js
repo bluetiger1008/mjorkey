@@ -54,10 +54,10 @@ export function create(req, res) {
         User.findByIdAndUpdate(user._id, {stripeId: customer.id}, function(err, user) {
           if(err) throw err;
           console.log(user);
+          res.json({ token });
         });
       });
-
-      res.json({ token });
+      
     })
 
     .catch(validationError(res));

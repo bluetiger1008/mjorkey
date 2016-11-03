@@ -2,47 +2,8 @@
 var stripe = require('stripe')('sk_test_JfliVks9eGKRKSJ56nefh31z');
 import User from '../user/user.model';
 
-export function charge(req, res, next) {
-	console.log('charge');
-	var stripeToken = req.body.token;
-  var userID = req.body.userID;
-  var userEmail = req.body.userEmail;
-  var totalPrice = req.body.totalPrice;
-
-  console.log(userEmail);
-  stripe.customers.create({
-    email: userEmail,
-  }, function(err, customer) {
-    console.log(customer);
-    console.log(userID);
-
-    User.findByIdAndUpdate(userID, {stripeId: customer.id}, function(err, user) {
-      if(err) throw err;
-      console.log(user);
-      stripe.customers.createSource(
-        customer.id,
-        {source: stripeToken},
-        function(err, card) {
-          if(err) throw err;
-          console.log(card);
-          stripe.charges.create({
-            amount: totalPrice,
-            currency: "usd",
-            customer: customer.id,
-            source: card.id,
-            description: "charge for test"
-          }, function(err,charge) {
-            if(err) throw err;
-            console.log('success');
-          });
-        }
-      );
-    })
-  });
-}
-
 export function getCardInfo(req, res) {
-  var customerId = req.params.id;
+  var customerId = req.user.stripeId;
 
   stripe.customers.retrieve(customerId, function(err, customer) {
     if(err) throw err;
@@ -56,7 +17,7 @@ export function getCardInfo(req, res) {
 
 export function createCard(req,res) {
   var stripeToken = req.body.token;
-  var customerId = req.body.customerId;
+  var customerId = req.user.stripeId;
 
   console.log(stripeToken, customerId);
   stripe.customers.createSource(
@@ -72,9 +33,10 @@ export function createCard(req,res) {
 
 export function createCharge(req, res) {
   var totalPrice = req.body.totalPrice;
-  var customerId = req.body.customerId;
+  var customerId = req.user.stripeId;
   var cardId = req.body.cardId;
 
+  console.log(req.user);
   stripe.charges.create({
     amount: totalPrice * 100,
     currency: "usd",

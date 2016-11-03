@@ -23,7 +23,7 @@ var CampaignSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    users: [{ type: Schema.Types.ObjectId, ref: 'User'}],
+    puchased_users: [{ type: Schema.Types.ObjectId, ref: 'User'}],
     venue: String,
     date: Date,
     timeRemaining: [Number, Number]

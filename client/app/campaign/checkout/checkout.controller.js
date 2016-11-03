@@ -5,8 +5,8 @@ export default class CheckoutController {
 	constructor($stateParams, artistFactory, campaignFactory, stripeFactory , $http, Auth, $uibModal, mainService) {
 		this.$http = $http;
     this.campaignID = $stateParams.campaignID;
-		this.getCurrentUser = Auth.getCurrentUserSync;
-    this.currentUser = this.getCurrentUser();
+    this.Auth = Auth;
+		
     this.$uibModal = $uibModal;
     this.mainService = mainService;
     this.campaignFactory = campaignFactory;
@@ -20,6 +20,8 @@ export default class CheckoutController {
     this.totalPrice = 0;
     this.customerIdExisting = false;
     this.submitLoading = false;
+    this.getCurrentUser = this.Auth.getCurrentUserSync;
+    this.currentUser = this.getCurrentUser();
 
     this.campaignFactory.findCampaign(this.campaignID)
       .then(response => {
@@ -32,10 +34,13 @@ export default class CheckoutController {
         })
       });
     
+    this.customerId = this.currentUser.stripeId;
+    console.log('customerID', this.currentUser);
     // Check customerID exisiting and get Cards if exist
     if(this.currentUser.stripeId != null){
       this.customerIdExisting = true;
       this.customerId = this.currentUser.stripeId;
+      console.log('customerID', this.customerId);
 
       this.$http.get('/api/charge/'+ this.currentUser.stripeId)
         .then(response => {
@@ -79,13 +84,14 @@ export default class CheckoutController {
             }).then(response => {
               console.log(response.data.id);
               self.stripeFactory.createCharge({
-                customerId: self.customerId,
                 totalPrice: self.totalPrice,
                 cardId: response.data.id
               }).then(response => {
                 console.log('successfully');
                 self.submitErrorModal('successfully purchased');
                 self.calculateProgress();
+                self.addPurchasingUser();
+
                 self.submitLoading = false;
                 self.vipAdmissionCount = 0;
                 self.generalAdmissionCount = 0;
@@ -98,13 +104,14 @@ export default class CheckoutController {
       // Create charge when card option selected
       else {
         this.stripeFactory.createCharge({
-          customerId: this.customerId,
           totalPrice: this.totalPrice,
           cardId: this.cardId
         }).then(response => {
           console.log('successfully');
           self.submitErrorModal('successfully purchased');
           self.calculateProgress();
+          self.addPurchasingUser();
+
           self.submitLoading = false;
           self.vipAdmissionCount = 0;
           self.generalAdmissionCount = 0;
@@ -125,6 +132,15 @@ export default class CheckoutController {
     this.campaignFactory.updateCampaign(this.campaign._id, {
       current_goal: this.campaign.current_goal,
       progress: this.progress
+    });
+  }
+
+  //insert purchasing user in the campaign model
+  addPurchasingUser() {
+    this.campaignFactory.updateCampaign(this.campaign._id, {
+      $push: {
+        puchased_users: this.currentUser
+      }
     });
   }
 
