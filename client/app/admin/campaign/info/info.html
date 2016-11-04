@@ -1,4 +1,28 @@
 <div class="container">
-	<div class="admin campaign">
+	<div class="admin campaign-info">
+		<h1>Campaign Info</h1>
+		<div class="row">
+			<div class="col-md-3 artist-photo">
+				<img src="{{admin.artist.photo}}">
+			</div>
+			<div class="col-md-9 sub-info">
+				<p><span>Artist Name:</span>{{admin.campaign.artistName}}</p>
+				<p><span>City:</span>{{admin.campaign.city}}</p>
+				<p><span>State:</span>{{admin.campaign.state}}</p>
+				<p><span>Description:</span>{{admin.campaign.description}}</p>
+				<p><span>Goal:</span>${{admin.campaign.goals}}</p>
+				<p><span>Current goal:</span>${{admin.campaign.current_goal}}</p>
+				<p><span>Progress:</span>{{admin.campaign.progress}}%</p>
+				<p><span>VIP admission:</span>${{admin.campaign.vip_price}}</p>
+				<p><span>General admission:</span>${{admin.campaign.general_price}}</p>
+				<!-- <p>{{admin.campaign.startedByUser}}</p> -->			
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<button class="btn btn-primary">Edit</button>
+				<button class="btn btn-primary">Back</button>
+			</div>
+		</div>
 	</div>
 </div>

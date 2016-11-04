@@ -40,7 +40,7 @@ export default class CampaignController {
 	    this.selectedArtistFlag = false;
 	    this.successFlag = false;
 	    this.createCampaignClicked = false;
-	    this.viewCampaignClicked = false;
+	    this.viewCampaignClicked = true;
 	}
 
   syncFormValid() {
