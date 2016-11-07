@@ -74,6 +74,14 @@
                 <!-- <p class="input-error" ng-show="admin.campaignTicketsRequired">Tickets field is required</p> -->
               </div>
             </div>
+            <div class="input-group">
+              <span>Ends date</span>
+              <datepicker date-format="yyyy-MM-dd" selector="form-control">
+                  <div class="input-group">
+                      <input class="form-control" placeholder="Choose a date" ng-model="admin.campaign.ends_date">
+                  </div>
+              </datepicker>
+            </div>
             <button class="btn btn-info" ng-click="admin.chooseArtist()">Choose another artist</button>
             <button type="submit" class="btn btn-primary" ng-click="admin.addCampaign()">Submit</button>
             <p class="successed" ng-show="admin.successFlag">Added successfully</p>

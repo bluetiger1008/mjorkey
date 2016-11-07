@@ -8,12 +8,10 @@ import ngSanitize from 'angular-sanitize';
 import ngFileUpload from 'ng-file-upload';
 
 import 'angular-socket-io';
+import 'angularjs-datepicker';
 
 import uiRouter from 'angular-ui-router';
 import uiBootstrap from 'angular-ui-bootstrap';
-// import angularFileUpload from 'angular-file-upload';
-// import ngMessages from 'angular-messages';
-// import ngValidationMatch from 'angular-validation-match';
 
 
 import {
@@ -44,7 +42,7 @@ import mainService from '../components/services/main_service.js';
 import './app.scss';
 
 angular.module('majorkeyApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', ngFileUpload, uiRouter, campaignFactory, artistFactory, stripeFactory,
-    mainService, uiBootstrap, _Auth, account, admin, user, artist, campaignAdmin, campaignAdminInfo, campaignInfo, checkout, navbar, footer, main, campaign, constants, socket, util
+    mainService, uiBootstrap, '720kb.datepicker', _Auth, account, admin, user, artist, campaignAdmin, campaignAdminInfo, campaignInfo, checkout, navbar, footer, main, campaign, constants, socket, util
   ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {

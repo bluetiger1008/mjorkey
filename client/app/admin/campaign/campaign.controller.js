@@ -12,19 +12,19 @@ export default class CampaignController {
 
 	    this.campaignFactory = campaignFactory;
 	    this.artistFactory = artistFactory;
-      this.$uibModal = $uibModal;
-      this.mainService = mainService;
+      	this.$uibModal = $uibModal;
+      	this.mainService = mainService;
 
-      this.campaignCityRequired = false;
-      this.campaignStateRequired = false;
-      this.campaignTicketsRequired = false;
+      	this.campaignCityRequired = false;
+      	this.campaignStateRequired = false;
+      	this.campaignTicketsRequired = false;
 
-      this.campaign = [];
+      	this.campaign = [];
 
 	    $scope.$on('$destroy', function() {
 	      socket.unsyncUpdates('campaign');
 	    });
-	 }
+	}
 
 	$onInit() {
 	    this.campaignFactory.getCampaigns()
@@ -43,29 +43,29 @@ export default class CampaignController {
 	    this.viewCampaignClicked = true;
 	}
 
-  syncFormValid() {
-    if(this.campaign.city == '' || this.campaign.city == null)
-      this.campaignCityRequired = true;
-    else {
-      this.campaignCityRequired = false;
-    }
-    if(this.campaign.state == '' || this.campaign.state == null)
-      this.campaignStateRequired = true;
-    else {
-      this.campaignStateRequired = false;
-    }
-    if(this.campaign.goals == '' || this.campaign.goals == null)
-      this.campaignTicketsRequired = true;
-    else {
-      this.campaignTicketsRequired = false;
-    }
-  }
+  	syncFormValid() {
+    	if(this.campaign.city == '' || this.campaign.city == null)
+      		this.campaignCityRequired = true;
+    	else {
+      		this.campaignCityRequired = false;
+    	}
+    	if(this.campaign.state == '' || this.campaign.state == null)
+      		this.campaignStateRequired = true;
+    	else {
+      		this.campaignStateRequired = false;
+    	}
+    	if(this.campaign.goals == '' || this.campaign.goals == null)
+      		this.campaignTicketsRequired = true;
+    	else {
+      		this.campaignTicketsRequired = false;
+    	}
+ 	}
 
 	getCampaigns() {
 	    this.$http.get('/api/campaigns')
-	      .then(response => {
-	        this.campaigns = response.data;
-	      });
+	      	.then(response => {
+	        	this.campaigns = response.data;
+	      	});
 	}
 
 	addCampaign() {
@@ -82,6 +82,7 @@ export default class CampaignController {
           		goals: this.campaign.goals,
           		vip_price: this.campaign.vip_price,
           		general_price: this.campaign.general_price,
+          		ends_date: this.campaign.ends_date,
 	      		startedByUser: this.currentUser
 	      	}	
 	      	this.campaignFactory.addCampaign(camp);

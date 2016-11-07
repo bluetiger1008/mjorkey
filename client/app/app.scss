@@ -37,13 +37,14 @@ tbody {
 @import 'admin/campaign/campaign';
 @import 'admin/campaign/info/info';
 @import 'campaign/campaign';
-@import 'campaign/checkout/subscribeModal/modal';
 @import 'main/main';
+@import 'modals/campaignEditModal/campaignEditModal';
 @import 'modals/errorModal/errorModal';
 @import 'modals/NotificationModal/notificationModal';
-@import 'modals/subscribeModal/modal';
+@import 'modals/subscribeModal/subscribeModal';
 @import '../components/footer/footer';
 @import '../components/modal/modal';
 @import '../components/navbar/navbar';
 @import '../components/oauth-buttons/oauth-buttons';
+@import 'styles/datepicker';
 /* endinject */

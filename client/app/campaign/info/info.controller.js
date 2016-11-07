@@ -15,11 +15,20 @@ export default class InfoController {
 
 	$onInit() {
 		// console.log(this.artistID);
+
 	    this.campaignFactory.findCampaign(this.campaignID)
 	      .then(response => {
 	        // console.log(response.data);
 	        this.campaign = response.data;
-	        console.log(this.campaign);
+	        this.campaign.progress = Math.round(this.campaign.progress);
+
+	        var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+			var currentDate = new Date();
+			var endsDate = new Date(this.campaign.ends_date);
+			var remainingDays = Math.round(Math.abs((currentDate.getTime() - endsDate.getTime())/(oneDay)));
+	        console.log(remainingDays);
+	        
+	        this.remainingDays = remainingDays;
 	        this.artistFactory.findArtist(this.campaign.artistID)
 	    	.then(response => {
 	    		this.artist = response.data;
