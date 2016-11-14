@@ -53,6 +53,7 @@ module.exports = function makeWebpackConfig(options) {
                 'angular-ui-bootstrap',
                 'angular-ui-router',
                 'angular-file-upload',
+                'angular-material',
                 'ng-file-upload',
                 'lodash'
             ]
@@ -198,6 +199,7 @@ module.exports = function makeWebpackConfig(options) {
             loaders: ['style', 'css', 'sass'],
             include: [
                 path.resolve(__dirname, 'node_modules/bootstrap-sass/assets/stylesheets/*.scss'),
+                path.resolve(__dirname, 'node_modules/angular-material/angular-material.scss'),
                 path.resolve(__dirname, 'client/app/app.scss')
             ]
 

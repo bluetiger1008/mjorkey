@@ -5,6 +5,7 @@ import angular from 'angular';
 import ngCookies from 'angular-cookies';
 import ngResource from 'angular-resource';
 import ngSanitize from 'angular-sanitize';
+import ngMaterial from 'angular-material';
 import ngFileUpload from 'ng-file-upload';
 
 import 'angular-socket-io';
@@ -41,7 +42,7 @@ import mainService from '../components/services/main_service.js';
 
 import './app.scss';
 
-angular.module('majorkeyApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', ngFileUpload, uiRouter, campaignFactory, artistFactory, stripeFactory,
+angular.module('majorkeyApp', [ngCookies, ngResource, ngSanitize, ngMaterial, 'btford.socket-io', ngFileUpload, uiRouter, campaignFactory, artistFactory, stripeFactory,
     mainService, uiBootstrap, '720kb.datepicker', _Auth, account, admin, user, artist, campaignAdmin, campaignAdminInfo, campaignInfo, checkout, navbar, footer, main, campaign, constants, socket, util
   ])
   .config(routeConfig)

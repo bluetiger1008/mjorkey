@@ -1,3 +1,8 @@
+.pg-campaign,.pg-info {
+	background-color: #666;
+	background-image: url('/assets/images/bright-squares.png');
+}
+
 table {
 	tbody {
 		td {
@@ -11,7 +16,7 @@ table {
 	background-size: 150% auto;
 	text-align: center;
 	position: relative;
-	padding: 20px;
+	padding: 20px 0 40px;
 	&:after {
 		content: "";
 		background-color: rgba(100,100,100,0.75);
@@ -26,29 +31,6 @@ table {
 	a {
 		text-decoration: none;
 	}
-
-	.support {
-		padding: 10px;
-		p {
-			display: inline-block;
-			margin: 0 30px;
-		}
-		.supporters {
-			display: inline-block;
-			ul {
-				padding: 0;
-				list-style: none;
-				li {
-					display: inline-block;
-					width: 30px;
-					padding: 0;
-					img {
-						width: 100%;
-					}
-				}
-			}
-		}
-	}
 	.container {
 		z-index: 1;
 		position: relative;
@@ -59,12 +41,10 @@ table {
 		width: 200px;
 		height: 200px;
 	}
-
-	p {
-		.place {
-			font-size: 1.5em;
-		}
+	.place {
+		font-size: 1.5em;
 	}
+
 	.status {
 		margin-bottom: 30px;
 		.meter {
@@ -91,8 +71,7 @@ table {
 			}
 		}
 		.ticket-status {
-			display: inline-block;
-			margin: 0 10px;
+			margin: 10px;
 			span {
 				display: block;
 				font-size: 0.9em;
@@ -104,7 +83,7 @@ table {
 	.make-happen {
 		width: 400px;
 		padding: 20px;
-		background: #3db6e4;
+		background: #1f9737;
 		color: white;
 		font-size: 30px;
 		display: inline-block;
@@ -118,26 +97,6 @@ table {
 		h2 {
 			color: white;
 		}
-		.link {
-			display: block;
-			margin-bottom: 50px;
-			.skill {
-				font-size: 0.8em;
-				float: left;
-				margin: 0;
-				line-height: 30px;
-			}
-			a {
-				color: #3db6e4;
-				float: right;
-				text-decoration: none;
-				line-height: 30px;
-				img {
-					width: 20px;
-					margin: 0 5px;
-				}
-			}
-		}
 		.description {
 			display: inline-block;
 		}
@@ -148,7 +107,7 @@ table {
 		color: #444;
 		margin: 10px 0;
 		.purchase {
-			background: #3db6e4;
+			background: #1f9737;
 			padding: 10px 20px;
 			margin: 0 20px;
 			display: block;

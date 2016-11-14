@@ -1,52 +1,39 @@
-<div class="info-header">
-	<div class="container">
-		<img id="img-artist" src="{{vm.artist.photo}}">
-		<h1>Get {{ vm.artist.name }}</h1>
-		<p>to perform in <span class="place">{{ vm.campaign.city }}, {{ vm.campaign.state }}</span></p>
-		<div class="status">
-			<div class="meter">
-			  <span style="width: {{vm.campaign.progress}}%">{{vm.campaign.progress}}%</span>
+<div class="pg-info">
+	<div class="info-header">
+		<div class="container">
+			<img id="img-artist" src="{{vm.artist.photo}}">
+			<h1>Get {{ vm.artist.name }}</h1>
+			<p class="place">{{ vm.campaign.city }}, {{ vm.campaign.state }}</p>
+			<div class="status">
+				<div class="meter">
+				  <span style="width: {{vm.campaign.progress}}%">{{vm.campaign.progress}}%</span>
+				</div>
+				<p class="ticket-status">{{vm.campaign.progress}}% to goal<span>{{vm.remainingDays}} days to go</span></p>
 			</div>
-			<p class="ticket-status">ONLY 10 Tickets Left!<span>Ends in {{vm.remainingDays}} days</span></p>
-		</div>
-		<a href="" class="make-happen">Make It Happen</a>
-		<div class="support">
-			<p>Supported by</p>
-			<div class="supporters">
-				<ul>
-					<li><img src="assets/images/images.jpg"></li>
-					<li><img src="assets/images/images.jpg"></li>
-					<li><img src="assets/images/images.jpg"></li>
-					<li><img src="assets/images/images.jpg"></li>
-					<li><img src="assets/images/images.jpg"></li>
-				</ul>
-			</div>
+			<a href="" class="make-happen">Make It Happen</a>
 		</div>
 	</div>
-</div>
-<div class="info-detail">
-	<div class="container">
-		<div class="col-md-9 profile">
-			<h2>About {{ vm.artist.name }}</h2>
-			<div class="link">
-				<p class="skill">Hip Hop/ R&B / Funk</p>
-				<a href=""><span><img src="assets/images/earth.svg">pharrellwiliams.com</a>
+	<div class="info-detail">
+		<div class="container">
+			<div class="col-md-9 profile">
+				<h3 class="page-header">How it works</h3>
+				<p>Entusic brings the power of concerts directly to the fans by allowing fans to come together to bring artists to their city. Fans come together and commit to buying a ticket. Once enough fans join the campaign before time runs out, the show is booked and the date will be announced. If enough fans don't join, tickets are refunded and the show doesn't happen. So it's important to share with as many people as possible. Check out our FAQ's. 
+				</p>
 			</div>
-			<p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-		</div>
-		<div class="col-md-3">
-			<h2>Pre-purchase Your ticket</h2>
-			<div class="card">
-				<p class="price">${{vm.campaign.vip_price}} <span>VIP Guestlist</span></p>
-				<p class="ticket-count">10 tickets left</p>
-				<p class="ticket-info">Get exclusive perks such as artist meet & greet, front-row priority seating, and merchandising</p>
-				<a ng-click="vm.purchaseTicket()" class="purchase">Purchase</a>
-			</div>
-			<div class="card">
-				<p class="price">${{vm.campaign.general_price}} <span>General Admission</span></p>
-				<p class="ticket-count">150 Tickets sold</p>
-				<p class="ticket-info">General admission tickets. Get dibs on bringing the artist to your city before the general public!</p>
-				<a ng-click="vm.purchaseTicket()" class="purchase">Purchase</a>
+			<div class="col-md-3">
+				<h2>Pre-purchase Your ticket</h2>
+				<div class="card">
+					<p class="price">${{vm.campaign.vip_price}} <span>VIP Guestlist</span></p>
+					<p class="ticket-count">10 tickets left</p>
+					<p class="ticket-info">Get exclusive perks such as artist meet & greet, front-row priority seating, and merchandising</p>
+					<a ng-click="vm.purchaseTicket()" class="purchase">Make It Happen</a>
+				</div>
+				<div class="card">
+					<p class="price">${{vm.campaign.general_price}} <span>General Admission</span></p>
+					<p class="ticket-count">150 Tickets sold</p>
+					<p class="ticket-info">General admission tickets. Get dibs on bringing the artist to your city before the general public!</p>
+					<a ng-click="vm.purchaseTicket()" class="purchase">Make It Happen</a>
+				</div>
 			</div>
 		</div>
 	</div>

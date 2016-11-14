@@ -1,55 +1,78 @@
 .admin {
 	&.campaign {
-		.createBtn {
-			margin: 10px 0;
-		}
-		color: black;
-		.select-artist {
-			transition: all 0.5s ease;
-			-webkit-transition: all 0.5s ease;
-			opacity: 1;
-
-			.tb-artist {
-				tbody {
-					tr {
-						td {
-							line-height: 50px;
-							img {
-								width: 50px;
+		md-content {
+			background-color: transparent !important;
+			md-tabs {
+				background: #f6f6f6;
+			    border: 1px solid #e1e1e1;
+			    md-tabs-wrapper {
+			      background: #3d3d3d; 
+			      md-tab-item {
+					color: white;
+					}
+			    }
+				color: black;
+				.tb-artist {
+					tbody {
+						tr {
+							td {
+								line-height: 50px;
+								img {
+									width: 50px;
+								}
+							}
+							&:hover {
+								cursor: pointer;
+							}
+							&:active {
+								background: rgba(51, 122, 183, 0.79);
+								td {
+									color: white;
+								}
 							}
 						}
-						&:hover {
-							cursor: pointer;
+
+					}
+				}
+				.campaignAddForm {
+					.col-form-label {
+						line-height: 34px;
+					}
+					.artist-info {
+						img {
+							width: 80%;
+							margin: 10px 0;
 						}
-						&:active {
-							background: rgba(51, 122, 183, 0.79);
-							td {
-								color: white;
+					}
+				}
+				.tb-campaign {
+					tbody {
+						tr {
+							&:hover {
+								background-color: #337ab7;
+								cursor: pointer;
+								td {
+									color: white;
+								}
 							}
 						}
 					}
-
 				}
 			}
 		}
-		.form {
-			.successed {
-				color: red;
-				transition: all 0.5s ease;
-				-webkit-transition: all 0.5s ease;
-			}
-	      	.ticket-box {
-	        	width: 200px;
-	      	}
-		}
-		.tb-campaign {
-			tbody {
-				tr {
-					&:hover {
-						background-color: #337ab7;
-						cursor: pointer;
-						td {
-							color: white;
+	}
+}
+
+@media only screen and (max-width: $screen-sm) {
+	.admin {
+		&.campaign {
+			md-content {
+				md-tabs {
+					.campaignAddForm {
+						.artist-info {
+							img {
+								max-width: 100px;
+							}
 						}
 					}
 				}
@@ -61,20 +84,24 @@
 @media only screen and (max-width : 414px) {
 	.admin {
 		&.campaign {
-			.select-artist {
-				.tb-artist {
-					tbody {
-						tr {
-							td {
-								line-height: 1;
+			md-content {
+				md-tabs {
+					.select-artist {
+						.tb-artist {
+							tbody {
+								tr {
+									td {
+										line-height: 1;
+									}
+								}
 							}
 						}
 					}
-				}
-			}
-			.campaign-list {
-				th, td {
-					width: 25%;
+					.campaign-list {
+						th, td {
+							width: 25%;
+						}
+					}
 				}
 			}
 		}

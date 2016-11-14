@@ -43,7 +43,18 @@
             <input class="form-control" type="text" ng-model="vm.campaign.general_price" id="general_price">
           </div>
         </div>
-        <button class="btn btn-primary">Update</button>
+        <div class="form-group row">
+          <label for="example-text-input" class="col-xs-4 col-form-label">Ends Date</label>
+          <div class="col-xs-8">
+            <!-- <input class="form-control" type="text" ng-model="vm.campaign.ends_date" id="ends_date"> -->
+            <datepicker date-format="yyyy-MM-dd" selector="form-control">
+                <div class="input-group">
+                    <input class="form-control" placeholder="Choose a date" ng-model="vm.campaign.ends_date">
+                </div>
+            </datepicker>
+          </div>
+        </div>
+        <button class="btn btn-primary" ng-click="vm.update(vm.campaign)">Update</button>
         <button class="btn btn-danger">Cancel</button>
       </div>
     </div>

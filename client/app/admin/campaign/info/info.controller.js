@@ -33,6 +33,10 @@ export default class CampaignAdminInfoController {
         this.closeModal = function(){
           modal.close();
         }
+        this.update = function(campaign) {
+          console.log(campaign);
+          self.campaignFactory.updateCampaign(self.campaignID, campaign);
+        }
       },
       controllerAs: 'vm',
       size: 'medium-st-custom'

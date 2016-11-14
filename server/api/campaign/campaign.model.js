@@ -17,7 +17,12 @@ var CampaignSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    vip_max: Number,
     vip_price: Number,
+    vip_sold: {
+        type: Number,
+        default: 0
+    },
     general_price: Number,
     progress: {
         type: Number,

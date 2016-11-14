@@ -6,21 +6,18 @@ export default class CampaignController {
 	constructor($http, $scope, socket, Auth, campaignFactory, artistFactory, $uibModal, mainService) {
     	this.$http = $http;
 	    this.socket = socket;
+	    this.$scope = $scope;
 	    this.getCurrentUser = Auth.getCurrentUserSync;
 	    this.currentUser = this.getCurrentUser();
-	    console.log(this.getCurrentUser());
-
 	    this.campaignFactory = campaignFactory;
 	    this.artistFactory = artistFactory;
       	this.$uibModal = $uibModal;
       	this.mainService = mainService;
-
       	this.campaignCityRequired = false;
       	this.campaignStateRequired = false;
       	this.campaignTicketsRequired = false;
-
       	this.campaign = [];
-
+      	this.selectedArtist = [];
 	    $scope.$on('$destroy', function() {
 	      socket.unsyncUpdates('campaign');
 	    });
@@ -37,29 +34,11 @@ export default class CampaignController {
 	    	.then(response => {
 	    		this.artists = response.data;
 	    	});
-	    this.selectedArtistFlag = false;
-	    this.successFlag = false;
-	    this.createCampaignClicked = false;
-	    this.viewCampaignClicked = true;
+	    
+	    this.tabSelect = 0;
+	    this.goInput = false;
+	    this.clean = {};
 	}
-
-  	syncFormValid() {
-    	if(this.campaign.city == '' || this.campaign.city == null)
-      		this.campaignCityRequired = true;
-    	else {
-      		this.campaignCityRequired = false;
-    	}
-    	if(this.campaign.state == '' || this.campaign.state == null)
-      		this.campaignStateRequired = true;
-    	else {
-      		this.campaignStateRequired = false;
-    	}
-    	if(this.campaign.goals == '' || this.campaign.goals == null)
-      		this.campaignTicketsRequired = true;
-    	else {
-      		this.campaignTicketsRequired = false;
-    	}
- 	}
 
 	getCampaigns() {
 	    this.$http.get('/api/campaigns')
@@ -68,56 +47,58 @@ export default class CampaignController {
 	      	});
 	}
 
-	addCampaign() {
-    	this.syncFormValid();
-		console.log(this.currentUser);
-	    if(!this.campaignCityRequired && !this.campaignStateRequired && !this.campaignTicketsRequired) {
-
-	      	var camp = {
-		      	artistID: this.selectedArtistID,
-		      	artistName: this.selectedArtistName,
+	submit() {
+		this.$scope.form.$setUntouched();
+		this.$scope.form.$submitted = true;
+		if(this.$scope.form.$valid){
+			var camp = {
+		      	artistID: this.selectedArtist._id,
+		      	artistName: this.selectedArtist.name,
 		        city: this.campaign.city,
 		        state: this.campaign.state,
 		        description: this.campaign.description,
-          		goals: this.campaign.goals,
-          		vip_price: this.campaign.vip_price,
-          		general_price: this.campaign.general_price,
-          		ends_date: this.campaign.ends_date,
+	      		goals: this.campaign.goals,
+	      		vip_max: this.campaign.vip.max,
+	      		vip_price: this.campaign.vip.price,
+	      		general_price: this.campaign.general_price,
+	      		ends_date: this.campaign.ends_date,
 	      		startedByUser: this.currentUser
-	      	}	
+	      	};
 	      	this.campaignFactory.addCampaign(camp);
-	      	this.successFlag = true;
-	      	this.campaign.city = '';
-	      	this.campaign.state = '';
-	      	this.campaign.description = '';
-        	this.campaign.goals = '';
-        	this.campaign.vip_price = '';
-        	this.campaign.general_price = '';
-        	this.result = 'success';
-        	this.notificationModal(this.result);
-	    }
+	    	this.notificationModal('success');	
+
+		}
+      	
 	}
 
-  notificationModal(notification) {
-    var modal = this.$uibModal.open({
-      animation: true,
-      template: require('../../modals/NotificationModal/notificationModal.html'),
-      controller: function notificationController() {
-        var self=this;
-        self.closeModal = function(){
-          modal.close();
-        }
-        self.modalfor = 'Campaign';
-        if(notification == 'success')
-          self.success = true;
-        else
-          self.success = false;
-      },
-      controllerAs: 'vm',
-      size: 'medium-st-custom'
-    });
-    this.mainService.set(modal);
-  }
+	reset(form) {
+		if (form) {
+	      form.$setPristine();
+	      form.$setUntouched();
+	    }
+	    this.campaign = angular.copy(this.clean);
+	}
+	
+	notificationModal(notification) {
+	    var modal = this.$uibModal.open({
+	      animation: true,
+	      template: require('../../modals/NotificationModal/notificationModal.html'),
+	      controller: function notificationController() {
+	        var self=this;
+	        self.closeModal = function(){
+	          modal.close();
+	        }
+	        self.modalfor = 'Campaign';
+	        if(notification == 'success')
+	          self.success = true;
+	        else
+	          self.success = false;
+	      },
+	      controllerAs: 'vm',
+	      size: 'medium-st-custom'
+	    });
+	    this.mainService.set(modal);
+	}
 
 	deleteCampaign(campaign) {
 	    this.$http.delete(`/api/campaigns/${campaign._id}`);
@@ -125,35 +106,8 @@ export default class CampaignController {
 	}
 
 	selectArtist(artist) {
-		this.selectedArtistID = artist._id;
-		this.selectedArtistName = artist.name;
-		this.selectedArtistFlag = true;
-	}
-
-	chooseArtist(){
-		this.selectedArtistFlag = false;
-	    this.campaignCityRequired = false;
-	    this.campaignStateRequired = false;
-	    this.campaignTicketsRequired = false;
-	    this.campaign.city = '';
-	    this.campaign.state = '';
-	    this.campaign.description = '';
-	    this.campaign.goals = '';
-	}
-
-	createNewCampaign() {
-		this.createCampaignClicked = true;
-	}
-
-	cancelCampaignCreate() {
-		this.createCampaignClicked = false;	
-	}
-
-	viewCampaignList() {
-		this.viewCampaignClicked = true;
-	}
-
-	cancelCampaignList() {
-		this.viewCampaignClicked = false;	
+		this.goInput = true;
+		this.tabSelect = 1;
+		this.selectedArtist = artist;
 	}
 }

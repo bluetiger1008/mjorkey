@@ -1,25 +1,27 @@
-<div class="container">
-	<div class="row">
-		<div class="col-lg-12">
-		  <h1 class="page-header">Campaigns</h1>
-		  <table class="table">
-		    <thead class="thead-inverse">
-		      <tr>
-		        <th>Artist Name</th>
-		        <th>City</th>
-		        <th>State</th>
-		        <th class="td-mobile-hide">Description</th>
-		      </tr>
-		    </thead>
-		    <tbody>
-		      <tr ng-repeat="campaign in $ctrl.campaigns">
-		        <td><a ui-sref="campaignInfo({campaignID: campaign._id})">{{campaign.artistName}}</td>
-		        <td>{{campaign.city}}</td>
-		        <td>{{campaign.state}}</td>
-		        <td class="td-mobile-hide">{{campaign.description}}</td>
-		      </tr>
-		    </tbody>
-		  </table>
+<div class="pg-campaign">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+			  	<h1 class="page-header">Campaigns</h1>
+		  		<table class="table">
+				    <thead class="thead-inverse">
+				      <tr>
+				        <th>Artist Name</th>
+				        <th>City</th>
+				        <th>State</th>
+				        <th class="td-mobile-hide">Description</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				      	<tr ng-repeat="campaign in $ctrl.campaigns">
+					        <td><a ui-sref="campaignInfo({campaignID: campaign._id})">{{campaign.artistName}}</a></td>
+					        <td>{{campaign.city}}</td>
+					        <td>{{campaign.state}}</td>
+					        <td class="td-mobile-hide">{{campaign.description}}</td>
+				      	</tr>
+				    </tbody>
+		  		</table>
+			</div>
 		</div>
 	</div>
 </div>

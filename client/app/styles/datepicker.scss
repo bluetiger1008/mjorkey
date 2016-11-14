@@ -28,7 +28,7 @@ datepicker, .datepicker, [datepicker],
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
-  width: 300px;
+  width: 100%;
   margin: 0 auto;
   float: left;
   clear: right;
@@ -39,9 +39,9 @@ datepicker, .datepicker, [datepicker],
   color: #333;
   position: absolute;
   z-index: 999;
-  min-width: 220px;
+  min-width: 120px;
   margin: 0 auto;
-  width: 101%;
+  width: 200px;
   -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
   -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
