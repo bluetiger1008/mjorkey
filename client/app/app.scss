@@ -14,27 +14,25 @@ $screen-md:	992px;
 $screen-lg:	1200px;
 
 body {
-	background-color: #666;
-	background-image: url('/assets/images/bright-squares.png');
+	background: $bodyColor;
 	color: #fff;
-}
-
-.pg-campaign,.pg-info,.pg-admin {
-	background-color: #666;
-	background-image: url('/assets/images/bright-squares.png');
-}
-
-table {
-	margin-bottom: 0px !important;
-	tbody {
-		background: white;
-	}	
-}
-
-.submit-error {
-	color: red;
-	font-size: 0.8em;
-	padding: 5px;
+	.pg-campaign, .pg-info, .pg-admin, .pg-checkout {
+		background: $bodyColor;
+	}
+	.pg-campaign {
+		padding: 20px;
+	}
+	table {
+		margin-bottom: 0px !important;
+		tbody {
+			background: white;
+		}	
+	}
+	.submit-error {
+		color: red;
+		font-size: 0.8em;
+		padding: 5px;
+	}
 }
 
 // Component styles are injected through gulp
@@ -48,6 +46,7 @@ table {
 @import 'modals/errorModal/errorModal';
 @import 'modals/NotificationModal/notificationModal';
 @import 'modals/subscribeModal/subscribeModal';
+@import 'styles/config';
 @import 'styles/datepicker';
 @import '../components/footer/footer';
 @import '../components/modal/modal';

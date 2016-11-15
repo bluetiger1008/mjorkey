@@ -15,6 +15,7 @@
     "angular-ui-bootstrap": "^2.0.1",
     "angular-ui-router": "~0.3.1",
     "angular-validation-match": "^1.9.0",
+    "angulargrid": "^0.6.3",
     "angularjs-datepicker": "^2.1.6",
     "aws-sdk": "^2.6.9",
     "babel-polyfill": "^6.7.2",

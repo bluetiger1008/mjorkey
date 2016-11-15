@@ -55,6 +55,7 @@ module.exports = function makeWebpackConfig(options) {
                 'angular-file-upload',
                 'angular-material',
                 'ng-file-upload',
+                'angulargrid',
                 'lodash'
             ]
         };

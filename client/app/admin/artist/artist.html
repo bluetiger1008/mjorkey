@@ -17,8 +17,7 @@
               <img ngf-thumbnail="admin.file || 'assets/images/default-user.png'">
               <form ng-app="fileUpload" name="form">
                 <div class="btn btn-primary" ngf-select="admin.upload($file)" ng-model="admin.file" ngf-pattern="'image/*'"
-                  ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
-                  ngf-resize="{width: 100, height: 100}">Select Photo</div>
+                  ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">Select Photo</div>
                 <!-- <button type="submit" ng-click="admin.submit()">submit</button> -->
               </form>
               <!-- <div class="button" ng-model="file" ngf-select="admin.upload($file)">Upload on file select</div> -->

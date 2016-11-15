@@ -54,6 +54,7 @@ export default class CampaignController {
 			var camp = {
 		      	artistID: this.selectedArtist._id,
 		      	artistName: this.selectedArtist.name,
+		      	artistPhoto: this.selectedArtist.photo,
 		        city: this.campaign.city,
 		        state: this.campaign.state,
 		        description: this.campaign.description,

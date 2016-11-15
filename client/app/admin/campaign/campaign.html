@@ -147,8 +147,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr ng-repeat="campaign in admin.campaigns" ui-sref="campaignAdminInfo({campaignID: campaign._id})">
-                      <td>{{campaign.artistName}}</td>
+                    <tr ng-repeat="campaign in admin.campaigns">
+                      <td ui-sref="campaignAdminInfo({campaignID: campaign._id})">{{campaign.artistName}}</td>
                       <td>{{campaign.city}}</td>
                       <td>{{campaign.state}}</td>
                       <td class="td-mobile-hide">{{campaign.description}}</td>

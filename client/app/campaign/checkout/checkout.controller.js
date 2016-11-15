@@ -6,7 +6,6 @@ export default class CheckoutController {
 		this.$http = $http;
     this.campaignID = $stateParams.campaignID;
     this.Auth = Auth;
-		
     this.$uibModal = $uibModal;
     this.mainService = mainService;
     this.campaignFactory = campaignFactory;
@@ -17,6 +16,8 @@ export default class CheckoutController {
 	$onInit() {
     this.vipAdmissionCount = 0;
     this.generalAdmissionCount = 0;
+    this.temp_vipSold = 0;
+    this.temp_generalSold = 0;
     this.totalPrice = 0;
     this.customerIdExisting = false;
     this.submitLoading = false;
@@ -26,7 +27,9 @@ export default class CheckoutController {
     this.campaignFactory.findCampaign(this.campaignID)
       .then(response => {
         this.campaign = response.data;
-        
+        this.temp_vipSold = this.campaign.vip_sold;
+        this.temp_generalSold = this.campaign.general_sold;
+
         this.artistFactory.findArtist(this.campaign.artistID)
         .then(response => {
           this.artist = response.data;
@@ -35,7 +38,6 @@ export default class CheckoutController {
       });
     
     this.customerId = this.currentUser.stripeId;
-    console.log('customerID', this.currentUser);
     // Check customerID exisiting and get Cards if exist
     if(this.currentUser.stripeId != null){
       this.customerIdExisting = true;
@@ -53,8 +55,7 @@ export default class CheckoutController {
 	}
 
 	submit(){
-		var token;
-    
+		var token;  
     this.submitLoading = true;
     var self = this;
 
@@ -72,7 +73,7 @@ export default class CheckoutController {
           //Show error message if token has error
           if (response.error) {
             var errorMessage = response.error.message;
-            self.submitErrorModal(errorMessage);
+            self.submitNotificationModal(errorMessage);
             self.submitLoading = false;
           } else {
             token = response.id;
@@ -88,7 +89,7 @@ export default class CheckoutController {
                 cardId: response.data.id
               }).then(response => {
                 console.log('successfully');
-                self.submitErrorModal('successfully purchased');
+                self.submitNotificationModal('successfully purchased');
                 self.calculateProgress();
                 self.addPurchasingUser();
 
@@ -108,7 +109,7 @@ export default class CheckoutController {
           cardId: this.cardId
         }).then(response => {
           console.log('successfully');
-          self.submitErrorModal('successfully purchased');
+          self.submitNotificationModal('successfully purchased');
           self.calculateProgress();
           self.addPurchasingUser();
 
@@ -119,19 +120,23 @@ export default class CheckoutController {
         })
       }
     } else {
-      self.submitErrorModal('Total price is $0, please confirm you bought ticket');
+      self.submitNotificationModal('Total price is $0, please confirm you bought ticket');
     }
 	}
 
   calculateProgress() {
     this.campaign.current_goal = this.campaign.current_goal + this.totalPrice;
     this.progress = this.campaign.current_goal/this.campaign.goals * 100;
-    
-    console.log('percent', this.progress);
+    this.vip_sold = this.vipAdmissionCount + this.temp_vipSold;
+    this.general_sold = this.generalAdmissionCount + this.temp_generalSold;
+    this.temp_vipSold = this.vip_sold;
+    this.temp_generalSold = this.general_sold;
 
     this.campaignFactory.updateCampaign(this.campaign._id, {
       current_goal: this.campaign.current_goal,
-      progress: this.progress
+      progress: this.progress,
+      vip_sold: this.vip_sold,
+      general_sold: this.general_sold
     });
   }
 
@@ -139,17 +144,17 @@ export default class CheckoutController {
   addPurchasingUser() {
     this.campaignFactory.updateCampaign(this.campaign._id, {
       $push: {
-        puchased_users: this.currentUser
+        purchased_users: this.currentUser
       }
     });
   }
 
-  submitErrorModal(message) {
+  submitNotificationModal(message) {
     var msg = message;
     var modal = this.$uibModal.open({
       animation: true,
       template: require('../../modals/errorModal/errorModal.html'),
-      controller: function submitErrorController() {
+      controller: function submitNotificationController() {
         var self=this;
         self.closeModal = function(){
           modal.close();

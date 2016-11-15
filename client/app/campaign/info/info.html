@@ -10,7 +10,7 @@
 				</div>
 				<p class="ticket-status">{{vm.campaign.progress}}% to goal<span>{{vm.remainingDays}} days to go</span></p>
 			</div>
-			<a href="" class="make-happen">Make It Happen</a>
+			<a ng-click="vm.purchaseTicket()" class="make-happen">Make It Happen</a>
 		</div>
 	</div>
 	<div class="info-detail">
@@ -24,13 +24,12 @@
 				<h2>Pre-purchase Your ticket</h2>
 				<div class="card">
 					<p class="price">${{vm.campaign.vip_price}} <span>VIP Guestlist</span></p>
-					<p class="ticket-count">10 tickets left</p>
+					<p class="ticket-count">${{vm.campaign.vip_max - vm.campaign.vip_sold}} tickets left</p>
 					<p class="ticket-info">Get exclusive perks such as artist meet & greet, front-row priority seating, and merchandising</p>
 					<a ng-click="vm.purchaseTicket()" class="purchase">Make It Happen</a>
 				</div>
 				<div class="card">
 					<p class="price">${{vm.campaign.general_price}} <span>General Admission</span></p>
-					<p class="ticket-count">150 Tickets sold</p>
 					<p class="ticket-info">General admission tickets. Get dibs on bringing the artist to your city before the general public!</p>
 					<a ng-click="vm.purchaseTicket()" class="purchase">Make It Happen</a>
 				</div>

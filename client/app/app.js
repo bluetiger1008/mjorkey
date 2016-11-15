@@ -10,7 +10,7 @@ import ngFileUpload from 'ng-file-upload';
 
 import 'angular-socket-io';
 import 'angularjs-datepicker';
-
+import 'angulargrid';
 import uiRouter from 'angular-ui-router';
 import uiBootstrap from 'angular-ui-bootstrap';
 
@@ -43,7 +43,7 @@ import mainService from '../components/services/main_service.js';
 import './app.scss';
 
 angular.module('majorkeyApp', [ngCookies, ngResource, ngSanitize, ngMaterial, 'btford.socket-io', ngFileUpload, uiRouter, campaignFactory, artistFactory, stripeFactory,
-    mainService, uiBootstrap, '720kb.datepicker', _Auth, account, admin, user, artist, campaignAdmin, campaignAdminInfo, campaignInfo, checkout, navbar, footer, main, campaign, constants, socket, util
+    mainService, uiBootstrap, '720kb.datepicker', 'angularGrid', _Auth, account, admin, user, artist, campaignAdmin, campaignAdminInfo, campaignInfo, checkout, navbar, footer, main, campaign, constants, socket, util
   ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {

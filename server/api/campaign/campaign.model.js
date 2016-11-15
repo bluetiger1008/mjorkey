@@ -5,6 +5,7 @@ import mongoose, {Schema} from 'mongoose';
 var CampaignSchema = new mongoose.Schema({
     artistID: String,
     artistName: String,
+    artistPhoto: String,
     city: String,
     state: String,
     startedByUser: {
@@ -24,11 +25,15 @@ var CampaignSchema = new mongoose.Schema({
         default: 0
     },
     general_price: Number,
+    general_sold: {
+        type: Number,
+        default: 0
+    },
     progress: {
         type: Number,
         default: 0
     },
-    puchased_users: [{ type: Schema.Types.ObjectId, ref: 'User'}],
+    purchased_users: [{ type: Schema.Types.ObjectId, ref: 'User'}],
     venue: String,
     ends_date: Date,
     timeRemaining: [Number, Number]
