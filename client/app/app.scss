@@ -33,6 +33,24 @@ body {
 		font-size: 0.8em;
 		padding: 5px;
 	}
+	md-list {
+		md-list-item {
+			background: white;
+			h2 {
+				color: black;
+				margin: 0;
+			}
+			.md-avatar {
+				width: 100px !important;
+				height: 100px !important;
+				background-image: url('/assets/images/ring-alt.gif');
+			}
+			.md-secondary-container {
+				color: #3f51b5 !important;
+			}
+		}
+	}
+	
 }
 
 // Component styles are injected through gulp
@@ -41,7 +59,6 @@ body {
 @import 'admin/campaign/campaign';
 @import 'admin/campaign/info/info';
 @import 'campaign/campaign';
-@import 'main/main';
 @import 'modals/campaignEditModal/campaignEditModal';
 @import 'modals/errorModal/errorModal';
 @import 'modals/NotificationModal/notificationModal';

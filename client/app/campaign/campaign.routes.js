@@ -5,7 +5,7 @@ export default function routes($stateProvider) {
 
   $stateProvider.state('campaign', {
     url: '/campaign',
-    template: '<campaign></campaign>'
+    template: '<campaign></campaign>',
   })
   .state('campaignInfo', {
   	url: '/campaign/:campaignID/',

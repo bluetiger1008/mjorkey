@@ -45,10 +45,13 @@ export default class CheckoutController {
       console.log('customerID', this.customerId);
 
       this.$http.get('/api/charge/'+ this.currentUser.stripeId)
-        .then(response => {
+        .then(() => {
           console.log('stripe', response.data.sources.data);
-          this.creditCards = response.data.sources.data;      
-      });
+          this.creditCards = response.data.sources.data;     
+        })
+        .catch(err => {
+          console.log('error');
+        });
     }
     else
       this.customerIdExisting = false;

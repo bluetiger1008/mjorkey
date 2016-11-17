@@ -6,7 +6,15 @@ table {
 	}
 }
 .pg-campaign {
-	
+	.cotainer {
+		.row {
+			table {
+				.td-photo {
+					width: 50px;
+				}
+			}
+		}
+	}
 }
 .pg-info {
 	.info-header {
@@ -15,17 +23,6 @@ table {
 		text-align: center;
 		position: relative;
 		padding: 20px 0 40px;
-		&:after {
-			content: "";
-			background-color: rgba(100,100,100,0.75);
-			top: 0;
-		  	left: 0;
-		  	bottom: 0;
-		  	right: 0;
-		  	display: block;
-		  	position: absolute;
-		}
-
 		a {
 			text-decoration: none;
 		}
@@ -282,6 +279,13 @@ table {
 	}	
 }
 
+@media only screen and (max-width: 500px) {
+	.pg-campaign {
+		.md-secondary-container {
+			display: none !important;
+		}
+	}	
+}
 
 @media only screen and (max-width : 414px) {
 	.pg-info {

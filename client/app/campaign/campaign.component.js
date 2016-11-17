@@ -5,14 +5,15 @@ import routing from './campaign.routes';
 export class CampaignController {
 
   /*@ngInject*/
-  constructor($http, $scope, socket, campaignFactory) {
+  constructor($http, $scope, socket, campaignFactory, $state) {
     this.$http = $http;
-    this.socket = socket;
+    // this.socket = socket;
     this.campaignFactory = campaignFactory;
+    this.$state = $state;
 
-    $scope.$on('$destroy', function() {
-      socket.unsyncUpdates('campaign');
-    });
+    // $scope.$on('$destroy', function() {
+    //   socket.unsyncUpdates('campaign');
+    // });
   }
 
   $onInit() {
@@ -20,18 +21,13 @@ export class CampaignController {
       .then(response => {
         // console.log(response.data);
         this.campaigns = response.data;
-        this.socket.syncUpdates('campaign', this.campaigns);
+        // this.socket.syncUpdates('campaign', this.campaigns);
       });
   }
 
-  addCampaign() {
-    if(this.newCampaign) {
-      // this.$http.post('/api/campaigns', {
-      //   artistName: this.newCampaign
-      // });
-      this.newCampaign = '';
-      this.campaignFactory.addCampaign(this.newCampaign); 
-    }
+  goCampaignInfo(campaign) {
+    console.log('gogo');
+    this.$state.go('campaignInfo', {campaignID: campaign._id});
   }
 }
 

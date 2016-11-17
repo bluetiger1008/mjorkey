@@ -28,7 +28,6 @@ import campaignAdmin from './admin/campaign';
 import campaignAdminInfo from './admin/campaign/info';
 import navbar from '../components/navbar/navbar.component';
 import footer from '../components/footer/footer.component';
-import main from './main/main.component';
 import campaign from './campaign/campaign.component';
 import campaignInfo from './campaign/info/';
 import checkout from './campaign/checkout/';
@@ -43,7 +42,7 @@ import mainService from '../components/services/main_service.js';
 import './app.scss';
 
 angular.module('majorkeyApp', [ngCookies, ngResource, ngSanitize, ngMaterial, 'btford.socket-io', ngFileUpload, uiRouter, campaignFactory, artistFactory, stripeFactory,
-    mainService, uiBootstrap, '720kb.datepicker', 'angularGrid', _Auth, account, admin, user, artist, campaignAdmin, campaignAdminInfo, campaignInfo, checkout, navbar, footer, main, campaign, constants, socket, util
+    mainService, uiBootstrap, '720kb.datepicker', 'angularGrid', _Auth, account, admin, user, artist, campaignAdmin, campaignAdminInfo, campaignInfo, checkout, navbar, footer, campaign, constants, socket, util
   ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {
