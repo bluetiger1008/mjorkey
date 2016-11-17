@@ -10,7 +10,7 @@ var ArtistSchema = new mongoose.Schema({
 		type: String,
 		lowercase: true,
 	},
-  price: Number
+  	price: Number
 });
 
 export default mongoose.model('Artist', ArtistSchema);

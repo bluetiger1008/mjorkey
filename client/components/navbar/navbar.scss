@@ -5,6 +5,7 @@ $bodyColor: #3d3d3d;
 	background: $bodyColor;
 	.navbar-brand {
 		color: #fff;
+		font-size: 25px;
 		&:hover {
 			color: #fff;
 		}
@@ -23,6 +24,11 @@ $bodyColor: #3d3d3d;
 			a, .navbar-text {
 				color: #d5d5d5;
 			}
+			&.active {
+				a {
+					background: white;
+				}
+			}
 			a {
 				&:hover {
 					color: #fff;
@@ -32,11 +38,34 @@ $bodyColor: #3d3d3d;
 	}
 }
 
-@media only screen and (min-width : 768px) {
+@media only screen and (min-width : 769px) {
 	.navbar-default {
+		.navbar-nav {
+			&.mobile {
+				display: none;
+			}
+		}
 		.navbar-header {
 			.navbar-toggle {
 				display: none;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.navbar-default {
+		.navbar-collapse {
+			.navbar-nav {
+				display: none;
+				&.mobile {
+					display: block;
+				}
+				li {
+					.navbar-text {
+						padding: 10px 15px !important;
+					}
+				}
 			}
 		}
 	}

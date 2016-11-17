@@ -12,13 +12,13 @@ export default function routes($stateProvider) {
     .state('logout', {
       url: '/logout?referrer',
       referrer: 'campaign',
-      template: '',
+      template: '<campaign></campaign>',
       controller($state, Auth) {
         'ngInject';
 
         var referrer = $state.params.referrer || $state.current.referrer || 'campaign';
         Auth.logout();
-        $state.go(referrer);
+        // $state.go(referrer);
       }
     })
     .state('signup', {
