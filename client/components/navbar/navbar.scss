@@ -9,6 +9,15 @@ $bodyColor: #3d3d3d;
 			color: #fff;
 		}
 	}
+	.navbar-header {
+		.navbar-toggle {
+			width: 50px !important;
+			height: 50px !important;
+			md-icon {
+				color: white;
+			}
+		}
+	}
 	.navbar-nav {
 		li {
 			a, .navbar-text {
@@ -18,6 +27,16 @@ $bodyColor: #3d3d3d;
 				&:hover {
 					color: #fff;
 				}
+			}
+		}
+	}
+}
+
+@media only screen and (min-width : 768px) {
+	.navbar-default {
+		.navbar-header {
+			.navbar-toggle {
+				display: none;
 			}
 		}
 	}

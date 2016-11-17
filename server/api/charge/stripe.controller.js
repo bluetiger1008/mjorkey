@@ -2,16 +2,23 @@
 var stripe = require('stripe')('sk_test_JfliVks9eGKRKSJ56nefh31z');
 import User from '../user/user.model';
 
+function handleError(res, statusCode) {
+  statusCode = statusCode || 500;
+  return function(err) {
+    return res.status(statusCode).send(err);
+  };
+}
 export function getCardInfo(req, res) {
   var customerId = req.user.stripeId;
 
   stripe.customers.retrieve(customerId, function(err, customer) {
-    if(err) throw err;
+    if(err) {
+      handleError(customer);
+    }
     else {
       console.log(customer);
-      res.json(customer);
+      res.status(200).json(customer);
     }
-
   });
 }
 
