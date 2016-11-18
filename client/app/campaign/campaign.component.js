@@ -26,7 +26,6 @@ export class CampaignController {
   }
 
   goCampaignInfo(campaign) {
-    console.log('gogo');
     this.$state.go('campaignInfo', {campaignID: campaign._id});
   }
 }

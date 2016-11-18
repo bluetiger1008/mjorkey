@@ -6,6 +6,41 @@ table {
 	}
 }
 
+.pg-home {
+	background: $bodyColor;
+
+	.container {
+		padding: 30px;
+	}
+
+	.list-title {
+		text-transform: uppercase;
+		width: 80%;
+		margin: auto;
+		text-align: center;
+		color: $cyan;
+		border-bottom: 1px solid $cyan;
+	}
+
+	.contact-us {
+		background: $cyan;
+		.list-title {
+			color: white;
+			border-bottom: 1px solid white;
+		}
+		.contact-form {
+			margin: 20px 0;
+			.row {
+				margin-top: 10px;
+				margin-bottom: 10px;
+			}
+			.submit {
+				margin: 0;
+			}
+		}
+	}
+}
+
 .banner {
 	height: 500px;
 	background: url('/assets/images/back.jpg');
@@ -29,16 +64,13 @@ table {
 }
 
 .pg-campaign {
-	.cotainer {
-		.row {
-			table {
-				.td-photo {
-					width: 50px;
-				}
-			}
-		}
+	padding: 20px;
+	.container {
+		background: white;
+		border-radius: 10px;
 	}
 }
+
 .pg-info {
 	.info-header {
 		background-color: #666;

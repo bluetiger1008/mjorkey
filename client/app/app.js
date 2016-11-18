@@ -11,6 +11,7 @@ import ngFileUpload from 'ng-file-upload';
 import 'angular-socket-io';
 import 'angularjs-datepicker';
 import 'angulargrid';
+
 import uiRouter from 'angular-ui-router';
 import uiBootstrap from 'angular-ui-bootstrap';
 
