@@ -14,9 +14,17 @@ export default function routes($stateProvider) {
   	controllerAs: 'vm',
   })
   .state('checkout', {
-    url: '/campaign/checkout/:campaignID/',
+    url: '/campaign/checkout/:customerID/:campaignID/',
     template: require('./checkout/checkout.html'),
     controller: 'CheckoutController',
     controllerAs: 'vm',
+    authenticate: true
+  })
+  .state('checkoutSuccess', {
+    url: '/campaign/checkout/success',
+    template: require('./success/success.html'),
+    controller: 'SuccessController',
+    controllerAs: 'vm',
+    authenticate: true
   });
 }

@@ -42,7 +42,7 @@ export default class InfoController {
 		if(this.currentUser._id == '')
 			this.subscribeFirstModal();
 		else 
-			this.$state.go('checkout', {campaignID: this.campaignID});
+			this.$state.go('checkout', {customerID:this.currentUser.stripeId, campaignID: this.campaignID});
 	}
 	
 	subscribeFirstModal() {

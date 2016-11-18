@@ -31,6 +31,7 @@ import footer from '../components/footer/footer.component';
 import campaign from './campaign/campaign.component';
 import campaignInfo from './campaign/info/';
 import checkout from './campaign/checkout/';
+import checkoutSuccess from './campaign/success';
 import constants from './app.constants';
 import util from '../components/util/util.module';
 import socket from '../components/socket/socket.service';
@@ -38,11 +39,12 @@ import campaignFactory from '../components/factory/campaign.module';
 import artistFactory from '../components/factory/artist.module';
 import stripeFactory from '../components/factory/stripe.module';
 import mainService from '../components/services/main_service.js';
+import initService from '../components/services/init_service.js';
 
 import './app.scss';
 
 angular.module('majorkeyApp', [ngCookies, ngResource, ngSanitize, ngMaterial, 'btford.socket-io', ngFileUpload, uiRouter, campaignFactory, artistFactory, stripeFactory,
-    mainService, uiBootstrap, '720kb.datepicker', 'angularGrid', _Auth, account, admin, user, artist, campaignAdmin, campaignAdminInfo, campaignInfo, checkout, navbar, footer, campaign, constants, socket, util
+    mainService, initService, uiBootstrap, '720kb.datepicker', 'angularGrid', _Auth, account, admin, user, artist, campaignAdmin, campaignAdminInfo, campaignInfo, checkout, checkoutSuccess, navbar, footer, campaign, constants, socket, util
   ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {

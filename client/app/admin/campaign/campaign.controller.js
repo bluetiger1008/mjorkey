@@ -67,7 +67,6 @@ export default class CampaignController {
 	      	};
 	      	this.campaignFactory.addCampaign(camp);
 	    	this.notificationModal('success');	
-
 		}
       	
 	}

@@ -2,16 +2,19 @@
 
 export default class CheckoutController {
 	/*@ngInject*/
-	constructor($stateParams, artistFactory, campaignFactory, stripeFactory , $http, Auth, $uibModal, mainService) {
+	constructor($stateParams, artistFactory, campaignFactory, stripeFactory , $http, Auth, $uibModal, mainService, initService, $state) {
 		this.$http = $http;
+    this.$state = $state;
     this.campaignID = $stateParams.campaignID;
+    this.customerID = $stateParams.customerID;
     this.Auth = Auth;
     this.$uibModal = $uibModal;
     this.mainService = mainService;
+    this.initService = initService;
     this.campaignFactory = campaignFactory;
     this.stripeFactory = stripeFactory;
     this.artistFactory = artistFactory;
-	}
+  }
 
 	$onInit() {
     this.vipAdmissionCount = 0;
@@ -37,20 +40,18 @@ export default class CheckoutController {
         })
       });
     
-    this.customerId = this.currentUser.stripeId;
+    // this.customerId = this.currentUser.stripeId;
     // Check customerID exisiting and get Cards if exist
-    if(this.currentUser.stripeId != null){
+    if(this.customerID != null){
       this.customerIdExisting = true;
-      this.customerId = this.currentUser.stripeId;
-      console.log('customerID', this.customerId);
+      // this.customerId = this.currentUser.stripeId;
+      console.log('customerID', this.customerID);
 
       this.$http.get('/api/charge/'+ this.currentUser.stripeId)
-        .then(() => {
+        .then(response => {
+          console.log(response);
           console.log('stripe', response.data.sources.data);
           this.creditCards = response.data.sources.data;     
-        })
-        .catch(err => {
-          console.log('error');
         });
     }
     else
@@ -92,7 +93,13 @@ export default class CheckoutController {
                 cardId: response.data.id
               }).then(response => {
                 console.log('successfully');
-                self.submitNotificationModal('successfully purchased');
+                // self.submitNotificationModal('successfully purchased');
+                self.initService.purchasedTickets = {
+                  vip: self.vipAdmissionCount,
+                  general: self.generalAdmissionCount,
+                  totalPrice: self.totalPrice
+                };
+                self.$state.go('checkoutSuccess');
                 self.calculateProgress();
                 self.addPurchasingUser();
 
@@ -112,7 +119,13 @@ export default class CheckoutController {
           cardId: this.cardId
         }).then(response => {
           console.log('successfully');
-          self.submitNotificationModal('successfully purchased');
+          // self.submitNotificationModal('successfully purchased');
+          self.initService.purchasedTickets = {
+            vip: self.vipAdmissionCount,
+            general: self.generalAdmissionCount,
+            totalPrice: self.totalPrice
+          };
+          self.$state.go('checkoutSuccess');
           self.calculateProgress();
           self.addPurchasingUser();
 

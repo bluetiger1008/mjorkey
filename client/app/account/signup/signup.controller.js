@@ -23,7 +23,7 @@ export default class SignupController {
         password: this.user.password
       })
         .then(() => {
-          this.$state.go('main');
+          this.$state.go('campaign');
         })
         .catch(err => {
           err = err.data;
