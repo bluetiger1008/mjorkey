@@ -39,6 +39,9 @@ table {
 	font-size: 0.8em;
 	padding: 5px;
 }
+.md-button {
+	margin: 0px !important;
+}
 md-list {
 	margin: 20px 0;
 	md-list-item {
@@ -54,7 +57,15 @@ md-list {
 			background-image: url('/assets/images/ring-alt.gif');
 		}
 		.md-secondary-container {
-			color: #3f51b5 !important;
+			p {
+				color: #3f51b5 !important;
+				span {
+					img {
+						width: 40px;
+					}
+				}	
+			}
+		
 		}
 	}
 }

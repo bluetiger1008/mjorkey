@@ -1,7 +1,18 @@
 <div class="pg-purchase-success">
 	<div class="container">
-		<h1>Successfully purchased tickets</h1>
-		<h3>Spent: ${{vm.purchasedTickets.totalPrice}}</h3>
-		<p>You purchased {{vm.purchasedTickets.vip}} vip tickets and {{vm.purchasedTickets.general}} general tickets</p>
+		<h3 class="thanks-text">Thanks for participating, <span>{{vm.purchasedTickets.artistName}}</span> is 1 step closer to going to your city. Share this campaign with others to make it happen!</h3>
+		<div class="social-share">
+			<a ng-click="facebookShare()" class="btn btn-social btn-facebook">
+				<i class="fa fa-facebook"></i>
+				Facebook share
+			</a>
+			<a ng-click="twitterShare()" class="btn btn-social btn-twitter">
+				<i class="fa fa-twitter"></i>
+				Twitter share
+			</a>
+			<a ng-click="copylink()" class="btn btn-default">
+				Copy link
+			</a>
+		</div>
 	</div>
 </div>

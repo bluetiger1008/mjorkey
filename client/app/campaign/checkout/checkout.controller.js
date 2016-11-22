@@ -56,6 +56,8 @@ export default class CheckoutController {
     }
     else
       this.customerIdExisting = false;
+
+
 	}
 
 	submit(){
@@ -69,6 +71,7 @@ export default class CheckoutController {
       //Adding New card when adding new card option selected
       if(this.addingNewCard == true) {
         Stripe.card.createToken({
+          name: this.cardName,
           number: this.cardNumber,
           cvc: this.cardCvc,
           exp_month: this.cardExpMonth,
@@ -77,7 +80,11 @@ export default class CheckoutController {
           //Show error message if token has error
           if (response.error) {
             var errorMessage = response.error.message;
-            self.submitNotificationModal(errorMessage);
+            console.log('error', errorMessage);
+            if (errorMessage == 'You must supply either a card, customer, pii data, or bank account to create a token.')
+              self.submitNotificationModal('Please enter valid payment details to continue.');
+            else
+              self.submitNotificationModal(errorMessage);
             self.submitLoading = false;
           } else {
             token = response.id;
@@ -97,7 +104,8 @@ export default class CheckoutController {
                 self.initService.purchasedTickets = {
                   vip: self.vipAdmissionCount,
                   general: self.generalAdmissionCount,
-                  totalPrice: self.totalPrice
+                  totalPrice: self.totalPrice,
+                  artistName: self.artist.name
                 };
                 self.$state.go('checkoutSuccess');
                 self.calculateProgress();
@@ -123,7 +131,8 @@ export default class CheckoutController {
           self.initService.purchasedTickets = {
             vip: self.vipAdmissionCount,
             general: self.generalAdmissionCount,
-            totalPrice: self.totalPrice
+            totalPrice: self.totalPrice,
+            artistName: self.artist.name
           };
           self.$state.go('checkoutSuccess');
           self.calculateProgress();
@@ -158,11 +167,22 @@ export default class CheckoutController {
 
   //insert purchasing user in the campaign model
   addPurchasingUser() {
-    this.campaignFactory.updateCampaign(this.campaign._id, {
-      $push: {
-        purchased_users: this.currentUser
+    console.log(this.campaign.purchased_users, this.currentUser);
+    var same_count = false;
+    for (var i=0; i<this.campaign.purchased_users.length; i++){
+      if((this.campaign.purchased_users)[i] == this.currentUser._id){
+        same_count = true;
+        break;
       }
-    });
+    }
+    
+    if(same_count == false){
+      this.campaignFactory.updateCampaign(this.campaign._id, {
+        $push: {
+          purchased_users: this.currentUser
+        }
+      });
+    }
   }
 
   submitNotificationModal(message) {
@@ -203,7 +223,7 @@ export default class CheckoutController {
   }
 
   generalAdmissionMinus() {
-    if(this.vipAdmissionCount > 0){
+    if(this.generalAdmissionCount > 0){
       this.generalAdmissionCount = this.generalAdmissionCount - 1;
       this.totalPrice -= this.campaign.general_price;
     }
