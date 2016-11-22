@@ -22,16 +22,15 @@
 				</p>
 			</div>
 			<div class="col-md-3">
-				<h2>Pre-purchase Your ticket</h2>
+				<h2>Back this Campaign</h2>
 				<div class="card">
-					<p class="price">${{vm.campaign.vip_price}} <span>VIP Guestlist</span></p>
-					<p class="ticket-count">${{vm.campaign.vip_max - vm.campaign.vip_sold}} tickets left</p>
-					<p class="ticket-info">Get exclusive perks such as artist meet & greet, front-row priority seating, and merchandising</p>
+					<p class="price">${{vm.campaign.vip_price}} <span>Meet & Greet</span></p>
+					<p class="ticket-info">Commit to this level and get early entry to the show, exclusive meet & greet with the artist, a chance for a photo, and some artist merchandise!</p>
 					<md-button class="md-raised md-primary" ng-click="vm.purchaseTicket()">Make It Happen</md-button>
 				</div>
 				<div class="card">
-					<p class="price">${{vm.campaign.general_price}} <span>General Admission</span></p>
-					<p class="ticket-info">General admission tickets. Get dibs on bringing the artist to your city before the general public!</p>
+					<p class="price">${{vm.campaign.general_price}} <span>See the show</span></p>
+					<p class="ticket-info">Commit to this level and get a general admission ticket to the show once the goal is reached!</p>
 					<md-button class="md-raised md-primary" ng-click="vm.purchaseTicket()">Make It Happen</md-button>
 				</div>
 			</div>
