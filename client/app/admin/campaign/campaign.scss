@@ -1,17 +1,7 @@
 .admin {
 	&.campaign {
 		md-content {
-			background-color: transparent !important;
 			md-tabs {
-				background: #f6f6f6;
-			    border: 1px solid #e1e1e1;
-			    md-tabs-wrapper {
-			      background: #3d3d3d; 
-			      md-tab-item {
-					color: white;
-					}
-			    }
-				color: black;
 				.tb-artist {
 					tbody {
 						tr {

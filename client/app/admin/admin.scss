@@ -4,63 +4,30 @@
 
 .admin {
 	padding: 20px 0;
-	.adding-form {
-		.input-group {
-			width: 100%;
-			color: black;
-      		margin: 5px 0;
-			line-height: 40px;
-      		.input-box {
-        		display: inline-block;
-        		width: 50%;
-        		.form-control {
-          			height: 40px;
-          			float: none;
-          			&.info-box{
-          			height: auto;
-          		}
-          		&.price-box{
-            	width: 100px;
-          		}
-        	}
-	        .input-error {
-	          	color: red;
-	          	line-height: 1;
-	          	font-size: 0.8em;
-	          	margin: 5px 0;
-	        }
-    	}
-	    span {
-			padding: 0 5px;
-			display: inline-block;
-			float: left;
-			line-height: 40px;
-			width: 200px;
-		}
-	}
-	.photo-select {
+	.artistAddingForm {
 		color: black;
-		margin: 5px 0;
-		span {
+		.photo {
 			width: 100px;
-			display: inline-block;
-			float: left;
-			line-height: 40px;
-			padding: 0 5px;
-		}
-		.photo-upload {
-			display: inline-block;
-			img {
-				width: 100px;
-				margin-right: 20px;
-			}
 		}
 	}
-	.add-input-group {
-		.btn {
-			margin: 10px 0;
+	md-content {
+		background-color: transparent !important;
+		md-tabs {
+			background: #f6f6f6;
+		    border: 1px solid #e1e1e1;
+		    md-tabs-wrapper {
+		      	background: #3d3d3d; 
+		      	md-tab-item {
+					color: white;
+				}
+		    }
+		    .md-tab {
+		    	&.md-active {
+		    		color: white;
+		    	}
+		    }
+			color: black;
 		}
-	}
 	}
 }
 

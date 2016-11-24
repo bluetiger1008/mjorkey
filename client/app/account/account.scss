@@ -1,0 +1,10 @@
+.btn-login {
+	background: #1f9737;
+}
+.link-signup, .link-login{
+	display: block;
+	padding: 20px 0;
+	&:hover {
+		color: white;
+	}
+}

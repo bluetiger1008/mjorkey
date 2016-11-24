@@ -4,7 +4,7 @@
 			<div class="description">
 				<h1>Reach the crowds</h1>
 				<h4>Entusic. Where fans and artists connect.</h4>
-				<md-button class="md-raised md-warn">Sign Up</md-button>
+				<md-button class="md-raised md-warn" ui-sref="signup" ng-show="{{!$ctrl.loggedIn}}">Sign Up</md-button>
 			</div>
 		</div>
 	</div>
@@ -22,7 +22,7 @@
 			  					<h3>{{campaign.artistName}}</h3>
 			  					<h4>{{campaign.city}} {{campaign.state}}</h4>
 			  				</div>
-			  				<p class="md-secondary" ng-show="{{campaign.purchasedCheck}}"><span><img src="assets/images/check.png"></span>Purchased</p>
+			  				<p class="md-secondary" ng-show="{{campaign.purchasedCheck}}"><span><img src="assets/images/check.png"></span>Backed</p>
 			  			</md-list-item>
 			  		</md-list>
 				</div>

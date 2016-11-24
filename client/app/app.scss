@@ -72,6 +72,7 @@ md-list {
 
 // Component styles are injected through gulp
 /* inject:scss */
+@import 'account/account';
 @import 'admin/admin';
 @import 'admin/campaign/campaign';
 @import 'admin/campaign/info/info';

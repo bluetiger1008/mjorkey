@@ -2,7 +2,7 @@
 
 export default class InfoController {
 	/*@ngInject*/
-	constructor($stateParams, $state, campaignFactory, artistFactory, Auth, $uibModal, mainService) {
+	constructor($stateParams, $state, campaignFactory, artistFactory, Auth, $uibModal, mainService, initService) {
 		this.campaignID = $stateParams.campaignID;
 		this.campaignFactory = campaignFactory;
 		this.artistFactory = artistFactory;
@@ -11,11 +11,15 @@ export default class InfoController {
 	    this.$state = $state;
 	    this.$uibModal = $uibModal;
 	    this.mainService = mainService;
+	    this.initService = initService;
 	}
 
 	$onInit() {
 		// console.log(this.artistID);
-
+		this.initService.currentPage = {
+			state: 'campaignInfo',
+			id: this.campaignID
+		};
 	    this.campaignFactory.findCampaign(this.campaignID)
 	      .then(response => {
 	        // console.log(response.data);

@@ -9,5 +9,6 @@ export default angular.module('majorkeyApp.initService', [])
       general: 0,
       totalPrice: 0
     };
+    this.choosedCampaignId = '';
   })
   .name;

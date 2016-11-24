@@ -1,82 +1,104 @@
-<div class="container">
-  <div class="admin">
-    <form class="adding-form">
-      <div class="panel panel-primary">
-        <div class="panel-heading">Add a new artist</div>
-        <div class="panel-body add-input-group">
-          <div class="input-group">
-            <span>Name</span>
-            <div class="input-box">
-              <input type="text" class="form-control" placeholder="Name" ng-model="admin.artist.name" required>
-              <p class="input-error" ng-show="admin.artistNameRequired">A name is required</p>
-            </div>
-          </div>
-          <div class="photo-select">
-            <span>Photo</span>
-            <div class="photo-upload">
-              <img ngf-thumbnail="admin.file || 'assets/images/default-user.png'">
-              <form ng-app="fileUpload" name="form">
-                <div class="btn btn-primary" ngf-select="admin.upload($file)" ng-model="admin.file" ngf-pattern="'image/*'"
-                  ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">Select Photo</div>
-                <!-- <button type="submit" ng-click="admin.submit()">submit</button> -->
-              </form>
-              <!-- <div class="button" ng-model="file" ngf-select="admin.upload($file)">Upload on file select</div> -->
-              <!-- <input type="text" class="form-control" ng-model="admin.photo"> -->
-              <p>{{admin.photoName}}</p>
-            </div>
-          </div>
-          <div class="input-group">
-            <span>Email</span>
-            <div class="input-box">
-              <input type="email" class="form-control" placeholder="Email" ng-model="admin.artist.email">
-              <p class="input-error" ng-show="admin.artistEmailRequired">Email is required</p>
-            </div>
-          </div>
-          <div class="input-group">
-            <span>Info</span>
-            <!-- <input type="text" class="form-control" placeholder="Info" ng-model="admin.artist.info"> -->
-            <div class="input-box">
-              <textarea class="form-control info-box" rows="5" id="comment" ng-model="admin.artist.info"></textarea>
-            </div>
-          </div>
-          <!-- <div class="input-group">
-            <span>Photo</span>
-            <input type="file" nav-file-select="" uploader="uploader">
-          </div> -->
-          <div class="input-group">
-            <span>Price(USD)</span>
-            <div class="input-box">
-              <input type="text" class="form-control price-box" placeholder="price" ng-model="admin.artist.price">
-              <p class="input-error" ng-show="admin.artistPriceRequired">Price is required</p>
-            </div>
-          </div>
-          <button type="submit" class="btn btn-primary" ng-click="admin.addArtist()">Add New</button>
-
-        </div>
+<div class="pg-admin">
+  <div class="container">
+    <div class="admin">
+      <div ng-cloak>
+        <md-content>
+          <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Create a New Artist">
+              <md-content class="md-padding">
+                <form name="form" novalidate class="artistAddingForm">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label for="name" class="col-xs-4 col-form-label">Name</label>
+                        <div class="col-xs-8">
+                          <input class="form-control" type="text" ng-model="admin.artist.name" name="artistName" required="">
+                          <div ng-show="form.$submitted || form.artistName.$touched">
+                            <div ng-show="form.artistName.$error.required" class="submit-error">
+                              Name field is required
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="photo" class="col-xs-4 col-form-label">Photo</label>
+                        <div class="col-xs-8">
+                          <img class="photo" ngf-thumbnail="admin.file || 'assets/images/default-user.png'">
+                          <form ng-app="fileUpload" name="form">
+                            <div class="btn btn-primary" ngf-select="admin.upload($file)" ng-model="admin.file" ngf-pattern="'image/*'"
+                              ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">Select Photo</div>
+                            <!-- <button type="submit" ng-click="admin.submit()">submit</button> -->
+                          </form>
+                          <!-- <div class="button" ng-model="file" ngf-select="admin.upload($file)">Upload on file select</div> -->
+                          <!-- <input type="text" class="form-control" ng-model="admin.photo"> -->
+                          <p>{{admin.photoName}}</p>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="email" class="col-xs-4 col-form-label">Email</label>
+                        <div class="col-xs-8">
+                          <input class="form-control" type="email" ng-model="admin.artist.email" name="artistEmail" required="">
+                          <div ng-show="form.$submitted || form.artistEmail.$touched">
+                            <div ng-show="form.artistEmail.$error.required" class="submit-error">
+                              Email field is required
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="info" class="col-xs-4 col-form-label">Info</label>
+                        <div class="col-xs-8">
+                          <textarea class="form-control" type="text" ng-model="admin.artist.info" name="artistInfo" rows="5"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="price" class="col-xs-4 col-form-label">Price</label>
+                        <div class="col-xs-8">
+                          <input class="form-control" type="price" ng-model="admin.artist.price" name="artistPrice" required="">
+                          <div ng-show="form.$submitted || form.artistPrice.$touched">
+                            <div ng-show="form.artistPrice.$error.required" class="submit-error">
+                              Price field is required
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row col-xs-12">
+                    <button type="submit" class="btn btn-primary" ng-click="admin.submit()">Add New</button>
+                  </div>
+                </form>
+              </md-content>
+            </md-tab>
+            <md-tab label="View Artist List">
+              <md-content class="md-padding">
+                <table class="table table-striped tb-artist">
+                  <thead class="thead-inverse">
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th class="td-mobile-hide">Info</th>
+                      <th>Price</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="artist in admin.artists">
+                      <td>{{artist.name}}</td>
+                      <td>{{artist.email}}</td>
+                      <td class="td-mobile-hide">{{artist.info}}</td>
+                      <td>$ {{artist.price}}</td>
+                      <td>
+                        <a ng-click="admin.deleteArtist(artist)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </md-content>
+            </md-tab>
+          </md-tabs>
+        </md-content>
       </div>
-    </form>
-
-    <table class="table table-striped tb-artist">
-      <thead class="thead-inverse">
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th class="td-mobile-hide">Info</th>
-          <th>Price</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="artist in admin.artists">
-          <td>{{artist.name}}</td>
-          <td>{{artist.email}}</td>
-          <td class="td-mobile-hide">{{artist.info}}</td>
-          <td>$ {{artist.price}}</td>
-          <td>
-            <a ng-click="admin.deleteArtist(artist)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    </div>
   </div>
 </div>

@@ -82,9 +82,9 @@ export default class CheckoutController {
             var errorMessage = response.error.message;
             console.log('error', errorMessage);
             if (errorMessage == 'You must supply either a card, customer, pii data, or bank account to create a token.')
-              self.submitNotificationModal('Please enter valid payment details to continue.');
+              self.submitNotificationModal('Error','Please enter valid payment details to continue.');
             else
-              self.submitNotificationModal(errorMessage);
+              self.submitNotificationModal('Error',errorMessage);
             self.submitLoading = false;
           } else {
             token = response.id;
@@ -145,7 +145,7 @@ export default class CheckoutController {
         })
       }
     } else {
-      self.submitNotificationModal('Total price is $0, please confirm you bought ticket');
+      self.submitNotificationModal('Error','Total price is $0, please confirm you bought ticket');
     }
 	}
 
