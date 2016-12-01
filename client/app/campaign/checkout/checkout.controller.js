@@ -64,6 +64,7 @@ export default class CheckoutController {
 	submit(){
 		var token;  
     this.submitLoading = true;
+    this.buyTicket = true;
     var self = this;
 
     if(this.totalPrice > 0) {
@@ -109,6 +110,8 @@ export default class CheckoutController {
                   artistName: self.artist.name
                 };
                 self.$state.go('checkoutSuccess');
+                console.log(window.location.href);
+                self.initService.campaignUrl = window.location.href;
                 self.calculateProgress();
                 self.addPurchasingUser();
 
@@ -138,7 +141,8 @@ export default class CheckoutController {
           self.$state.go('checkoutSuccess');
           self.calculateProgress();
           self.addPurchasingUser();
-
+          console.log(window.location.href);
+          self.initService.campaignUrl = window.location.href;
           self.submitLoading = false;
           self.vipAdmissionCount = 0;
           self.generalAdmissionCount = 0;

@@ -275,39 +275,16 @@ table {
 				}
 			}
 			.card-input {
-				display: inline-block;
 				Padding: 10px;
 				border: 1px solid lightgrey;
 				border-top: none;
 				border-bottom-right-radius: 5px;
 				border-bottom-left-radius: 5px;
-				.input-group {
-					margin-bottom: 10px;
-					float: left;
-					&.name-on-card {
-						width: 100%;
-						span {
-							width: 30%;
-						}
-					}
-					&.card-number {
-						width: 60%;
-						span {
-							width: 50%;
-						}
-					}
-				}
 				.card-info {
 					margin: 5px 0;
 				}
 				.card-images {
-					display: inline-block;
-					width: 40%;
-					padding: 0 20px;
-					text-align: center;
-					img {
-						max-height: 32px;
-					}
+					width: 100%;
 				}
 				.card-date {
 					display: inline-block;
@@ -356,6 +333,12 @@ table {
 	}
 }
 
+.pg-footer {
+	background: white;
+	.container {
+		padding: 0;
+	}
+}
 @media only screen and (max-width: 992px) {
 	.pg-checkout {
 		.checkout-form {
@@ -452,6 +435,7 @@ table {
 						}
 						.card-images {
 							width: 100%;
+							height: 100%;
 							padding: 10px;
 						}
 					}

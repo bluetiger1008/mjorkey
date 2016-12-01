@@ -26,6 +26,13 @@ export default class InfoController {
 	        this.campaign = response.data;
 	        this.campaign.progress = Math.round(this.campaign.progress);
 
+	        if(this.campaign.progress >= 100)
+	        	this.campaign.percentage = 100;
+	        else if(this.campaign.progress<2)
+	        	this.campaign.percentage = 0;
+	        else
+		        this.campaign.percentage = this.campaign.progress;
+
 	        var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
 			var currentDate = new Date();
 			var endsDate = new Date(this.campaign.ends_date);
