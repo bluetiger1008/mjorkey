@@ -14,6 +14,7 @@ export default class CheckoutController {
     this.campaignFactory = campaignFactory;
     this.stripeFactory = stripeFactory;
     this.artistFactory = artistFactory;
+    this.buyTicket = false;
   }
 
 	$onInit() {
@@ -83,7 +84,7 @@ export default class CheckoutController {
             console.log('error', errorMessage);
             if (errorMessage == 'You must supply either a card, customer, pii data, or bank account to create a token.')
               self.submitNotificationModal('Error','Please enter valid payment details to continue.');
-            else
+            else 
               self.submitNotificationModal('Error',errorMessage);
             self.submitLoading = false;
           } else {
@@ -145,6 +146,7 @@ export default class CheckoutController {
         })
       }
     } else {
+      console.log('totalPrice is 0');
       self.submitNotificationModal('Error','Total price is $0, please confirm you bought ticket');
     }
 	}
@@ -185,8 +187,7 @@ export default class CheckoutController {
     }
   }
 
-  submitNotificationModal(message) {
-    var msg = message;
+  submitNotificationModal(status, message) {
     var modal = this.$uibModal.open({
       animation: true,
       template: require('../../modals/errorModal/errorModal.html'),
@@ -195,7 +196,8 @@ export default class CheckoutController {
         self.closeModal = function(){
           modal.close();
         }
-        self.error = msg;
+        self.status = status;
+        self.error = message;
       },
       controllerAs: 'vm',
       size: 'medium-st-custom'
@@ -216,6 +218,7 @@ export default class CheckoutController {
   }
 
   generalAdmissionPlus() {
+    this.buyTicket = true;
     if(this.generalAdmissionCount <this.campaign.goals){
       this.generalAdmissionCount = this.generalAdmissionCount + 1;
       this.totalPrice += this.campaign.general_price;
@@ -230,6 +233,7 @@ export default class CheckoutController {
   }
 
   vipAdmissionPlus() {
+    this.buyTicket = true;
     if(this.vipAdmissionCount <this.campaign.goals){
       this.vipAdmissionCount = this.vipAdmissionCount + 1;
       this.totalPrice += this.campaign.vip_price;

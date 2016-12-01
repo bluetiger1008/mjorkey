@@ -228,6 +228,11 @@ table {
 			.level-option {
 				margin: 5px 0;
 			}
+			.total-price {
+				h3 {
+					margin: 0;
+				}
+			}
 		}
 		.payment-info {
 			.card-option {
@@ -325,12 +330,16 @@ table {
 				}
 			}
 		}
-	  .actions {
-	    margin: 20px 0;
-	  }
+	 	.actions {
+	    	margin: 20px 0;
+	    	.cancel {
+	    		margin-right: 10px;
+	    	}
+	  	}
 	}
 	.user-info {
 		img {
+			margin-top: 62px;
 			width: 100%;
 		}
 	}	
@@ -345,6 +354,19 @@ table {
 	.social-share {
 		margin: 30px 0;
 	}
+}
+
+@media only screen and (max-width: 992px) {
+	.pg-checkout {
+		.checkout-form {
+			.user-info {
+				text-align: center;
+				img {
+					margin-top: 0px;
+				}
+			}
+		}
+	}	
 }
 
 @media only screen and (max-width: 500px) {

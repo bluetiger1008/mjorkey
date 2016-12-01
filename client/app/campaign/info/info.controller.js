@@ -54,16 +54,17 @@ export default class InfoController {
 	    var modal = this.$uibModal.open({
 	      animation: true,
 	      template: require('../../modals/subscribeModal/subscribeModal.html'),
-	      controller: function subscribeFirstController() {
-	        
-	        this.login = function() {
-	        	self.$state.go('login');
+	      controller: function subscribeFirstController() {        
+	        this.close_modal = function() {
 	        	modal.close();
 	        }
-
-	        this.signUp = function() {
-	        	self.$state.go('singup');
-	        	modal.close();
+	        this.signup = function() {
+	        	self.$state.go('signup');
+	        	this.close_modal();
+	        }
+	        this.login = function() {
+	        	self.$state.go('login');
+	        	this.close_modal();
 	        }
 	      },
 	      controllerAs: 'vm',

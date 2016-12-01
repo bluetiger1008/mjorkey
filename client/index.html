@@ -7,6 +7,11 @@
     <title>Entusic</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <meta property="og:url"           content="http://www.your-domain.com/your-page.html" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Your Website Title" />
+    <meta property="og:description"   content="Your description" />
+    <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 </head>
@@ -25,7 +30,14 @@
       ga('create', 'UA-XXXXX-X');
       ga('send', 'pageview');
     </script>
-
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <div id="fb-root"></div>  
     <navbar></navbar>
     <div ui-view=""></div>
     <footer></footer>

@@ -53,6 +53,7 @@ angular.module('majorkeyApp', [ngCookies, ngResource, ngSanitize, ngMaterial, 'b
     // Redirect to login if route requires auth and you're not logged in
 
     $rootScope.$on('$stateChangeStart', function(event, next) {
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
       Auth.isLoggedIn(function(loggedIn) {
         if(next.authenticate && !loggedIn) {
           $location.path('/login');

@@ -14,4 +14,8 @@ export default class SuccessController {
 		this.purchasedTickets = this.initService.purchasedTickets;
 		console.log(this.purchasedTickets);
 	}
+
+	facebookShare() {
+		
+	}
 }
