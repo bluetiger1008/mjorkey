@@ -11,7 +11,7 @@ $fa-font-path: '/assets/fonts/font-awesome/';
   font-weight: 400;
   src: url("/assets/fonts/Gotham-Rounded/Gotham-Rounded-Book/GothamRnd-Book.otf") format("truetype"); }
 
-$bodyColor: #3d3d3d;
+$bodyColor: white;
 $screen-xs:	700px;
 $screen-sm:	768px;
 $screen-md:	992px;
@@ -20,7 +20,7 @@ $cyan : #00bcd4;
 
 body {
 	background: $bodyColor;
-	color: #fff;
+	color: #3d3d3d;
 	font-family: 'Gotham';
 }
 

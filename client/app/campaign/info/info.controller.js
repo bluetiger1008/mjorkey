@@ -16,10 +16,12 @@ export default class InfoController {
 
 	$onInit() {
 		// console.log(this.artistID);
+		this.initService.onInfoPage = true;
 		this.initService.currentPage = {
 			state: 'campaignInfo',
 			id: this.campaignID
 		};
+		this.current_campaignUrl = window.location.href;
 	    this.campaignFactory.findCampaign(this.campaignID)
 	      .then(response => {
 	        // console.log(response.data);
@@ -52,8 +54,10 @@ export default class InfoController {
 		console.log(this.currentUser);
 		if(this.currentUser._id == '')
 			this.subscribeFirstModal();
-		else 
+		else {
+			this.initService.campaignUrl = window.location.href;
 			this.$state.go('checkout', {customerID:this.currentUser.stripeId, campaignID: this.campaignID});
+		}
 	}
 	
 	subscribeFirstModal() {

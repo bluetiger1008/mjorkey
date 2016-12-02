@@ -11,5 +11,6 @@ export default angular.module('majorkeyApp.initService', [])
     };
     this.choosedCampaignId = '';
     this.campaignUrl = '';
+    this.onInfoPage = false;
   })
   .name;

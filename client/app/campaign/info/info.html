@@ -16,22 +16,32 @@
 	</div>
 	<div class="info-detail">
 		<div class="container">
-			<div class="col-md-9 profile">
-				<h3 class="page-header">How it works</h3>
-				<p>Entusic brings the power of concerts directly to the fans by allowing fans to come together to bring artists to their city. Fans come together and commit to buying a ticket. Once enough fans join the campaign before time runs out, the show is booked and the date will be announced. If enough fans don't join, tickets are refunded and the show doesn't happen. So it's important to share with as many people as possible. Check out our FAQ's. 
-				</p>
-			</div>
-			<div class="col-md-3">
-				<h2>Back this Campaign</h2>
-				<div class="card">
-					<p class="price">${{vm.campaign.vip_price}} <span>Meet & Greet</span></p>
-					<p class="ticket-info">Commit to this level and get early entry to the show, exclusive meet & greet with the artist, a chance for a photo, and some artist merchandise!</p>
-					<md-button class="md-raised md-primary" ng-click="vm.purchaseTicket()">Make It Happen</md-button>
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 profile">
+					<h3 class="page-header">How it works</h3>
+					<p>Entusic brings the power of concerts directly to the fans by allowing fans to come together to bring artists to their city. Fans come together and commit to buying a ticket. Once enough fans join the campaign before time runs out, the show is booked and the date will be announced. If enough fans don't join, tickets are refunded and the show doesn't happen. So it's important to share with as many people as possible. Check out our FAQ's. 
+					</p>
 				</div>
-				<div class="card">
-					<p class="price">${{vm.campaign.general_price}} <span>See the show</span></p>
-					<p class="ticket-info">Commit to this level and get a general admission ticket to the show once the goal is reached!</p>
-					<md-button class="md-raised md-primary" ng-click="vm.purchaseTicket()">Make It Happen</md-button>
+			</div>
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<h2>Back this Campaign</h2>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="card">
+								<p class="price">${{vm.campaign.vip_price}} <span>Meet & Greet</span></p>
+								<p class="ticket-info">Commit to this level and get early entry to the show, exclusive meet & greet with the artist, a chance for a photo, and some artist merchandise!</p>
+								<md-button class="md-raised md-primary" ng-click="vm.purchaseTicket()">Make It Happen</md-button>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="card">
+								<p class="price">${{vm.campaign.general_price}} <span>See the show</span></p>
+								<p class="ticket-info">Commit to this level and get a general admission ticket to the show once the goal is reached!</p>
+								<md-button class="md-raised md-primary" ng-click="vm.purchaseTicket()">Make It Happen</md-button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

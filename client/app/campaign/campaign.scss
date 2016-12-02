@@ -82,6 +82,7 @@ table {
 		background-image: url('/assets/images/bright-squares.png');
 		text-align: center;
 		position: relative;
+		color: white;
 		padding: 20px 0 40px;
 		a {
 			text-decoration: none;
@@ -143,12 +144,9 @@ table {
 	}
 
 	.info-detail {
+		background: white;
 		padding: 20px;
 		.profile {
-			color: #bbb;
-			h2 {
-				color: white;
-			}
 			.description {
 				display: inline-block;
 			}
@@ -177,6 +175,9 @@ table {
 			.ticket-count, .ticket-info {
 				color: #666;
 				margin-bottom: 20px;
+			}
+			.ticket-info {
+				min-height: 80px;
 			}
 		}
 
@@ -323,12 +324,15 @@ table {
 }
 
 .pg-purchase-success {
+	background: $bodyColor;
+	padding-top: 100px;
 	.thanks-text {
 		span {
 			color: $cyan;
 		}
 	}
 	.social-share {
+		text-align: center;
 		margin: 30px 0;
 	}
 }

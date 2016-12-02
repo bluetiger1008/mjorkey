@@ -1,6 +1,14 @@
+'use strict';
 import angular from 'angular';
 
-export class FooterComponent {}
+export class FooterComponent {
+	
+	constructor(initService) {
+		'ngInject';
+		this.showFooter = initService.onInfoPage;
+	}
+
+}
 
 export default angular.module('directives.footer', [])
   .component('footer', {

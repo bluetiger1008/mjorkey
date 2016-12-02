@@ -50,6 +50,7 @@ export class CampaignController {
   }
 
   goCampaignInfo(campaign) {
+    
     this.$state.go('campaignInfo', {campaignID: campaign._id});
   }
 }
