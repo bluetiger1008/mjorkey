@@ -356,12 +356,38 @@ table {
 	}	
 }
 
+@media only screen and (max-width: 768px) {
+	.pg-checkout {
+		.checkout-form {
+			.payment-info {
+				.card-form {
+					.date-form {
+						input {
+							margin-bottom: 15px;
+						}
+					}
+				}
+			}
+		}
+	}	
+}
+
 @media only screen and (max-width: 500px) {
 	.pg-campaign {
 		.md-secondary-container {
 			display: none !important;
 		}
 	}	
+
+	.pg-purchase-success {
+		.social-share {
+			a {
+				width: 80%;
+				margin: 10px auto;
+				display: block;
+			}
+		}
+	}
 }
 
 @media only screen and (max-width : 414px) {

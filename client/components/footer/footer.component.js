@@ -6,6 +6,7 @@ export class FooterComponent {
 	constructor(initService) {
 		'ngInject';
 		this.showFooter = initService.onInfoPage;
+		console.log('oninfo', initService.onInfoPage);
 	}
 
 }

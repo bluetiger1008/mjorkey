@@ -5,7 +5,7 @@ import routing from './campaign.routes';
 export class CampaignController {
 
   /*@ngInject*/
-  constructor($http, $scope, socket, campaignFactory, $state, Auth, initService) {
+  constructor($http, $scope, socket, campaignFactory, $state, Auth, initService, $rootScope) {
     this.$http = $http;
     // this.socket = socket;
     this.campaignFactory = campaignFactory;
@@ -15,6 +15,7 @@ export class CampaignController {
     this.currentUser = this.getCurrentUser();
     this.loggedIn = false;
     this.initService = initService;
+    this.$rootScope = $rootScope;
     // $scope.$on('$destroy', function() {
     //   socket.unsyncUpdates('campaign');
     // });
@@ -25,6 +26,9 @@ export class CampaignController {
       state: '',
       id: ''
     };
+
+    this.$rootScope.onInfoPage = false;
+
     if(this.currentUser._id!="")
       this.loggedIn = true;
     else

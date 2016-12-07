@@ -2,15 +2,17 @@
 
 export default class CampaignAdminInfoController {
   /*@ngInject*/
-  constructor($stateParams,campaignFactory, artistFactory, $uibModal, mainService) {
+  constructor($stateParams,campaignFactory, artistFactory, $uibModal, mainService, $rootScope) {
     this.campaignFactory = campaignFactory;
     this.artistFactory = artistFactory;
     this.campaignID = $stateParams.campaignID;
     this.$uibModal = $uibModal;
     this.mainService = mainService;
+    this.$rootScope = $rootScope;
   }
 
   $onInit() {
+    this.$rootScope.onInfoPage = false;
   	this.campaignFactory.findCampaign(this.campaignID)
       .then(response => {
         this.campaign = response.data;

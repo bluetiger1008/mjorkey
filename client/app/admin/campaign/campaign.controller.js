@@ -3,7 +3,7 @@
 export default class CampaignController {
 
 	/*@ngInject*/
-	constructor($http, $scope, socket, Auth, campaignFactory, artistFactory, $uibModal, mainService) {
+	constructor($http, $scope, socket, Auth, campaignFactory, artistFactory, $uibModal, mainService, $rootScope) {
     	this.$http = $http;
 	    this.socket = socket;
 	    this.$scope = $scope;
@@ -18,12 +18,14 @@ export default class CampaignController {
       	this.campaignTicketsRequired = false;
       	this.campaign = [];
       	this.selectedArtist = [];
+      	this.$rootScope = $rootScope;
 	    $scope.$on('$destroy', function() {
 	      socket.unsyncUpdates('campaign');
 	    });
 	}
 
 	$onInit() {
+		this.$rootScope.onInfoPage = false;
 	    this.campaignFactory.getCampaigns()
 	      .then(response => {
 	        // console.log(response.data);

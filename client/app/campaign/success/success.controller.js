@@ -2,15 +2,17 @@
 
 export default class SuccessController {
 	/*@ngInject*/
-	constructor($stateParams, $state, Auth, initService, $uibModal) {
+	constructor($stateParams, $state, Auth, initService, $uibModal, $rootScope) {
 		this.getCurrentUser = Auth.getCurrentUserSync;
 	    this.currentUser = this.getCurrentUser();
 	    this.$state = $state;
 	    this.initService = initService;
 	    this.$uibModal = $uibModal;
+	    this.$rootScope = $rootScope;
 	}
 
 	$onInit() {
+		this.$rootScope.onInfoPage = false;
 		console.log(this.initService.purchasedTickets);
 		this.purchasedTickets = this.initService.purchasedTickets;
 		console.log(this.purchasedTickets);

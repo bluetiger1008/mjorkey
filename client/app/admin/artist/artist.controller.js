@@ -3,7 +3,7 @@
 export default class ArtistController {
 
 	/*@ngInject*/
-	constructor($state, $http, Upload, $uibModal, mainService, $scope, artistFactory) {
+	constructor($state, $http, Upload, $uibModal, mainService, $scope, artistFactory, $rootScope) {
 		this.$state = $state;
 		this.$http = $http;
 		this.Upload = Upload;
@@ -12,9 +12,11 @@ export default class ArtistController {
     this.$scope = $scope;
     this.artistFactory = artistFactory;
     this.clean = {};
+    this.$rootScope = $rootScope;
 	}
 
 	$onInit() {
+    this.$rootScope.onInfoPage = false;
 		this.$http.get('/api/artists')
 	      .then(response => {
 	        this.artists = response.data;

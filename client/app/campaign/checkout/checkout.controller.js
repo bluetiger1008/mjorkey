@@ -2,7 +2,7 @@
 
 export default class CheckoutController {
 	/*@ngInject*/
-	constructor($stateParams, artistFactory, campaignFactory, stripeFactory , $http, Auth, $uibModal, mainService, initService, $state) {
+	constructor($stateParams, artistFactory, campaignFactory, stripeFactory , $http, Auth, $uibModal, mainService, initService, $state,  $rootScope) {
 		this.$http = $http;
     this.$state = $state;
     this.campaignID = $stateParams.campaignID;
@@ -15,9 +15,11 @@ export default class CheckoutController {
     this.stripeFactory = stripeFactory;
     this.artistFactory = artistFactory;
     this.buyTicket = false;
+    this.$rootScope = $rootScope;
   }
 
 	$onInit() {
+    this.$rootScope.onInfoPage = false;
     this.vipAdmissionCount = 0;
     this.generalAdmissionCount = 0;
     this.temp_vipSold = 0;

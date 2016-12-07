@@ -54,6 +54,7 @@ angular.module('majorkeyApp', [ngCookies, ngResource, ngSanitize, ngMaterial, 'b
 
     $rootScope.$on('$stateChangeStart', function(event, next) {
       document.body.scrollTop = document.documentElement.scrollTop = 0;
+
       Auth.isLoggedIn(function(loggedIn) {
         if(next.authenticate && !loggedIn) {
           $location.path('/login');

@@ -148,13 +148,13 @@
                   </thead>
                   <tbody>
                     <tr ng-repeat="campaign in admin.campaigns">
-                      <td ui-sref="campaignAdminInfo({campaignID: campaign._id})">{{campaign.artistName}}</td>
+                      <td >{{campaign.artistName}}</td>
                       <td>{{campaign.city}}</td>
                       <td>{{campaign.state}}</td>
                       <td class="td-mobile-hide">{{campaign.description}}</td>
                       <td>{{campaign.goals}}</td>
                       <td>
-                      <a ng-click="" class="trash"><span class="fa fa-edit fa-2x"></span></a>
+                      <a style="color:#666;" ui-sref="campaignAdminInfo({campaignID: campaign._id})"><span class="fa fa-edit fa-2x"></span></a>
                         <a ng-click="admin.deleteCampaign(campaign)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
                       </td>
                     </tr>
