@@ -3,10 +3,15 @@
 export default class SettingsController {
 
   /*@ngInject*/
-  constructor(Auth) {
+  constructor(Auth, $rootScope) {
     this.Auth = Auth;
+    this.$rootScope = $rootScope;
   }
 
+  $onInit() {
+    this.$rootScope.onInfoPage = false;
+  }
+  
   changePassword(form) {
     this.submitted = true;
 

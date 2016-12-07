@@ -11,9 +11,9 @@
 					<i class="fa fa-twitter"></i>
 					share on Twitter
 				</a>
-				<a ng-click="vm.copylink()" class="btn btn-default">
-					Copy link
-				</a>
+				<button class="btn btn-default" data-clipboard-text="{{vm.campaignUrl}}">
+				    Copy link
+				</button>
 				<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 			</div>
 		</div>

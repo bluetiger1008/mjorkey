@@ -14,6 +14,8 @@
     <meta property="og:description"   content="Your description" />
     <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <script type="text/javascript" src="clipboard.min.js"></script>
+    <script type="text/javascript" src="tooltip.js"></script>
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 </head>
 <body>
@@ -48,6 +50,22 @@
 
       ga('create', 'UA-XXXXX-X');
       ga('send', 'pageview');
+
+      var clipboard = new Clipboard('.btn');
+
+      clipboard.on('success', function(e) {
+          console.info('Action:', e.action);
+          console.info('Text:', e.text);
+          console.info('Trigger:', e.trigger);
+          showTooltip(e.trigger,'Copied to clipboard. Go out and share!');
+          e.clearSelection();
+      });
+
+      clipboard.on('error', function(e) {
+          console.error('Action:', e.action);
+          console.error('Trigger:', e.trigger);
+      });
+      
     </script>
     <navbar></navbar>
     <div ui-view=""></div>

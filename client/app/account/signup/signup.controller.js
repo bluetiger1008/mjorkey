@@ -5,13 +5,17 @@ import angular from 'angular';
 export default class SignupController {
 
   /*@ngInject*/
-  constructor(Auth, $state, stripeFactory) {
+  constructor(Auth, $state, stripeFactory, $rootScope) {
     this.Auth = Auth;
     this.$state = $state;
     this.stripeFactory = stripeFactory;
-
+    this.$rootScope = $rootScope;
   }
 
+  $onInit() {
+    this.$rootScope.onInfoPage = false;
+  }
+  
   register(form) {
     this.submitted = true;
     var stripeFactory = this.stripeFactory;

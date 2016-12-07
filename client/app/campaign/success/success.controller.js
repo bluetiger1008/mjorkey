@@ -12,6 +12,7 @@ export default class SuccessController {
 	}
 
 	$onInit() {
+
 		this.$rootScope.onInfoPage = false;
 		console.log(this.initService.purchasedTickets);
 		this.purchasedTickets = this.initService.purchasedTickets;

@@ -3,12 +3,17 @@
 export default class LoginController {
 
   /*@ngInject*/
-  constructor(Auth, $state, $uibModal, mainService, initService) {
+  constructor(Auth, $state, $uibModal, mainService, initService, $rootScope) {
     this.Auth = Auth;
     this.$state = $state;
     this.$uibModal = $uibModal;
     this.mainService = mainService;
     this.initService = initService;
+    this.$rootScope = $rootScope;
+  }
+
+  $onInit() {
+    this.$rootScope.onInfoPage = false;
   }
 
   login(form) {
