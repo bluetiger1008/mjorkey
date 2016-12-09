@@ -8,6 +8,7 @@ import ngSanitize from 'angular-sanitize';
 import ngMaterial from 'angular-material';
 import ngFileUpload from 'ng-file-upload';
 
+import 'ng-Facebook';
 import 'angular-socket-io';
 import 'angularjs-datepicker';
 import 'angulargrid';
@@ -44,7 +45,7 @@ import initService from '../components/services/init_service.js';
 
 import './app.scss';
 
-angular.module('majorkeyApp', [ngCookies, ngResource, ngSanitize, ngMaterial, 'btford.socket-io', ngFileUpload, uiRouter, campaignFactory, artistFactory, stripeFactory,
+angular.module('majorkeyApp', [ngCookies, ngResource, ngSanitize, ngMaterial, 'ngFacebook', 'btford.socket-io', ngFileUpload, uiRouter, campaignFactory, artistFactory, stripeFactory,
     mainService, initService, uiBootstrap, '720kb.datepicker', 'angularGrid', _Auth, account, admin, user, artist, campaignAdmin, campaignAdminInfo, campaignInfo, checkout, checkoutSuccess, navbar, footer, campaign, constants, socket, util
   ])
   .config(routeConfig)
@@ -61,7 +62,6 @@ angular.module('majorkeyApp', [ngCookies, ngResource, ngSanitize, ngMaterial, 'b
         }
       });
     });
-
   });
 
 angular.element(document)

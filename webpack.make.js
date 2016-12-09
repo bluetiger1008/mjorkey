@@ -57,6 +57,7 @@ module.exports = function makeWebpackConfig(options) {
                 'ng-file-upload',
                 'angulargrid',
                 'angular-lazy-image',
+                'ng-facebook',
                 'lodash'
             ]
         };
