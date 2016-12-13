@@ -28,6 +28,7 @@ const paths = {
     client: {
         assets: `${clientPath}/assets/**/*`,
         images: `${clientPath}/assets/images/**/*`,
+        thirdparties: `${clientPath}/assets/thirdparties/*`,
         revManifest: `${clientPath}/assets/rev-manifest.json`,
         scripts: [
             `${clientPath}/**/!(*.spec|*.mock).js`

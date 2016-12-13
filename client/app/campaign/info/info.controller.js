@@ -23,7 +23,11 @@ export default class InfoController {
 			state: 'campaignInfo',
 			id: this.campaignID
 		};
+		
+		console.log('campaign', this.campaignUrl);
 		this.current_campaignUrl = window.location.href;
+		this.twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(this.current_campaignUrl);
+
 	    this.campaignFactory.findCampaign(this.campaignID)
 	      .then(response => {
 	        // console.log(response.data);
@@ -52,6 +56,14 @@ export default class InfoController {
 	      });
 	}
 
+	facebookShare() {
+		FB.ui({
+			method: 'share',
+			display: 'popup',
+			href: this.campaignUrl,
+		});
+	}
+	
 	purchaseTicket() {
 		console.log(this.currentUser);
 		if(this.currentUser._id == '')

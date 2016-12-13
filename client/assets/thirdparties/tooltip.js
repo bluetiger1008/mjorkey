@@ -4,4 +4,4 @@ function fallbackMessage(action){var actionMsg='';var actionKey=(action==='cut'?
 else if(/Mac/i.test(navigator.userAgent)){actionMsg='Press ⌘-'+ actionKey+' to '+ action;}
 else{actionMsg='Press Ctrl-'+ actionKey+' to '+ action;}
 return actionMsg;}
-hljs.initHighlightingOnLoad();
+

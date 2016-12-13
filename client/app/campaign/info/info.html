@@ -17,6 +17,22 @@
 	<div class="info-detail">
 		<div class="container">
 			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<a ng-click="vm.facebookShare()" class="btn btn-social btn-facebook">
+						<i class="fa fa-facebook"></i>
+						share on Facebook
+					</a>
+					<a href="{{vm.twitterUrl}}" class="btn btn-social btn-twitter" data-show-count="false">
+						<i class="fa fa-twitter"></i>
+						share on Twitter
+					</a>
+					<button class="btn btn-default" data-clipboard-text="{{vm.current_campaignUrl}}">
+					    Copy link
+					</button>
+					<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+				</div>
+			</div>
+			<div class="row">
 				<div class="col-md-8 col-md-offset-2 profile">
 					<h3 class="page-header">How it works</h3>
 					<p>Entusic brings the power of concerts directly to the fans by allowing fans to come together to bring artists to their city. Fans come together and commit to buying a ticket. Once enough fans join the campaign before time runs out, the show is booked and the date will be announced. If enough fans don't join, tickets are refunded and the show doesn't happen. So it's important to share with as many people as possible. Check out our FAQ's. 

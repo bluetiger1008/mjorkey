@@ -7,29 +7,53 @@
     <title>Entusic</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <meta property="fb:app_id" content="{129273847558227}" />
+    <meta property="fb:app_id" content="{141919792959253}" />
     <meta property="og:url"           content="http://www.your-domain.com/your-page.html" />
     <meta property="og:type"          content="website" />
     <meta property="og:title"         content="Your Website Title" />
     <meta property="og:description"   content="Your description" />
     <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <script type="text/javascript" src="clipboard.min.js"></script>
-    <script type="text/javascript" src="tooltip.js"></script>
+    <script type="text/javascript" src="assets/thirdparties/clipboard.min.js"></script>
+    <script type="text/javascript" src="assets/thirdparties/tooltip.js"></script>
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 </head>
 <body>
     <div id="fb-root"></div>
     <script>
-      
+
       (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
+        if (d.getElementById(id)) {return;}
         js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+        js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
+
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId: '141919792959253',
+          xfbml: true,
+          version: 'v2.8'
+        });
+      }
       
+    </script>
+
+    <script>
+      var clipboard = new Clipboard('.btn');
+      clipboard.on('success', function(e) {
+          console.info('Action:', e.action);
+          console.info('Text:', e.text);
+          console.info('Trigger:', e.trigger);
+          showTooltip(e.trigger,'Copied!');
+          e.clearSelection();
+      });
+
+      clipboard.on('error', function(e) {
+          console.error('Action:', e.action);
+          console.error('Trigger:', e.trigger);
+      });
     </script>
     <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
     <!--[if lt IE 9]>
@@ -44,23 +68,7 @@
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-XXXXX-X');
-      ga('send', 'pageview');
-
-      var clipboard = new Clipboard('.btn');
-
-      clipboard.on('success', function(e) {
-          console.info('Action:', e.action);
-          console.info('Text:', e.text);
-          console.info('Trigger:', e.trigger);
-          showTooltip(e.trigger,'Copied!');
-          e.clearSelection();
-      });
-
-      clipboard.on('error', function(e) {
-          console.error('Action:', e.action);
-          console.error('Trigger:', e.trigger);
-      });
-      
+      ga('send', 'pageview');      
     </script>
     <navbar></navbar>
     <div ui-view=""></div>
