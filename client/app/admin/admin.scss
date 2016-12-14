@@ -8,6 +8,7 @@
 		color: black;
 		.photo {
 			width: 100px;
+			margin-right: 10px;
 		}
 	}
 	md-content {
@@ -84,16 +85,15 @@
 				}
 			}
 		}
-    .tb-artist {
-      th, td {
-        width: 25% !important;
-      }
-    }
-    .tb-campaign {
-      th, td {
-        width: 20% !important;
-        font-size: 0.8em;
-      }
-    }
+		.artistAddingForm {
+			.photo {
+				margin-bottom: 10px;
+			}
+		}
+	    .tb-campaign {
+	      th, td {
+	        font-size: 0.8em;
+	      }
+	    }
 	}
 }

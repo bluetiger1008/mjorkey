@@ -60,7 +60,7 @@ export default class InfoController {
 		FB.ui({
 			method: 'share',
 			display: 'popup',
-			href: this.campaignUrl,
+			href: this.current_campaignUrl,
 		});
 	}
 	
