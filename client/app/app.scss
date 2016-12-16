@@ -51,11 +51,6 @@ md-list {
 			color: black;
 			margin: 0;
 		}
-		.artist-photo {
-			width: 100px !important;
-			height: 100px !important;
-			background-image: url('/assets/images/ring-alt.gif');
-		}
 		.md-secondary-container {
 			p {
 				color: #3f51b5 !important;
@@ -68,14 +63,22 @@ md-list {
 		
 		}
 	}
+	md-list-item .md-avatar, md-list-item .md-list-item-inner .md-avatar {
+		&.artist-photo {
+			width: 100px;
+			height: 100px;
+			background-image: url('/assets/images/ring-alt.gif');
+		}
+	}
+	
 }
 
 @media only screen and (max-width: 420px) {
 	md-list {
-		md-list-item {
-			.artist-photo {
-				width: 50px !important;
-				height: 50px !important;
+		md-list-item .md-avatar, md-list-item .md-list-item-inner .md-avatar {
+			&.artist-photo {
+				width: 50px;
+				height: 50px;
 			}
 		}
 	}

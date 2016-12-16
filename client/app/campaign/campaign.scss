@@ -382,21 +382,23 @@ table {
 
 	.pg-purchase-success {
 		.social-share {
-			a {
-				width: 80%;
+			.btn {
+				width: 100px;
 				margin: 10px auto;
 				display: block;
+				text-align: center;
 			}
 		}
 	}
 	.pg-info {
 		.social-share {
-			width: 80%;
+			width: 50%;
 			margin: auto;
 			.btn {
 				display: block;
 				margin: 5px 0;
-				width: 100%;
+				text-align: center;
+				width: 100px;
 			}
 		}
 	}
