@@ -23,10 +23,6 @@ export default class InfoController {
 			state: 'campaignInfo',
 			id: this.campaignID
 		};
-		
-		console.log('campaign', this.campaignUrl);
-		this.current_campaignUrl = window.location.href;
-		this.twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(this.current_campaignUrl);
 
 	    this.campaignFactory.findCampaign(this.campaignID)
 	      .then(response => {
@@ -48,6 +44,13 @@ export default class InfoController {
 	        console.log(remainingDays);
 	        
 	        this.remainingDays = remainingDays;
+
+	        //get url for social sharing
+	        this.current_campaignUrl = window.location.href;
+			console.log('campaign', this.current_campaignUrl);
+			this.twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(this.current_campaignUrl);
+
+
 	        this.artistFactory.findArtist(this.campaign.artistID)
 	    	.then(response => {
 	    		this.artist = response.data;
