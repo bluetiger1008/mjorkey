@@ -17,6 +17,8 @@ export default class InfoController {
 	}
 
 	$onInit() {
+		var self = this;
+		
 		this.$rootScope.onInfoPage = true;
 		// console.log(this.artistID);
 		this.initService.onInfoPage = true;
@@ -58,8 +60,8 @@ export default class InfoController {
 		      url: current_campaignUrl
 		    }).then(function(response){
 		      console.log('encode', response.data.shortUrl);
-		      this.current_campaignUrl = response.data.shortUrl;
-		      this.twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(this.current_campaignUrl);
+		      self.current_campaignUrl = response.data.shortUrl;
+		      self.twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(self.current_campaignUrl);
 		    });
 
 	        this.artistFactory.findArtist(this.campaign.artistID)
