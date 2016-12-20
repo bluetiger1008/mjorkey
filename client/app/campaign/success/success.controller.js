@@ -21,7 +21,6 @@ export default class SuccessController {
 		this.campaignUrl = this.initService.campaignUrl;
 		console.log('url', this.campaignUrl);
 		this.twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(this.campaignUrl);
-		this.facebookShareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.campaignUrl) + "&amp;src=sdkpreparse";
 	}
 
 	facebookShare() {

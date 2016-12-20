@@ -2,7 +2,7 @@
 
 export default class InfoController {
 	/*@ngInject*/
-	constructor($stateParams, $state, campaignFactory, artistFactory, Auth, $uibModal, mainService, initService, $rootScope) {
+	constructor($http, $stateParams, $state, campaignFactory, artistFactory, Auth, $uibModal, mainService, initService, $rootScope) {
 		this.campaignID = $stateParams.campaignID;
 		this.campaignFactory = campaignFactory;
 		this.artistFactory = artistFactory;
@@ -13,6 +13,7 @@ export default class InfoController {
 	    this.mainService = mainService;
 	    this.initService = initService;
 	    this.$rootScope = $rootScope;
+	    this.$http = $http;
 	}
 
 	$onInit() {
@@ -45,11 +46,21 @@ export default class InfoController {
 	        
 	        this.remainingDays = remainingDays;
 
-	        //get url for social sharing
-	        this.current_campaignUrl = window.location.href;
-			console.log('campaign', this.current_campaignUrl);
-			this.twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(this.current_campaignUrl);
+	        
+	  //       this.current_campaignUrl = window.location.href;
+			// console.log('campaign', this.current_campaignUrl);
+			
+			//get shorten url for social sharing
+			var current_campaignUrl = window.location.href;
+		    console.log(current_campaignUrl);
 
+		    this.$http.post('/api/shorten', {
+		      url: current_campaignUrl
+		    }).then(function(response){
+		      console.log('encode', response.data.shortUrl);
+		      this.current_campaignUrl = response.data.shortUrl;
+		      this.twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(this.current_campaignUrl);
+		    });
 
 	        this.artistFactory.findArtist(this.campaign.artistID)
 	    	.then(response => {
@@ -72,7 +83,7 @@ export default class InfoController {
 		if(this.currentUser._id == '')
 			this.subscribeFirstModal();
 		else {
-			this.initService.campaignUrl = window.location.href;
+			this.initService.campaignUrl = this.current_campaignUrl;
 			this.$state.go('checkout', {customerID:this.currentUser.stripeId, campaignID: this.campaignID});
 		}
 	}

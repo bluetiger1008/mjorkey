@@ -62,7 +62,9 @@ var all = {
         fileSize: 10 * 1024 * 1024 // Max file size in bytes (1 MB)
       }
     },
-  }
+  },
+
+  webhost: 'http://mjorkey.herokuapp.com/'
 };
 
 // Export the config object based on the NODE_ENV
