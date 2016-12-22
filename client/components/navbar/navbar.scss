@@ -39,11 +39,6 @@ $bodyColor: #3d3d3d;
 
 @media only screen and (min-width : 769px) {
 	.navbar-default {
-		.navbar-nav {
-			&.mobile {
-				display: none;
-			}
-		}
 		.navbar-header {
 			.navbar-toggle {
 				display: none;
@@ -56,10 +51,6 @@ $bodyColor: #3d3d3d;
 	.navbar-default {
 		.navbar-collapse {
 			.navbar-nav {
-				display: none;
-				&.mobile {
-					display: block;
-				}
 				li {
 					.navbar-text {
 						padding: 10px 15px !important;
