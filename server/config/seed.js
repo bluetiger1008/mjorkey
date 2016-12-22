@@ -4,8 +4,17 @@
  */
 
 'use strict';
+import mongoose from 'mongoose';
 import Thing from '../api/thing/thing.model';
 import User from '../api/user/user.model';
+import Shorten from '../api/shorten/shorten.model';
+const Counter = mongoose.model('counter');
+
+
+Counter.findOneAndUpdate({_id: 'url_count'}, {_id: 'url_count', seq: 0}, {upsert: true})
+  .then(() => {
+    console.log("Counter updated");
+  });
 
 Thing.find({}).remove()
   .then(() => {
