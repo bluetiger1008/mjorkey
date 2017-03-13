@@ -1,30 +1,51 @@
 <div class="pg-info">
 	<div class="info-header">
 		<div class="container">
-			<img id="img-artist" src="{{vm.artist.photo}}">
-			<h1>Get {{ vm.artist.name }}</h1>
-			<p class="place">{{ vm.campaign.city }}, {{ vm.campaign.state }}</p>
-			<div class="status">
-				<div class="meter">
-				  <span style="width: {{vm.campaign.percentage}}%"></span>
-				</div>
-				<p class="ticket-status">{{vm.campaign.progress}}% to goal<span>{{vm.remainingDays}} days to go</span></p>
+			<div class="artist-photo col-md-4">
+				<img src="{{vm.artist.photo}}">
 			</div>
-			<!-- <a ng-click="vm.purchaseTicket()" class="make-happen">Make It Happen</a> -->
-			<md-button class="md-raised md-primary make-happen" ng-click="vm.purchaseTicket()">Make It Happen</md-button>
-		</div>
-	</div>
-	<div class="info-detail">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 social-share" style="text-align:center;">
+			<div class="artist-info col-md-8">
+				<h1>Get {{ vm.artist.name }}</h1>
+				<p class="place">
+					<i class="fa fa-map-marker" aria-hidden="true"></i>
+					{{ vm.campaign.city }}, {{ vm.campaign.state }}
+				</p>
+				<div class="status">
+					<div class="meter">
+					  <span style="width: {{vm.campaign.percentage}}%"></span>
+					</div>
+					<p class="ticket-status">{{vm.campaign.progress}}% to goal</p>
+					<div class="left-status">
+						<div class="col">
+							<div class="bordered-rect">
+								{{vm.remainingDays}}
+							</div>
+							<p>{{vm.remainingDays}} Days</p>
+						</div>
+						<div class="col middle">
+							<div class="bordered-rect">
+								{{vm.remainingDays}}
+							</div>
+							<p>{{vm.remainingDays}} Hours</p>
+						</div>
+						<div class="col">
+							<div class="bordered-rect">
+								{{vm.remainingDays}}
+							</div>
+							<p>{{vm.remainingDays}} Mins</p>
+						</div>
+					</div>
+				</div>
+				<!-- <a ng-click="vm.purchaseTicket()" class="make-happen">Make It Happen</a> -->
+				<md-button class="md-raised make-happen" ng-click="vm.purchaseTicket()">Make It Happen</md-button>
+				<div class="social-share">
 					<a ng-click="vm.facebookShare()" class="btn btn-social btn-facebook">
 						<i class="fa fa-facebook"></i>
-						Share
+						Facebok
 					</a>
 					<a href="{{vm.twitterUrl}}" class="btn btn-social btn-twitter" data-show-count="false">
 						<i class="fa fa-twitter"></i>
-						Tweet
+						Twitter
 					</a>
 					<button class="btn btn-default" data-clipboard-text="{{vm.current_campaignUrl}}">
 					    Copy link
@@ -32,30 +53,52 @@
 					<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 profile">
-					<h3 class="page-header">How it works</h3>
-					<p>Entusic brings the power of concerts directly to the fans by allowing fans to come together to bring artists to their city. Fans come together and commit to buying a ticket. Once enough fans join the campaign before time runs out, the show is booked and the date will be announced. If enough fans don't join, tickets are refunded and the show doesn't happen. So it's important to share with as many people as possible. Check out our FAQ's. 
+		</div>
+	</div>
+	<div class="info-detail">
+		<div class="container">
+			<div class="how-work row">
+				<h2>How it works</h2>
+				<span class="border"></span>
+				<div class="col-md-4">
+					<img src="assets/images/mic.png">
+					<h3>Request an artist</h3>
+					<p>Request an artist you want to play in your city. We'll confirm them and create a campaign page.</p>
+				</div>
+				<div class="col-md-4">
+					<img src="assets/images/wave.png">
+					<h3>Spread the Word</h3>
+					<p>Join the campaign by committing to buy a ticket, then get your friends and fellow fans to do the same.</p>
+				</div>
+				<div class="col-md-4">
+					<img src="assets/images/reciever.png">
+					<h3>Book the show</h3>
+					<p>Once the attendance goal is reached, the venue is selected, the show is booked, and tickets are issued! Turn up! (responsibly)
 					</p>
 				</div>
 			</div>
+		</div>
+	</div>
+	<div class="back-campaign">
+		<div class="container">
 			<div class="row">
-				<div class="col-md-8 col-md-offset-2">
-					<h3>Back this Campaign</h3>
-					<div class="row">
-						<div class="col-md-6">
-							<div class="card">
-								<p class="price">${{vm.campaign.vip_price}} <span>Meet & Greet</span></p>
-								<p class="ticket-info">Commit to this level and get early entry to the show, exclusive meet & greet with the artist, a chance for a photo, and some artist merchandise!</p>
-								<md-button class="md-raised md-primary" ng-click="vm.purchaseTicket()">Make It Happen</md-button>
-							</div>
+				<h2>Back this Campaign</h2>
+				<span class="border"></span>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="card meet-greet">
+							<div class="price">${{vm.campaign.vip_price}}</div>
+							<h3>Meet & Greet</h3>
+							<p class="ticket-info">Commit to this level and get early entry to the show, exclusive meet & greet with the artist, a chance for a photo, and some artist merchandise!</p>
+							<md-button class="md-raised btn-happen" ng-click="vm.purchaseTicket()">Make It Happen</md-button>
 						</div>
-						<div class="col-md-6">
-							<div class="card">
-								<p class="price">${{vm.campaign.general_price}} <span>See the show</span></p>
-								<p class="ticket-info">Commit to this level and get a general admission ticket to the show once the goal is reached!</p>
-								<md-button class="md-raised md-primary" ng-click="vm.purchaseTicket()">Make It Happen</md-button>
-							</div>
+					</div>
+					<div class="col-md-6">
+						<div class="card see-show">
+							<div class="price">${{vm.campaign.general_price}}</div>
+							<h3>See the show</h3>
+							<p class="ticket-info">Commit to this level and get a general admission ticket to the show once the goal is reached!</p>
+							<md-button class="md-raised btn-happen" ng-click="vm.purchaseTicket()">Make It Happen</md-button>
 						</div>
 					</div>
 				</div>
