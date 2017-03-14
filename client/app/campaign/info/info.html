@@ -1,10 +1,10 @@
 <div class="pg-info">
 	<div class="info-header">
 		<div class="container">
-			<div class="artist-photo col-md-4">
+			<div class="artist-photo col-md-4 col-xs-12">
 				<img src="{{vm.artist.photo}}">
 			</div>
-			<div class="artist-info col-md-8">
+			<div class="artist-info col-md-8 col-xs-12">
 				<h1>Get {{ vm.artist.name }}</h1>
 				<p class="place">
 					<i class="fa fa-map-marker" aria-hidden="true"></i>
@@ -24,15 +24,15 @@
 						</div>
 						<div class="col middle">
 							<div class="bordered-rect">
-								{{vm.remainingDays}}
+								{{vm.remainingHours}}
 							</div>
-							<p>{{vm.remainingDays}} Hours</p>
+							<p>{{vm.remainingHours}} Hours</p>
 						</div>
 						<div class="col">
 							<div class="bordered-rect">
-								{{vm.remainingDays}}
+								{{vm.remainingMins}}
 							</div>
-							<p>{{vm.remainingDays}} Mins</p>
+							<p>{{vm.remainingMins}} Mins</p>
 						</div>
 					</div>
 				</div>
@@ -84,7 +84,7 @@
 			<div class="row">
 				<h2>Back this Campaign</h2>
 				<span class="border"></span>
-				<div class="row">
+				<div>
 					<div class="col-md-6">
 						<div class="card meet-greet">
 							<div class="price">${{vm.campaign.vip_price}}</div>

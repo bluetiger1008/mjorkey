@@ -291,7 +291,6 @@ table {
 					border-radius: 5px;
 					display: inline-block;
 					.count {
-						margin-top: 60px;
 						border-top: 1px solid #d8d8d8;
 						display: flex;
 						align-items: center;
@@ -323,11 +322,12 @@ table {
 						text-transform: uppercase;
 						font-size: 30px;
 						color: #848484;
-						margin-bottom: 40px;
+						margin-bottom: 20px;
 					}
 					p {
-						font-size: 22px;
+						font-size: 18px;
 						color: #757575;
+						min-height: 180px;
 					}
 				}	
 			}
@@ -496,6 +496,17 @@ table {
 					margin-top: 0px;
 				}
 			}
+			.admission {
+				margin-top: 20px;
+				.levels {
+					.level-option {
+						margin-bottom: 10px;
+						p {
+							min-height: auto;
+						}
+					}
+				}
+			}
 		}
 	}	
 }
@@ -511,9 +522,42 @@ table {
 						}
 					}
 				}
+				.card-option {
+					.card-input {
+						.card-images {
+							display: none;
+						}
+					}
+				}
+			}
+			.user-info {
+				margin: 0;
+				.info {
+					color: black;
+				}
 			}
 		}
 	}	
+	.pg-info {
+		.info-header {
+			.container {
+				.artist-photo {
+					margin: 0;
+				}
+				.artist-info {
+					padding: 0;
+					.status {
+						.meter {
+							width: 100%;
+						}
+					}
+					.make-happen {
+						width: 100%;
+					}
+				}	
+			}
+		}
+	}
 }
 
 @media only screen and (max-width: 500px) {
@@ -539,6 +583,21 @@ table {
 				margin: 5px 0;
 			}
 		}
+		
+		.back-campaign {
+			.card {
+				padding: 30px 20px;
+				.price, h3 {
+					font-size: 20px;
+				}
+				p {
+					font-size: 15px;
+				}
+				.btn-happen {
+					width: 80%;
+				}
+			}
+		}
 	}
 }
 
@@ -548,12 +607,24 @@ table {
 			background-size: auto 100%;
 			padding: 10px;
 			.container {
-
-				.status {
-					.meter {
-						width: 100%;
+				
+				.artist-info {
+					padding: 0;
+					h1 {
+						font-size: 30px;
 					}
+					.status {
+						.meter {
+							width: 100%;
+						}
+						.left-status {
+							.bordered-rect {
+								font-size: 40px;
+							}
+						}
+					}	
 				}
+				
 				.make-happen {
 					width: 100%;
 					font-size: 25px;
@@ -633,14 +704,4 @@ table {
 		}
 	}
 }
-@media only screen and (max-width: $screen-md) {
-	.pg-checkout {
-		.checkout-form {
-			.user-info {
-				img {
-					width: 30%;
-				}
-			}
-		}
-	}
-}
+

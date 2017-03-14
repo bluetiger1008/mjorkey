@@ -25,6 +25,11 @@ body {
 	font-family: 'Gotham';
 }
 
+.main-content {
+	padding-bottom: 100px;
+	background: white;
+}
+
 .pg-campaign, .pg-info, .pg-admin, .pg-checkout {
 	background: $bodyColor;
 }

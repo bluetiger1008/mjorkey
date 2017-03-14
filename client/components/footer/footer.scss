@@ -2,7 +2,6 @@ footer {
   padding: 40px 0;
   background: #000;
   color: white;
-  margin-top: 100px;
   text-transform: uppercase;
   font-size: 15px;
   .copyright {
@@ -23,4 +22,13 @@ footer {
   		}
   	}
   }
+}
+
+@media only screen and (max-width: 420px) {
+    footer  {
+      padding: 20px 0;
+      .copyright {
+        display: none;
+      }
+    }
 }

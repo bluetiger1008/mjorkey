@@ -47,7 +47,8 @@ export default class InfoController {
 	        console.log(remainingDays);
 	        
 	        this.remainingDays = remainingDays;
-
+	        this.remainingHours = 0;
+	        this.remainingMins = 0;
 	        
 	  //       this.current_campaignUrl = window.location.href;
 			// console.log('campaign', this.current_campaignUrl);

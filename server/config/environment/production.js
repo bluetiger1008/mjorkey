@@ -22,5 +22,5 @@ module.exports = {
       || 'mongodb://localhost/majorkey'
   },
 
-  seedDB: false
+  seedDB: true
 };

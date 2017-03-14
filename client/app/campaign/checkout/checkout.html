@@ -15,11 +15,11 @@
 				<h2>Pick Your Level, Make It Happen.</h2>
 				<span class="border"></span>
 				<div class="row levels">
-					<div class="col-md-offset-2 col-md-4">
+					<div class="col-sm-offset-1 col-md-offset-2 col-sm-5 col-md-4">
 						<div class="level-option">
 							<h2>${{vm.campaign.vip_price}}</h2>
 							<h3>Meet & Greet</h3>
-							<p>Commit to this level and get early entry to the show, exclusive meet & greet with the artist, a chance for a photo, and some exclusive merch.</p>
+							<p>Commit to this level and get early entry to the show, exclusive meet & greet with the artist, a chance for a photo, and some exclusive merchandise!</p>
 
 							<div class="count">
 								<span>{{vm.vipAdmissionCount}}</span>
@@ -30,7 +30,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-sm-5 col-md-4">
 						<div class="level-option">
 							<h2>${{vm.campaign.general_price}}</h2>
 							<h3>See the show</h3>
@@ -50,8 +50,8 @@
 
 			</div>
 			<div class="payment-info" ng-show="vm.buyTicket">
-				<div class="row">
-					<div class="card-option col-md-8 col-md-offset-2">
+				<div class="">
+					<div class="card-option col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 						<ul>
 							<li ng-repeat="card in vm.creditCards">
 								<label class="visa">
@@ -99,7 +99,7 @@
 			    		</div>
 					</div>
 				</div>
-				<div class="row">
+				<div class="">
 					<div class="actions col-md-8 col-md-offset-2" ng-show="vm.buyTicket">
 		      			<md-button class="md-raised btn-cancel" ui-sref="campaignInfo({campaignID: vm.campaignID})">Cancel</md-button>
 		      			<md-button class="md-raised btn-commit" ng-click="vm.submit()" ng-disabled="vm.submitLoading"><i class="fa fa-spinner fa-spin" ng-show="vm.submitLoading"></i> Commit</md-button>
