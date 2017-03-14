@@ -6,6 +6,14 @@ table {
 	}
 }
 
+.border {
+	display: block;
+	width: 90px;
+	height: 3px;
+	margin: 20px auto 40px;
+	background: $orangeColor;
+}
+
 .pg-home {
 	background: $bodyColor;
 
@@ -177,13 +185,6 @@ table {
 			}
 		}		
 	}	
-	.border {
-		display: block;
-		width: 90px;
-		height: 3px;
-		margin: 20px auto 40px;
-		background: $orangeColor;
-	}
 	h2 {
 		font-size: 35px;
 		text-transform: uppercase;		
@@ -264,8 +265,6 @@ table {
 
 .pg-checkout {
 	.checkout-form {
-		margin: 20px 0;
-		padding: 20px 10px;
 		background: white;
 		display: inline-block;
 		color: #444;
@@ -277,53 +276,113 @@ table {
 			font-size: 20px;
 		}
 		.admission {
-			.level-option {
-				border: 2px solid #87c1ce;
-				border-radius: 5px;
-				.count {
-					span {
-						font-size: 25px;
+			text-align: center;
+			margin-top: -10px;
+			h2 {
+				margin: 0;
+				font-size: 35px;
+				text-transform: uppercase;
+			}
+			.levels {
+				padding: 20px 0;
+				.level-option {
+					border: 2px solid #d8d8d8;
+					padding: 30px 15px 0;
+					border-radius: 5px;
+					display: inline-block;
+					.count {
+						margin-top: 60px;
+						border-top: 1px solid #d8d8d8;
+						display: flex;
+						align-items: center;
+						justify-content: flex-end;
+						padding: 10px 0;
+						span {
+							font-size: 30px;
+							color: #848484;
+							font-weight: bold;
+							margin-right: 30px;
+						}
+						.spin {
+							a {
+								font-size: 25px;
+								padding: 0 5px;
+								display: block;
+								color: #848484;
+								line-height: 1;
+								&:hover {
+									cursor:pointer;
+								}
+							}	
+						}
 					}
-				}
-			}
-		}
-		.count {
-			margin-top: 20px;
-			span {
-				padding: 0 5px;
-				&#btnplus {
-					color: #87c1ce;
-				}
-				&:hover {
-					cursor:pointer;
-				}
-			}
-		}
-		.row {
-			margin-top: 5px;
-			margin-bottom: 5px;
-		}
-		.admission {
-			.level-option {
-				margin: 5px 0;
+					h2 {
+						color: $orangeColor;
+					}
+					h3 {
+						text-transform: uppercase;
+						font-size: 30px;
+						color: #848484;
+						margin-bottom: 40px;
+					}
+					p {
+						font-size: 22px;
+						color: #757575;
+					}
+				}	
 			}
 			.total-price {
-				h3 {
-					margin: 0;
-				}
+				font-size: 30px;
+				font-weight: bold;
+				color: #000;
+				margin: 30px 0 40px;
 			}
 		}
 		.payment-info {
 			.card-option {
+				padding: 20px 30px;
+				background: #f8f8f8;
 				ul {
 					list-style: none;
 					padding: 0;
 					margin: 0;
 				}
+				.card-input {
+					Padding: 10px;			
+					.form-control {
+						height: 50px;
+						border-radius: initial;
+					}
+					.card-info {
+						margin: 5px 0;
+					}
+					.card-images {
+						width: 100%;
+						height: 50px;
+					}
+					.card-date {
+						display: inline-block;
+						.input-group {
+							margin-right: 20px;
+							&.expiration-month, &.cvc {
+								width: 30%;
+								span {
+									width: 50%;
+								}
+							}
+							&.expiration-year {
+								width: 20%;
+								input {
+									border-radius: 4px;
+									width: 100%;
+								}
+							}
+						}
+					}
+				}
 			}
 			label {
 				display: block;
-				border: 1px solid lightgrey;
 				margin-bottom: 0px;
 				padding: 10px;
 				&:hover {
@@ -353,51 +412,58 @@ table {
 					margin: 0;
 				}
 			}
-			.card-input {
-				Padding: 10px;
-				border: 1px solid lightgrey;
-				border-top: none;
-				border-bottom-right-radius: 5px;
-				border-bottom-left-radius: 5px;
-				.card-info {
-					margin: 5px 0;
-				}
-				.card-images {
-					width: 100%;
-				}
-				.card-date {
-					display: inline-block;
-					.input-group {
-						margin-right: 20px;
-						&.expiration-month, &.cvc {
-							width: 30%;
-							span {
-								width: 50%;
-							}
-						}
-						&.expiration-year {
-							width: 20%;
-							input {
-								border-radius: 4px;
-								width: 100%;
-							}
-						}
-					}
-				}
-			}
+			
 		}
 	 	.actions {
-	    	margin: 20px 0;
-	    	.cancel {
-	    		margin-right: 10px;
+	    	margin-top: 20px;
+	    	padding: 10px 0;
+	    	border-top: 1px solid lightgrey;
+	    	display: block;
+	    	text-align: right;
+	    	.md-raised {
+	    		width: 150px;
+	    		height: 65px;
+	    		font-size: 20px;
+	    		font-weight: bold;
+	    		color: white;
+	    	}
+	    	.btn-cancel {
+	    		margin-right: 5px;
+	    		background: #b8b8b8;
+	    		line-height: 65px;
+	    	}
+	    	.btn-commit {
+	    		background: $orangeColor;
 	    	}
 	  	}
 	}
 	.user-info {
-		img {
-			margin-top: 62px;
-			width: 100%;
+		margin-top: -140px;
+		z-index: 100;
+		position: relative;
+		.photo {
+			background: white;
+			width: 200px;
+			padding: 5px;
+			display: inline-block;
+			img {
+				width: 100%;
+			}	
 		}
+		.info {
+			display: inline-block;
+			vertical-align: top;
+			color: white;
+			margin-left: 30px;
+			h2 {
+				font-size: 35px;
+				text-transform: uppercase;
+				font-weight: bold;
+			}
+			p {
+				font-size: 22px;
+			}
+		}		
 	}	
 }
 
@@ -509,15 +575,6 @@ table {
 				text-align: center;
 				img {
 					width: 50%;
-				}
-			}
-			.level-option {
-				padding: 0px;
-				p {
-					margin: 0;
-				}
-				.count {
-					margin-top: 0px;
 				}
 			}
 			.payment-info {
