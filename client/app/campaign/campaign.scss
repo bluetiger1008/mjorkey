@@ -112,7 +112,7 @@ table {
 			line-height: 1;
 			h1 {
 				margin: 0;
-				color: black;
+				color: $cyan;
 				font-size: 35px;
 				font-weight: bold;
 				text-transform: uppercase;
@@ -122,6 +122,7 @@ table {
 			}
 
 			.status {
+				margin-top: 10px;
 				.meter {
 					display: inline-block;
 					width: 450px;
@@ -188,6 +189,7 @@ table {
 	h2 {
 		font-size: 35px;
 		text-transform: uppercase;		
+		color: $cyan;
 	}
 	.info-detail {
 		background: #f7f7f7;
@@ -220,10 +222,10 @@ table {
 			position: relative;
 			color: white;
 			&.meet-greet {
-				background-image: url('/assets/images/playing.jpg');
+				background-image: url('/assets/images/buying.jpg');
 			}
 			&.see-show {
-				background-image: url('/assets/images/buying.jpg');
+				background-image: url('/assets/images/playing.jpg');
 			}
 			h3 {
 				font-size: 35px;

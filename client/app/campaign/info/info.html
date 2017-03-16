@@ -5,7 +5,7 @@
 				<img src="{{vm.artist.photo}}">
 			</div>
 			<div class="artist-info col-md-8 col-xs-12">
-				<h1>Get {{ vm.artist.name }}</h1>
+				<h1>{{ vm.artist.name }}</h1>
 				<p class="place">
 					<i class="fa fa-map-marker" aria-hidden="true"></i>
 					{{ vm.campaign.city }}, {{ vm.campaign.state }}
@@ -15,7 +15,10 @@
 					  <span style="width: {{vm.campaign.percentage}}%"></span>
 					</div>
 					<p class="ticket-status">{{vm.campaign.progress}}% to goal</p>
+					<md-button class="md-raised make-happen" ng-click="vm.purchaseTicket()">Make It Happen</md-button>
 					<div class="left-status">
+						<br/>
+						<p>time left</p>
 						<div class="col">
 							<div class="bordered-rect">
 								{{vm.remainingDays}}
@@ -37,15 +40,15 @@
 					</div>
 				</div>
 				<!-- <a ng-click="vm.purchaseTicket()" class="make-happen">Make It Happen</a> -->
-				<md-button class="md-raised make-happen" ng-click="vm.purchaseTicket()">Make It Happen</md-button>
+				
 				<div class="social-share">
 					<a ng-click="vm.facebookShare()" class="btn btn-social btn-facebook">
 						<i class="fa fa-facebook"></i>
-						Facebok
+						Share
 					</a>
 					<a href="{{vm.twitterUrl}}" class="btn btn-social btn-twitter" data-show-count="false">
 						<i class="fa fa-twitter"></i>
-						Twitter
+						Tweet
 					</a>
 					<button class="btn btn-default" data-clipboard-text="{{vm.current_campaignUrl}}">
 					    Copy link
