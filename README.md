@@ -27,4 +27,8 @@ Running `npm test` will run the unit tests with karma.
 
 ## Heroku upload
 
-gulp buildcontrol:heroku
+1. Run `gulp build`
+2. Go to the `dist` folder and run `git add remote heroku https://git.heroku.com/majorkeys.git`
+3. In the project root folder run `gulp buildcontrol:heroku`
+
+
