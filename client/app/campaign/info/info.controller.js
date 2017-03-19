@@ -2,7 +2,7 @@
 
 export default class InfoController {
 	/*@ngInject*/
-	constructor($http, $stateParams, $state, campaignFactory, artistFactory, Auth, $uibModal, mainService, initService, $rootScope) {
+	constructor($http, $stateParams, $state, $interval, campaignFactory, artistFactory, Auth, $uibModal, mainService, initService, $rootScope) {
 		this.campaignID = $stateParams.campaignID;
 		this.campaignFactory = campaignFactory;
 		this.artistFactory = artistFactory;
@@ -14,18 +14,18 @@ export default class InfoController {
 	    this.initService = initService;
 	    this.$rootScope = $rootScope;
 	    this.$http = $http;
+	    this.$interval = $interval;
 	}
 
 	$onInit() {
 		var self = this;
 		
-		this.$rootScope.onInfoPage = true;
-		// console.log(this.artistID);
+		this.$rootScope.onInfoPage = true;		
 		this.initService.onInfoPage = true;
 		this.initService.currentPage = {
 			state: 'campaignInfo',
 			id: this.campaignID
-		};
+		};		
 
 	    this.campaignFactory.findCampaign(this.campaignID)
 	      .then(response => {
@@ -39,21 +39,25 @@ export default class InfoController {
 	        	this.campaign.percentage = 0;
 	        else
 		        this.campaign.percentage = this.campaign.progress;
+	
+			var self = this;
+	        var remainingDays, remainingHours, remainingMins;
+	        this.$interval(function(){
+				var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+				var currentDate = new Date();
+				var endsDate = new Date(self.campaign.ends_date);
+				var delta = Math.abs(endsDate.getTime() - currentDate.getTime()) / 1000;
+				remainingDays = Math.round(Math.abs((currentDate.getTime() - endsDate.getTime())/(oneDay)));
+				remainingHours = 24 - Math.floor(delta / 3600) % 24;
+				remainingMins = 60 - Math.floor(delta / 60) % 60;
+		    	self.remainingDays = remainingDays;
+		        self.remainingHours = remainingHours;
+		        self.remainingMins = remainingMins;    
+		        
+	        }, 5000);
 
-	        var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
-			var currentDate = new Date();
-			var endsDate = new Date(this.campaign.ends_date);
-			var remainingDays = Math.round(Math.abs((currentDate.getTime() - endsDate.getTime())/(oneDay)));
-	        console.log(remainingDays);
 	        
-	        this.remainingDays = remainingDays;
-	        this.remainingHours = 0;
-	        this.remainingMins = 0;
-	        
-	  //       this.current_campaignUrl = window.location.href;
-			// console.log('campaign', this.current_campaignUrl);
-			
-			//get shorten url for social sharing
+
 			var current_campaignUrl = window.location.href;
 		    console.log(current_campaignUrl);
 
@@ -71,6 +75,21 @@ export default class InfoController {
 	    		console.log(this.artist);
 	    	})
 	      });
+	}
+
+	calcRemaining() {
+		console.log(this.campaign.ends_date);
+		var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+		var currentDate = new Date();
+		var endsDate = new Date(this.campaign.ends_date);
+		var delta = Math.abs(endsDate.getTime() - currentDate.getTime()) / 1000;
+		var remainingDays = Math.round(Math.abs((currentDate.getTime() - endsDate.getTime())/(oneDay)));
+		var remainingHours = Math.floor(delta / 3600) % 24;
+		var remainingMins = Math.floor(delta / 60) % 60;
+        
+        this.remainingDays = remainingDays;
+        this.remainingHours = remainingHours;
+        this.remainingMins = remainingMins;
 	}
 
 	facebookShare() {
