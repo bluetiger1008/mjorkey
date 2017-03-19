@@ -219,7 +219,7 @@ export default class CheckoutController {
 
   generalAdmissionPlus() {
     this.buyTicket = true;
-    if(this.generalAdmissionCount <this.campaign.goals){
+    if(this.generalAdmissionCount <this.campaign.goals && this.generalAdmissionCount + this.vipAdmissionCount < 12){
       this.generalAdmissionCount = this.generalAdmissionCount + 1;
       this.totalPrice += this.campaign.general_price;
     }
@@ -234,7 +234,7 @@ export default class CheckoutController {
 
   vipAdmissionPlus() {
     this.buyTicket = true;
-    if(this.vipAdmissionCount <this.campaign.goals){
+    if(this.vipAdmissionCount <this.campaign.goals && this.generalAdmissionCount + this.vipAdmissionCount < 12){
       this.vipAdmissionCount = this.vipAdmissionCount + 1;
       this.totalPrice += this.campaign.vip_price;
     }
