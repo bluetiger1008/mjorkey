@@ -64,7 +64,7 @@ var all = {
     },
   },
 
-  webhost: 'http://mjorkey.herokuapp.com/'
+  webhost: 'http://majorkeys.herokuapp.com/'
 };
 
 // Export the config object based on the NODE_ENV
