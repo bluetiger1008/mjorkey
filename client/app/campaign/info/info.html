@@ -5,17 +5,17 @@
 				<img src="{{vm.artist.photo}}">
 			</div>
 			<div class="artist-info col-md-8 col-xs-12">
-				<h1>{{ vm.artist.name }}</h1>
+				<h1>{{ vm.artist.name }}</h1> <br>
 				<p class="place">
 					<i class="fa fa-map-marker" aria-hidden="true"></i>
 					{{ vm.campaign.city }}, {{ vm.campaign.state }}
-				</p>
+				</p> <br>
 				<div class="status">
 					<div class="meter">
 					  <span style="width: {{vm.campaign.percentage}}%"></span>
 					</div>
-					<p class="ticket-status">{{vm.campaign.progress}}% to goal</p>
-					<md-button class="md-raised make-happen" ng-click="vm.purchaseTicket()">Make It Happen</md-button>
+					<p class="ticket-status">{{vm.campaign.progress}}% to goal</p> <br>
+					<md-button class="md-raised make-happen" ng-click="vm.purchaseTicket()">Make It Happen</md-button> <br> <br>
 					<div class="left-status">
 						<br/>
 						<p>time left</p>
@@ -23,19 +23,19 @@
 							<div class="bordered-rect">
 								{{vm.remainingDays}}
 							</div>
-							<p>{{vm.remainingDays}} Days</p>
+							<p>Days</p>
 						</div>
 						<div class="col middle">
 							<div class="bordered-rect">
 								{{vm.remainingHours}}
 							</div>
-							<p>{{vm.remainingHours}} Hours</p>
+							<p> Hours</p>
 						</div>
 						<div class="col">
 							<div class="bordered-rect">
 								{{vm.remainingMins}}
 							</div>
-							<p>{{vm.remainingMins}} Mins</p>
+							<p>Mins</p>
 						</div>
 					</div>
 				</div>
