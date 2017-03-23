@@ -1,0 +1,63 @@
+<!-- MODAL CONTENT GOES HERE -->
+<div class="popup-modal campaign-edit-modal" role="dialog" aria-labelledby="campaign-edit-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title" id="modal-title">Edit Campaign</h3>
+      <button type="button" class="close-modal" aria-hidden="true" ng-click="close_modal()"><i class="fa fa-times" aria-hidden="true"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="content-box">
+        <div class="form-group row">
+          <label for="example-text-input" class="col-xs-4 col-form-label">City</label>
+          <div class="col-xs-8">
+            <input class="form-control" type="text" ng-model="vm.campaign.city" id="city">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="example-text-input" class="col-xs-4 col-form-label">State</label>
+          <div class="col-xs-8">
+            <input class="form-control" type="text" ng-model="vm.campaign.state" id="state">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="example-text-input" class="col-xs-4 col-form-label">Description</label>
+          <div class="col-xs-8">
+            <input class="form-control" type="text" ng-model="vm.campaign.description" id="description">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="example-text-input" class="col-xs-4 col-form-label">Goal</label>
+          <div class="col-xs-8">
+            <input class="form-control" type="text" ng-model="vm.campaign.goals" id="goal_price">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="example-text-input" class="col-xs-4 col-form-label">VIP admission</label>
+          <div class="col-xs-8">
+            <input class="form-control" type="text" ng-model="vm.campaign.vip_price" id="vip_price">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="example-text-input" class="col-xs-4 col-form-label">General admission</label>
+          <div class="col-xs-8">
+            <input class="form-control" type="text" ng-model="vm.campaign.general_price" id="general_price">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="example-text-input" class="col-xs-4 col-form-label">Ends Date</label>
+          <div class="col-xs-8">
+            <!-- <input class="form-control" type="text" ng-model="vm.campaign.ends_date" id="ends_date"> -->
+            <datepicker date-format="yyyy-MM-dd" selector="form-control">
+                <div class="input-group">
+                    <input class="form-control" placeholder="Choose a date" ng-model="vm.campaign.ends_date">
+                </div>
+            </datepicker>
+          </div>
+        </div>
+        <button class="btn btn-primary" ng-click="vm.update(vm.campaign)">Update</button>
+        <button class="btn btn-danger">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL CONTENT -->

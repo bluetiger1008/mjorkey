@@ -1,0 +1,95 @@
+$bodyColor: #3d3d3d;
+
+.navbar-default {
+	margin-bottom: 0px;
+	.navbar-brand {
+		padding: 5px 15px;
+		img {
+			height: 100%;
+		}
+	}
+	.navbar-header {
+		.navbar-toggle {
+			width: 50px !important;
+			height: 50px !important;
+			md-icon {
+				color: white;
+			}
+		}
+	}
+	.navbar-nav {
+		li {
+			a, .navbar-text {
+				font-size: 14px;
+				color: white;
+				text-transform: uppercase;
+			}
+			&.active {
+				a {
+					background: white;
+				}
+			}
+			a {
+				&:hover {
+					color: #fff;
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (min-width : 769px) {
+	.navbar-default {
+		background-image: url('/assets/images/bg-header.jpg');	
+		background-size: 100%;
+		padding-top: 72px;
+		height: 365px;
+		z-index: 1;
+		.navbar-header {
+			.navbar-toggle {
+				display: none;
+			}
+		}
+		.navbar-nav {
+			margin: 15px 0 -15px;
+			li {
+				&.active {
+					a, a:hover, a:focus {
+						background: none;
+						border-bottom: 2px solid white;
+						color: white;
+					}
+				}
+				&.btn-signup {
+					border-right: 1px solid white;
+				}
+				a, .navbar-text {
+					margin: 0;
+					padding: 0 25px;
+					&:hover {
+						background: none;
+						color: white;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.navbar-default {
+		height: auto;
+		background-color: $bodyColor;
+		background-image: none;
+		.navbar-collapse {
+			.navbar-nav {
+				li {
+					.navbar-text {
+						padding: 10px 15px !important;
+						margin: 0;
+					}
+				}
+			}
+		}
+	}
+}

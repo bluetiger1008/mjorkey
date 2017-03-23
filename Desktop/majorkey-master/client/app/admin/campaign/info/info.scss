@@ -1,0 +1,23 @@
+.admin {
+	&.campaign-info {
+		h1 {
+			padding-bottom: 9px;
+			margin: 20px 0;
+			border-bottom: 1px solid #eee
+		}
+		.artist-photo {
+			img {
+				width: 100%;
+				max-width: 200px;
+			}
+		}
+		.sub-info {
+			p {
+				span {
+					width: 200px;
+					display: inline-block;
+				}
+			}
+		}
+	}
+}

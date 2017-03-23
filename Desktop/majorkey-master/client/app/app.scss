@@ -1,0 +1,110 @@
+$icon-font-path: '/assets/fonts/bootstrap/';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap';
+@import '~bootstrap-social/bootstrap-social.scss';
+@import '~angular-material/angular-material';
+$fa-font-path: '/assets/fonts/font-awesome/';
+@import '~font-awesome/scss/font-awesome';
+
+@font-face {
+  font-family: 'Gotham';
+  font-style: normal;
+  font-weight: 400;
+  src: url("/assets/fonts/Gotham-Rounded/Gotham-Rounded-Book/GothamRnd-Book.otf") format("truetype"); }
+
+$bodyColor: white;
+$orangeColor: #ff6000;
+$screen-xs:	700px;
+$screen-sm:	768px;
+$screen-md:	992px;
+$screen-lg:	1200px;
+$cyan : #00bcd4;
+
+body {
+	background: $bodyColor;
+	color: #3d3d3d;
+	font-family: 'Gotham';
+}
+
+.main-content {
+	padding-bottom: 100px;
+	background: white;
+}
+
+.pg-campaign, .pg-info, .pg-admin, .pg-checkout {
+	background: $bodyColor;
+}
+
+table {
+	margin-bottom: 0px !important;
+	tbody {
+		background: white;
+	}	
+}
+.submit-error {
+	color: red;
+	font-size: 0.8em;
+	padding: 5px;
+}
+.md-button {
+	margin: 0px !important;
+}
+md-list {
+	margin: 20px 0;
+	md-list-item {
+		border: 1px solid lightgrey;
+		background: white;
+		h2 {
+			color: black;
+			margin: 0;
+		}
+		.md-secondary-container {
+			p {
+				color: #3f51b5 !important;
+				span {
+					img {
+						width: 40px;
+					}
+				}	
+			}
+		
+		}
+	}
+	md-list-item .md-avatar, md-list-item .md-list-item-inner .md-avatar {
+		&.artist-photo {
+			width: 100px;
+			height: 100px;
+			background-image: url('/assets/images/ring-alt.gif');
+		}
+	}
+	
+}
+
+@media only screen and (max-width: 420px) {
+	md-list {
+		md-list-item .md-avatar, md-list-item .md-list-item-inner .md-avatar {
+			&.artist-photo {
+				width: 50px;
+				height: 50px;
+			}
+		}
+	}
+}
+// Component styles are injected through gulp
+/* inject:scss */
+@import 'account/account';
+@import 'admin/admin';
+@import 'admin/campaign/campaign';
+@import 'admin/campaign/info/info';
+@import 'campaign/campaign';
+@import 'modals/campaignEditModal/campaignEditModal';
+@import 'modals/errorModal/errorModal';
+@import 'modals/NotificationModal/notificationModal';
+@import 'modals/subscribeModal/subscribeModal';
+@import 'styles/config';
+@import 'styles/datepicker';
+@import 'styles/premier';
+@import '../components/footer/footer';
+@import '../components/modal/modal';
+@import '../components/navbar/navbar';
+@import '../components/oauth-buttons/oauth-buttons';
+/* endinject */

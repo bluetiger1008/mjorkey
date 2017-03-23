@@ -1,0 +1,103 @@
+.admin {
+	&.campaign {
+		md-content {
+			md-tabs {
+				.tb-artist {
+					tbody {
+						tr {
+							td {
+								line-height: 50px;
+								img {
+									width: 50px;
+									height: 50px;
+								}
+							}
+							&:hover {
+								cursor: pointer;
+							}
+							&:active {
+								background: rgba(51, 122, 183, 0.79);
+								td {
+									color: white;
+								}
+							}
+						}
+
+					}
+				}
+				.campaignAddForm {
+					.col-form-label {
+						line-height: 34px;
+					}
+					.artist-info {
+						img {
+							width: 80%;
+							margin: 10px 0;
+						}
+					}
+				}
+				.tb-campaign {
+					tbody {
+						tr {
+							&:hover {
+								background-color: #337ab7;
+								cursor: pointer;
+								td {
+									color: white;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: $screen-sm) {
+	.admin {
+		&.campaign {
+			md-content {
+				md-tabs {
+					.campaignAddForm {
+						.artist-info {
+							img {
+								max-width: 100px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width : 414px) {
+	.admin {
+		&.campaign {
+			md-content {
+				md-tabs {
+					.tb-artist {
+						tbody {
+							tr {
+								td {
+									line-height: 1;
+								}
+							}
+						}
+					}
+					.campaign-list {
+						th, td {
+							width: 25%;
+						}
+					}
+					.campaignAddForm {
+						.col-form-label {
+							line-height: 1;
+						}
+					}
+				}
+			}
+		}
+	}
+}

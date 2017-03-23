@@ -1,0 +1,17 @@
+<!-- MODAL CONTENT GOES HERE -->
+<div id="subscribe-first" class="popup-modal" role="dialog" aria-labelledby="subscribe-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Login Now</h3>
+        <button type="button" class="close-modal" aria-hidden="true" ng-click="vm.close_modal()"><i class="fa fa-times" aria-hidden="true"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="content-box">
+          <p>Please login to continue</p>
+          <button class="btn btn-danger" ng-click="vm.signup()" ui-sref="signup">Sign up</button>
+          <button class="btn btn-primary" ng-click="vm.login()" ui-sref="login">Log in</button>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- END MODAL CONTENT -->
